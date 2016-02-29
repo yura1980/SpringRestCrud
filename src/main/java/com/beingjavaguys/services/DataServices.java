@@ -33,5 +33,9 @@ public interface DataServices {
 
     long addEntitySpr(Spr ms) throws Exception;
 
+    long addSpisokLpmo(SpisokLpmo ms) throws Exception;
+
+    List<SpisokLpmo> getSpisokLpmoFindList(SprFam fam) throws Exception;
+
     List<SpisokLpmo> getSpisokLpmoList() throws Exception;
 }

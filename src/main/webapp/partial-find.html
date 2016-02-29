@@ -2,7 +2,7 @@
 <div class="panel panel-default" ng-controller="CtrlFind">
     <div class="panel-heading text-left">Панель поиска: <span
             class="text-danger">text-danger </span><br>
-        <pre>Model: {{sel | json}}</pre>
+        <!--<pre>Model: {{sel | json}}</pre>-->
     </div>
     <div class="panel-body">
 
@@ -54,12 +54,13 @@
                     </div>
                     <div class="form-group">
                         <label>Дата рождения:</label>
-                        <input type="text" ng-model="sel.obshhee.dr" class="form-control">
+                        <input type="text" ng-model="sel.spisokLpmoKl.datasRozhd" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <div class="form-group">
-                        <button class="btn btn-default" type="button"> Найти </button>
+                    <div class="form-group" style="margin-top: 25px;">
+                        <button class="btn btn-default" type="button" ng-click="find()"> Найти </button>
+                        <button class="btn btn-default" type="button" ng-click="save()"> Добавить </button>
                     </div>
                 </div>
             </div>
@@ -92,7 +93,7 @@
 
             <tbody>
             <tr ng-repeat="item in pagedItems[(currentPage - 1)]| orderBy:sort.sortingOrder:sort.reverse  | filter:findStr "
-                ng-click="open(item)">
+                ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index)">
                 <td>{{item.sprFamId.fam}} {{item.sprNameId.name}} {{item.sprOtchId.otch}}</td>
                 <td>{{item.datasRozhd | date:'dd.MM.yyyy'}}</td>
                 <td>{{item.pol ? 'Жен':'Муж'}}</td>

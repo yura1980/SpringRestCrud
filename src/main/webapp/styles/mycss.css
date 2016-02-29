@@ -12,3 +12,9 @@ tbody td {
     cursor: pointer;
     text-align: left;
 }
+
+.selected {
+    background-color:darkblue !important;
+    color:white;
+    font-weight:bold;
+}

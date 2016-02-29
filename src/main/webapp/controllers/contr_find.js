@@ -64,6 +64,17 @@ routerApp.controller('CtrlFind', function ($scope, $log, $filter, $uibModal, $in
         });
     };
 
+    //массив json объектов listJurnal
+    $scope.find = function () {
+        $http.get($scope.urlst + 'find', {//fam=
+            params: $scope.sel.spisokLpmoKl.sprFamId//{ fam: val, sensor: false }
+        }).success(function (response) {
+            $scope.items = response;
+            $scope.search();
+            $scope.totalItems = $scope.items.length;
+        });
+    };
+
     //инициализация
     $scope.getJurnal();
 
@@ -115,6 +126,32 @@ routerApp.controller('CtrlFind', function ($scope, $log, $filter, $uibModal, $in
             //params: { fam: val }//{ fam: val, sensor: false }
         }).then(function (response) {
             return response.data;//.results.map(function (item) { return item;/*.formatted_address;*/  });
+        });
+    };
+
+    $scope.selectedRow = null;  // initialize our variable to null
+    $scope.setClickedRow = function(index){  //function that sets the value of selectedRow to current index
+        $scope.selectedRow = index;
+    }
+
+    //Сохранить
+    $scope.save = function () {
+        $scope.sel.spisokLpmoKl.kl = null;
+        $scope.sel.spisokLpmoKl.pol = false;
+        $scope.sel.spisokLpmoKl.datasRozhd = null;
+        $scope.sel.spisokLpmoKl.pasportaId = null;
+        $http({
+            url: $scope.urlst + 'createKl',
+            method: "POST",
+            type: "application/json",
+            data: $scope.sel.spisokLpmoKl
+        }).then(function (response) {  // success
+            $scope.sel.spisokLpmoKl.kl = response.data;
+            $scope.items.push($scope.sel.spisokLpmoKl);
+            $scope.search();
+            $scope.totalItems = $scope.items.length;
+        }, function (response) { // optional  // failed
+            alert("Ошибка записи!" + response);
         });
     };
 

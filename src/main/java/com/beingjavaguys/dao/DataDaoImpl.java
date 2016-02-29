@@ -140,6 +140,19 @@ public class DataDaoImpl implements DataDao {
 
     @SuppressWarnings("unchecked")
     @Override
+    public List<SpisokLpmo> getSpisokLpmoFindList(SprFam fam) throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        List<SpisokLpmo> spisokLpmoList = session.createCriteria(SpisokLpmo.class)
+                .add(Restrictions.idEq(fam))
+                .list();
+        tx.commit();
+        session.close();
+        return spisokLpmoList;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
     public List<Spr> getSprFamList(String val) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
@@ -192,6 +205,18 @@ public class DataDaoImpl implements DataDao {
         session.close();
         return ms.getId();
     }
+
+    @Override
+    public long addSpisokLpmo(SpisokLpmo ms) throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        session.save(ms);
+        tx.commit();
+        session.close();
+        return ms.getKl();
+    }
+
+
 
     @Override
     public Adres getAdresById(long id) throws Exception {

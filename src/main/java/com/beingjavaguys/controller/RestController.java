@@ -45,6 +45,20 @@ public class RestController {
 
     }
 
+    @RequestMapping(value = "/createKl", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public
+    @ResponseBody
+    long addSpisokLpmo(@RequestBody SpisokLpmo ms) {
+        try {
+            return dataServices.addSpisokLpmo(ms);
+//            return new Status(1, "Messege added Successfully !");
+        } catch (Exception e) {
+            // e.printStackTrace();
+            return -1;//new Status(0, e.toString());
+        }
+
+    }
+
     @RequestMapping(value = "/crspr", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public
     @ResponseBody
@@ -220,6 +234,20 @@ public class RestController {
         List<Spr> fs = null;
         try {
             fs = dataServices.getSprFamList(val);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return fs;
+    }
+
+    //поиск
+    @RequestMapping(value = "find", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public
+    @ResponseBody
+    List<SpisokLpmo> getSpisokLpmoFindList(@RequestBody SprFam val) {
+        List<SpisokLpmo> fs = null;
+        try {
+            fs = dataServices.getSpisokLpmoFindList(val);
         } catch (Exception e) {
             e.printStackTrace();
         }
