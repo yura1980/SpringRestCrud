@@ -199,6 +199,19 @@ public class RestController {
         return posesheniesList;
     }
 
+    @RequestMapping(value = "/listSpisokLpmo", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<SpisokLpmo> getSpisokLpmoList() {
+        List<SpisokLpmo> spisokLpmoList = null;
+        try {
+            spisokLpmoList = dataServices.getSpisokLpmoList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return spisokLpmoList;
+    }
+
     //все справочники
     @RequestMapping(value = "fam/{val}", method = RequestMethod.GET)
     public

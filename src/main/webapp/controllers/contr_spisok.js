@@ -123,10 +123,15 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, $inte
 routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, $http, items) {
 
     $scope.urlst = window.location.pathname + "api/mess/";
-    items.datasReg = new Date(items.datasReg);
-    items.zaklAkt = new Date(items.zaklAkt);
+    //items.spisokLpmoKl = new Date(items.datasReg);
+    //items.zaklAkt = new Date(items.zaklAkt);
     $scope.items = items;                                               //входные параметры
     $scope.selected = {item: $scope.items}; //[0]                     //изменения
+    $scope.toppanel=true;
+
+    $scope.showHideFIO = function (val) {
+        $scope.toppanel = val;
+    };
 
     $scope.getLocation = function (val) {
         return $http.get($scope.urlst + 'fam/' + val, {//fam=
@@ -140,12 +145,14 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, $ht
         $http.get($scope.urlst + 'adr/' + $scope.items.spisokLpmoKl.kl).success(function (response) {
             $scope.adres = response;
         });
+        $scope.toppanel=false;
     };
 
     $scope.loadObshhee = function () {
         $http.get($scope.urlst + 'obsh/' + $scope.items.spisokLpmoKl.kl).success(function (response) {
             $scope.obshhee = response;
         });
+        $scope.toppanel=false;
     };
 
     //Сохранить
@@ -162,6 +169,28 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, $ht
                 $scope.items.spisokLpmoKl.sprNameId = { id: response.data, name: it };
             }else if(num === 'otch') {
                 $scope.items.spisokLpmoKl.sprOtchId = { id: response.data, otch: it };
+            }else if(num === 'gragd') {
+                $scope.items.spisokLpmoKl.pasportaId.sprGragdanstvoId = { id: response.data, gragd: it };
+            }else if(num === 'kemVydan') {
+                $scope.items.spisokLpmoKl.pasportaId.sprPaspKemVydanId = { id: response.data, kemVydan: it };
+            }else if(num === 'oblast') {
+                $scope.adres.sprOblastId = { id: response.data, oblast: it };
+            }else if(num === 'gorod') {
+                $scope.adres.sprGorodId = { id: response.data, gorod: it };
+            }else if(num === 'raion') {
+                $scope.adres.sprRaionId = { id: response.data, raion: it };
+            }else if(num === 'ulici') {
+                $scope.adres.sprUliciId = { id: response.data, ulici: it };
+            }else if(num === 'naselPunkt') {
+                $scope.adres.sprNaselPunktId = { id: response.data, naselPunkt: it };
+            }else if(num === 'nameOrg') {
+                $scope.items.rabotaId.sprOrgId = { id: response.data, nameOrg: it };
+            }else if(num === 'nazvPodrazdelenija') {
+                $scope.items.rabotaId.sprMestoRabotyId = { id: response.data, nazvPodrazdelenija: it };
+            }else if(num === 'professija') {
+                $scope.items.rabotaId.sprProfesijaId = { id: response.data, professija: it };
+            }else if(num === 'nameOrg2') {
+                $scope.obshhee.medOrg = { id: response.data, nameOrg: it };
             }
             $scope.noResults[ind] = false;
         }, function (response) { // optional  // failed

@@ -45,6 +45,11 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: 'partial-spisok.html',
             controller: 'CtrlSp'
         })
+        .state('find', {
+            url: '/home',
+            templateUrl: 'partial-find.html',
+            controller: 'CtrlFind'
+        })
         // Описание
         .state('about', {
             url: '/home',

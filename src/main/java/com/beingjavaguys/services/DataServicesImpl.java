@@ -81,4 +81,9 @@ public class DataServicesImpl implements DataServices {
     public long addEntitySpr(Spr ms) throws Exception {
         return dataDao.addEntitySpr(ms);
     }
+
+    @Override
+    public List<SpisokLpmo> getSpisokLpmoList() throws Exception {
+        return dataDao.getSpisokLpmoList();
+    }
 }

@@ -129,6 +129,17 @@ public class DataDaoImpl implements DataDao {
 
     @SuppressWarnings("unchecked")
     @Override
+    public List<SpisokLpmo> getSpisokLpmoList() throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        List<SpisokLpmo> spisokLpmoList = session.createCriteria(SpisokLpmo.class).list();
+        tx.commit();
+        session.close();
+        return spisokLpmoList;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
     public List<Spr> getSprFamList(String val) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();

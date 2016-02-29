@@ -32,4 +32,6 @@ public interface DataServices {
     Obshhee getObshheeById(long id) throws Exception;
 
     long addEntitySpr(Spr ms) throws Exception;
+
+    List<SpisokLpmo> getSpisokLpmoList() throws Exception;
 }
