@@ -1,31 +1,71 @@
 <!-- Панель таск трекера -->
-<div class="panel panel-default text-center" ng-controller="CtrlFind">
+<div class="panel panel-default" ng-controller="CtrlFind">
     <div class="panel-heading text-left">Панель поиска: <span
             class="text-danger">text-danger </span><br>
-        <b>helper.</b>
-        <!--<h4>Static arrays</h4>-->
-        <!--<pre>Model: {{selected | json}}</pre>-->
-        <!--<input type="text" ng-model="selected" uib-typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control">-->
-
-        <!--<h4>Asynchronous results</h4>-->
-        <!--<pre>Model: {{asyncSelected | json}}</pre>-->
-        <!--<input type="text" ng-model="asyncSelected" placeholder="loaded via $http"-->
-               <!--uib-typeahead="item as item.fam for item in getLocation($viewValue)"-->
-               <!--typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">-->
-        <!--<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>-->
-        <!--<div ng-show="noResults"><i class="glyphicon glyphicon-remove"></i> No Results Found </div>-->
+        <pre>Model: {{sel | json}}</pre>
     </div>
     <div class="panel-body">
 
-        <div class="col-lg-6">
-            <div class="input-group">
-                <input type="text" ng-model="findStr" class="form-control" placeholder="Поиск...">
-                <span class="input-group-btn">
-                    <button class="btn btn-primary" type="button">Добавить</button>
-                </span>
+        <!--<div class="col-lg-6">-->
+        <div class="input-group">
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="fam">Фамилия:<i ng-show="loadingLocations[1]"
+                                                    class="glyphicon glyphicon-refresh"></i></label>
+                        <input type="text" ng-model="sel.spisokLpmoKl.sprFamId" placeholder="Фамилия"
+                               uib-typeahead="item as item.fam for item in getLocation('fam=' + $viewValue)"
+                               typeahead-loading="loadingLocations[1]" typeahead-no-results="noResults[1]"
+                               class="form-control" id="fam">
+                        <div ng-show="noResults[1]"><i class="glyphicon glyphicon-remove"></i> Запись отсутсвует.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Паспорт:</label>
+                        <input type="text" ng-model="sel.spisokLpmoKl.pasportaId.pasport" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="nam">Имя:<i ng-show="loadingLocations[2]"
+                                                class="glyphicon glyphicon-refresh"></i></label>
+                        <input type="text" ng-model="sel.spisokLpmoKl.sprNameId" placeholder="Имя"
+                               uib-typeahead="item as item.name for item in getLocation('name=' + $viewValue)"
+                               typeahead-loading="loadingLocations[2]" typeahead-no-results="noResults[2]"
+                               class="form-control" id="nam">
+                        <div ng-show="noResults[2]"><i class="glyphicon glyphicon-remove"></i> Запись отсутсвует.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Телефон:</label>
+                        <input type="text" ng-model="sel.obshhee.telefon2" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="otch">Отчество:<i ng-show="loadingLocations[3]"
+                                                      class="glyphicon glyphicon-refresh"></i></label>
+                        <input type="text" ng-model="sel.spisokLpmoKl.sprOtchId" placeholder="Отчество"
+                               uib-typeahead="item as item.otch for item in getLocation('otch=' + $viewValue)"
+                               typeahead-loading="loadingLocations[3]" typeahead-no-results="noResults[3]"
+                               class="form-control" id="otch">
+                        <div ng-show="noResults[3]"><i class="glyphicon glyphicon-remove"></i> Запись отсутсвует.</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Дата рождения:</label>
+                        <input type="text" ng-model="sel.obshhee.dr" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <button class="btn btn-default" type="button"> Найти </button>
+                    </div>
+                </div>
             </div>
+
         </div>
-        <br>
+
         <hr/>
 
         <!-- подробный список/таблица  -->
@@ -43,7 +83,8 @@
             <tfoot>
             <td colspan="8">
                 <!-- пагинатор страниц -->
-                <uib-pagination total-items="totalItems" items-per-page="gap" ng-model="currentPage" max-size="maxSize"
+                <uib-pagination total-items="totalItems" items-per-page="gap" ng-model="currentPage"
+                                max-size="maxSize"
                                 class="pagination-sm" boundary-links="true" rotate="false"
                                 num-pages="numPages"></uib-pagination>
             </td>
@@ -61,5 +102,6 @@
             </tr>
             </tbody>
         </table>
+        <!--</div>-->
     </div>
 </div>

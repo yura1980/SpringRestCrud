@@ -117,6 +117,7 @@ routerApp.controller('CtrlFind', function ($scope, $log, $filter, $uibModal, $in
             return response.data;//.results.map(function (item) { return item;/*.formatted_address;*/  });
         });
     };
+
 });
 
 ////контроллер созданного диалогового окна
