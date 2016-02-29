@@ -1,0 +1,81 @@
+<!-- редактирование задачи -->
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" ng-click="evnt('cancel')">&times;</button>
+    <h3 class="modal-title">Текущая задача</h3>
+</div>
+<div class="modal-body">
+    <div class="form-group">
+        <form role="form">
+            <div class="form-group col-md-6">
+                <div class="padded-row">
+                    <div class="form-group">
+                        <label>Дата:</label>
+                        <p class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                                   ng-model="items.datasReg" is-open="status.opened" datepicker-options="dateOptions"
+                                   ng-required="true" close-text="Close"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                                        class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label for="prior">Регистрационный номер:</label>
+                        <input type="number" class="form-control" ng-model="items.rn" id="prior">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <div class="padded-row">
+                    <div class="form-group">
+                        <label>ЗАКТ:</label>
+                        <p class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                                   ng-model="items.zaklAkt" is-open="status.opened" datepicker-options="dateOptions"
+                                   ng-required="true" close-text="Close"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                                        class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label for="zatrtime">время:</label>
+                        <input type="text" class="form-control" ng-model="items.zatrtime" id="zatrtime">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name">Название:</label>
+                <input type="text" ng-model="items.sprOrgId" placeholder="Название"
+                       uib-typeahead="item as item.nameOrg for item in getLocation('nameOrg=' + $viewValue)"
+                       typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control" id="name">
+                <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                <div ng-show="noResults"><i class="glyphicon glyphicon-remove"></i> No Results Found </div>
+                <!--<input type="text" class="form-control" ng-model="items.sprOrgId.nameOrg" id="name">-->
+            </div>
+            <div class="form-group">
+                <label>Поликл:</label>
+                <input type="text" ng-model="items.sprPoliklinikiId" placeholder="Название"
+                       uib-typeahead="item as item.poliklinika for item in getLocation('poliklinika=' + $viewValue)"
+                       typeahead-loading="loadingLocations2" typeahead-no-results="noResults2" class="form-control">
+                <i ng-show="loadingLocations2" class="glyphicon glyphicon-refresh"></i>
+                <div ng-show="noResults2"><i class="glyphicon glyphicon-remove"></i> No Results Found </div>
+                <!--<input type="text" class="form-control" ng-model="items.sprPoliklinikiId.poliklinika" id="poli">-->
+            </div>
+            <div class="form-group">
+                <label for="description">Описание:</label>
+                <textarea class="form-control" id="description" ng-model="items.description" rows="3" cols="20"></textarea>
+            </div>
+            <div class="padded-row">
+                <div class="btn-group">
+                    <label class="btn btn-primary" ng-model="items.obrabotkaDok" uib-btn-radio="false">Обработан</label>
+                    <label class="btn btn-primary" ng-model="items.obrabotkaDok" uib-btn-radio="true">В процессе</label>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</div>

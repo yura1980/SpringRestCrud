@@ -1,0 +1,14 @@
+/* 
+    Created on : 07.11.2015, 22:05:17
+    Author     : yura
+*/
+
+datalist option {
+    height: 50px;
+    background-color: yellow !important;
+}
+
+tbody td {
+    cursor: pointer;
+    text-align: left;
+}

@@ -1,0 +1,58 @@
+<!-- Панель таск трекера -->
+<div class="panel panel-default text-center" ng-controller="CtrlTask">
+    <div class="panel-heading text-left">Панель: <span
+            class="text-danger">text-danger {{updateTask}}</span><br>
+        <b>helper.</b>
+    </div>
+    <div class="panel-body">
+
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="text" ng-model="findStr" class="form-control" placeholder="Поиск...">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" ng-click="open(null)" type="button">Добавить</button>
+                </span>
+            </div>
+        </div>
+        <br>
+        <hr/>
+
+        <!-- подробный список/таблица  -->
+        <table class="table table-striped table-condensed table-hover">
+            <thead>
+            <tr>
+                <th custom-sort order="'rn'" sort="sort">Рег№&nbsp;</th>
+                <th custom-sort order="'datasReg'" sort="sort">Дата&nbsp;</th>
+                <th custom-sort order="'idVidPmo'" sort="sort">ВидМО&nbsp;</th>
+                <th custom-sort order="'sprOrgId'" sort="sort">Организация&nbsp;</th>
+                <th custom-sort order="'sprPoliklinikiId'" sort="sort">Исполнитель&nbsp;</th>
+                <th custom-sort order="'obrabotkaDok'" sort="sort">Обр&nbsp;</th>
+                <th custom-sort order="'zaklAkt'" sort="sort">ЗакАкт&nbsp;</th>
+            </tr>
+            </thead>
+            <tfoot>
+            <td colspan="8">
+                <!-- пагинатор страниц -->
+                <uib-pagination total-items="totalItems" items-per-page="gap" ng-model="currentPage" max-size="maxSize"
+                                class="pagination-sm" boundary-links="true" rotate="false"
+                                num-pages="numPages"></uib-pagination>
+            </td>
+            </tfoot>
+
+            <tbody>
+            <tr ng-repeat="item in pagedItems[(currentPage - 1)]| orderBy:sort.sortingOrder:sort.reverse  | filter:findStr "
+                ng-click="open(item)">
+                <td>{{item.rn}}</td>
+                <td>{{item.datasReg | date:'dd.MM.yyyy'}}</td>
+                <td>{{item.idVidPmo}}</td>
+                <td>{{item.sprOrgId.nameOrg}}</td>
+                <td>{{item.sprPoliklinikiId.poliklinika}}</td>
+                <td>{{item.obrabotkaDok ? 'Да':'Нет'}}</td>
+                <td>{{item.zaklAkt | date:'dd.MM.yyyy'}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-default" ng-click="openSp()" type="button">Список клиентов</button>
+
+    </div>
+</div>
