@@ -160,6 +160,23 @@ routerApp.controller('CtrlFind', function ($scope, $log, $filter, $uibModal, $in
         });
     };
 
+    //параметры виджета выбора даты
+    //статус открытия
+    $scope.open = function ($event) {
+        $scope.status.opened = true;
+    };
+    //объект статуса
+    $scope.status = {
+        opened: false
+    };
+
+    $scope.dateOptions = {
+        formatYear: 'yyyy',                   //формат года
+        startingDay: 1                      //начало месяца
+    };
+    //формат даты виджета
+    $scope.format = 'dd.MM.yyyy';
+
 });
 
 ////контроллер созданного диалогового окна

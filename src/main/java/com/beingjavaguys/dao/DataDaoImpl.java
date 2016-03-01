@@ -139,14 +139,16 @@ public class DataDaoImpl implements DataDao {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<SpisokLpmo> getSpisokLpmoFindList(SprFam fam, SprName name) throws Exception {
+    public List<SpisokLpmo> getSpisokLpmoFindList(SpisokLpmo sp) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
         List<SpisokLpmo> spisokLpmoList = null;
         Criteria cr = session.createCriteria(SpisokLpmo.class);
         //.add()
-        cr.add(Restrictions.eqOrIsNull("sprFamId", fam));
-        if (name != null) cr.add(Restrictions.eqOrIsNull("sprNameId", name));
+        cr.add(Restrictions.eqOrIsNull("sprFamId", sp.getSprFamId()));
+        if (sp.getSprNameId() != null) cr.add(Restrictions.eqOrIsNull("sprNameId", sp.getSprNameId()));
+        if (sp.getSprOtchId() != null) cr.add(Restrictions.eqOrIsNull("sprOtchId", sp.getSprOtchId()));
+        if (sp.getDatasRozhd() != null) cr.add(Restrictions.eqOrIsNull("datasRozhd", sp.getDatasRozhd()));
 
         spisokLpmoList = cr.list();
         tx.commit();

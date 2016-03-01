@@ -16,5 +16,5 @@ tbody td {
 .selected {
     background-color:darkblue !important;
     color:white;
-    font-weight:bold;
+    /*font-weight:bold;*/
 }
