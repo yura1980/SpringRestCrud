@@ -2,17 +2,15 @@ package com.beingjavaguys.controller;
 
 import com.beingjavaguys.model.*;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.beingjavaguys.services.DataServices;
 
@@ -79,21 +77,21 @@ public class RestController {
                 return dataServices.addEntitySpr(new SprMestoRaboty(par[1]));
             } else if (par[0].equals("professija")) {
                 return dataServices.addEntitySpr(new SprProfesija(par[1]));
-            }else if (par[0].equals("gragd")) {
+            } else if (par[0].equals("gragd")) {
                 return dataServices.addEntitySpr(new SprGragdanstvo(par[1]));
-            }else if (par[0].equals("kemVydan")) {
+            } else if (par[0].equals("kemVydan")) {
                 return dataServices.addEntitySpr(new SprPaspKemVydan(par[1]));
-            }else if (par[0].equals("oblast")) {
+            } else if (par[0].equals("oblast")) {
                 return dataServices.addEntitySpr(new SprOblast(par[1]));
-            }else if (par[0].equals("gorod")) {
+            } else if (par[0].equals("gorod")) {
                 return dataServices.addEntitySpr(new SprGorod(par[1]));
-            }else if (par[0].equals("raion")) {
+            } else if (par[0].equals("raion")) {
                 return dataServices.addEntitySpr(new SprRaion(par[1]));
-            }else if (par[0].equals("naselPunkt")) {
+            } else if (par[0].equals("naselPunkt")) {
                 return dataServices.addEntitySpr(new SprNaselPunkt(par[1]));
-            }else if (par[0].equals("ulici")) {
+            } else if (par[0].equals("ulici")) {
                 return dataServices.addEntitySpr(new SprUlici(par[1]));
-            }else {
+            } else {
                 return -1;
             }
         } catch (Exception e) { // e.printStackTrace();
@@ -241,13 +239,31 @@ public class RestController {
     }
 
     //поиск
-    @RequestMapping(value = "find", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "find", method = RequestMethod.GET)
     public
     @ResponseBody
-    List<SpisokLpmo> getSpisokLpmoFindList(@RequestBody SprFam val) {
+    List<SpisokLpmo> getSpisokLpmoFindList(
+            @RequestParam(value = "sprFamId", required = false) String fam,
+            //@RequestParam(value = "fam", required = false) String fam,
+            @RequestParam(value = "sprNameId", required = false) String name) {
+        //@RequestParam(value = "name", required = false) String name) {
         List<SpisokLpmo> fs = null;
         try {
-            fs = dataServices.getSpisokLpmoFindList(val);
+//            SprFam f = new SprFam(fam); f.setId(id_fam);
+//            SprName n = new SprName(name); n.setId(id_name);
+            SprFam f = null;
+            SprName n = null;
+            String ret = null;
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                f = mapper.readValue(fam, SprFam.class);
+                if (name != null && !name.isEmpty()) n = mapper.readValue(name, SprName.class);
+//                return someService.call(userPreferences);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            fs = dataServices.getSpisokLpmoFindList(f, n);
         } catch (Exception e) {
             e.printStackTrace();
         }

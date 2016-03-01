@@ -67,7 +67,12 @@ routerApp.controller('CtrlFind', function ($scope, $log, $filter, $uibModal, $in
     //массив json объектов listJurnal
     $scope.find = function () {
         $http.get($scope.urlst + 'find', {//fam=
-            params: $scope.sel.spisokLpmoKl.sprFamId//{ fam: val, sensor: false }
+            params: $scope.sel.spisokLpmoKl//{
+                //id_fam: $scope.sel.spisokLpmoKl.sprFamId.id,
+                //fam: $scope.sel.spisokLpmoKl.sprFamId.fam,
+                //id_name: $scope.sel.spisokLpmoKl.sprNameId.id,
+                //name: $scope.sel.spisokLpmoKl.sprNameId.name
+            //}//{ fam: val, sensor: false }
         }).success(function (response) {
             $scope.items = response;
             $scope.search();

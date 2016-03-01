@@ -93,7 +93,7 @@ public class DataServicesImpl implements DataServices {
     }
 
     @Override
-    public List<SpisokLpmo> getSpisokLpmoFindList(SprFam fam) throws Exception {
-        return dataDao.getSpisokLpmoFindList(fam);
+    public List<SpisokLpmo> getSpisokLpmoFindList(SprFam fam, SprName name) throws Exception {
+        return dataDao.getSpisokLpmoFindList(fam, name);
     }
 }

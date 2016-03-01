@@ -3,12 +3,11 @@ package com.beingjavaguys.dao;
 import java.util.List;
 
 import com.beingjavaguys.model.*;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.type.StringType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.hibernate.FlushMode;
 
 public class DataDaoImpl implements DataDao {
 
@@ -140,12 +139,16 @@ public class DataDaoImpl implements DataDao {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<SpisokLpmo> getSpisokLpmoFindList(SprFam fam) throws Exception {
+    public List<SpisokLpmo> getSpisokLpmoFindList(SprFam fam, SprName name) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
-        List<SpisokLpmo> spisokLpmoList = session.createCriteria(SpisokLpmo.class)
-                .add(Restrictions.idEq(fam))
-                .list();
+        List<SpisokLpmo> spisokLpmoList = null;
+        Criteria cr = session.createCriteria(SpisokLpmo.class);
+        //.add()
+        cr.add(Restrictions.eqOrIsNull("sprFamId", fam));
+        if (name != null) cr.add(Restrictions.eqOrIsNull("sprNameId", name));
+
+        spisokLpmoList = cr.list();
         tx.commit();
         session.close();
         return spisokLpmoList;
@@ -174,22 +177,26 @@ public class DataDaoImpl implements DataDao {
             cl = SprMestoRaboty.class;
         } else if (par[0].equals("professija")) {
             cl = SprProfesija.class;
-        }else if (par[0].equals("gragd")) {
+        } else if (par[0].equals("gragd")) {
             cl = SprGragdanstvo.class;
-        }else if (par[0].equals("kemVydan")) {
+        } else if (par[0].equals("kemVydan")) {
             cl = SprPaspKemVydan.class;
-        }else if (par[0].equals("oblast")) {
+        } else if (par[0].equals("oblast")) {
             cl = SprOblast.class;
-        }else if (par[0].equals("gorod")) {
+        } else if (par[0].equals("gorod")) {
             cl = SprGorod.class;
-        }else if (par[0].equals("raion")) {
+        } else if (par[0].equals("raion")) {
             cl = SprRaion.class;
-        }else if (par[0].equals("naselPunkt")) {
+        } else if (par[0].equals("naselPunkt")) {
             cl = SprNaselPunkt.class;
-        }else if (par[0].equals("ulici")) {
+        } else if (par[0].equals("ulici")) {
             cl = SprUlici.class;
         }
-        sprFamList = session.createCriteria(cl).add(Restrictions.like(par[0], par[1] + "%")).list();
+        sprFamList = session.createCriteria(cl)
+                //.add(Restrictions.sqlRestriction("lower({alias}."+par[0]+") like lower(?)", par[1].toLowerCase() + "%", StringType.INSTANCE))
+                .add(Restrictions.like(par[0], par[1] + "%"))
+                //.add(Restrictions.ilike(par[0], par[1], MatchMode.ANYWHERE))
+                .list();
         //
         tx.commit();
         session.close();
@@ -215,7 +222,6 @@ public class DataDaoImpl implements DataDao {
         session.close();
         return ms.getKl();
     }
-
 
 
     @Override
