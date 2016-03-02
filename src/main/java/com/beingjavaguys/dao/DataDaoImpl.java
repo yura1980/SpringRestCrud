@@ -149,6 +149,10 @@ public class DataDaoImpl implements DataDao {
         if (sp.getSprNameId() != null) cr.add(Restrictions.eqOrIsNull("sprNameId", sp.getSprNameId()));
         if (sp.getSprOtchId() != null) cr.add(Restrictions.eqOrIsNull("sprOtchId", sp.getSprOtchId()));
         if (sp.getDatasRozhd() != null) cr.add(Restrictions.eqOrIsNull("datasRozhd", sp.getDatasRozhd()));
+        if (sp.getPasportaId() != null) {
+            cr.createAlias("pasportaId", "pasp");
+            cr.add(Restrictions.like("pasp.pasport", sp.getPasportaId().getPasport() + "%"));
+        }
 
         spisokLpmoList = cr.list();
         tx.commit();

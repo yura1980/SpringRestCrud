@@ -246,25 +246,28 @@ public class RestController {
     public
     @ResponseBody
     List<SpisokLpmo> getSpisokLpmoFindList(
-            @RequestParam(value = "sprFamId", required = false) String fam,
-            @RequestParam(value = "sprNameId", required = false) String name,
-            @RequestParam(value = "sprOtchId", required = false) String otch,
-            @RequestParam(value="datasRozhd", required=false) String dr) {
+            @RequestParam(value = "spisokLpmoKl", required = false) String kl) {
+//            @RequestParam(value = "sprFamId", required = false) String fam,
+//            @RequestParam(value = "sprNameId", required = false) String name,
+//            @RequestParam(value = "sprOtchId", required = false) String otch,
+//            @RequestParam(value="datasRozhd", required=false) @DateTimeFormat(pattern="yyyy-MM-dd") Date dr) {
+//            @RequestParam(value="datasRozhd", required=false) String dr) {
         List<SpisokLpmo> fs = null;
         try {
             SpisokLpmo sp = new SpisokLpmo();
             ObjectMapper mapper = new ObjectMapper();
             try {
-                sp.setSprFamId(mapper.readValue(fam, SprFam.class));
-                if (name != null && !name.isEmpty()) sp.setSprNameId(mapper.readValue(name, SprName.class));
-                if (otch != null && !otch.isEmpty()) sp.setSprOtchId(mapper.readValue(name, SprOtch.class));
-                if (dr != null) {
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                    dateFormat.parse(dr);
-//                    dateFormat.setLenient(false);
-//                    binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
-                    sp.setDatasRozhd(dateFormat.parse(dr));
-                }
+                sp= mapper.readValue(kl, SpisokLpmo.class);
+//                sp.setSprFamId(mapper.readValue(fam, SprFam.class));
+//                if (name != null && !name.isEmpty()) sp.setSprNameId(mapper.readValue(name, SprName.class));
+//                if (otch != null && !otch.isEmpty()) sp.setSprOtchId(mapper.readValue(name, SprOtch.class));
+//                if (dr != null) {
+////                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+////                    dateFormat.parse(dr);
+////                    dateFormat.setLenient(false);
+////                    binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+//                    sp.setDatasRozhd(dr);//dateFormat.parse(dr));
+//                }
 //                return someService.call(userPreferences);
             } catch (IOException e) {
                 e.printStackTrace();
