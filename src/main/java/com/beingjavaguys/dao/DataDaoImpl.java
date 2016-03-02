@@ -139,7 +139,7 @@ public class DataDaoImpl implements DataDao {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<SpisokLpmo> getSpisokLpmoFindList(SpisokLpmo sp) throws Exception {
+    public List<SpisokLpmo> getSpisokLpmoFindList(SpisokLpmo sp, Obshhee obshhee) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
         List<SpisokLpmo> spisokLpmoList = null;
@@ -152,6 +152,18 @@ public class DataDaoImpl implements DataDao {
         if (sp.getPasportaId() != null) {
             cr.createAlias("pasportaId", "pasp");
             cr.add(Restrictions.like("pasp.pasport", sp.getPasportaId().getPasport() + "%"));
+        }
+
+        if (obshhee != null) {
+            List<Obshhee> obshheeList = session.createCriteria(Obshhee.class)
+                    .add(Restrictions.like("telefon", obshhee.getTelefon() + "%"))
+                    .list();
+            Long[] ids = new Long[obshheeList.size()];
+            int i = 0;
+            for (Obshhee obshhee1 : obshheeList) {
+                ids[i++] = obshhee1.getId();
+            }
+            cr.add(Restrictions.in("kl", ids));
         }
 
         spisokLpmoList = cr.list();

@@ -246,7 +246,8 @@ public class RestController {
     public
     @ResponseBody
     List<SpisokLpmo> getSpisokLpmoFindList(
-            @RequestParam(value = "spisokLpmoKl", required = false) String kl) {
+            @RequestParam(value = "spisokLpmoKl", required = false) String kl,
+            @RequestParam(value = "obshhee", required = false) String obshhee) {
 //            @RequestParam(value = "sprFamId", required = false) String fam,
 //            @RequestParam(value = "sprNameId", required = false) String name,
 //            @RequestParam(value = "sprOtchId", required = false) String otch,
@@ -255,9 +256,14 @@ public class RestController {
         List<SpisokLpmo> fs = null;
         try {
             SpisokLpmo sp = new SpisokLpmo();
+            Obshhee obsh = null;
             ObjectMapper mapper = new ObjectMapper();
             try {
                 sp= mapper.readValue(kl, SpisokLpmo.class);
+                if (obshhee != null && !obshhee.isEmpty()) {
+                    obsh = new Obshhee();
+                    obsh = mapper.readValue(obshhee, Obshhee.class);
+                }
 //                sp.setSprFamId(mapper.readValue(fam, SprFam.class));
 //                if (name != null && !name.isEmpty()) sp.setSprNameId(mapper.readValue(name, SprName.class));
 //                if (otch != null && !otch.isEmpty()) sp.setSprOtchId(mapper.readValue(name, SprOtch.class));
@@ -273,7 +279,7 @@ public class RestController {
                 e.printStackTrace();
             }
 
-            fs = dataServices.getSpisokLpmoFindList(sp);
+            fs = dataServices.getSpisokLpmoFindList(sp, obsh);
         } catch (Exception e) {
             e.printStackTrace();
         }
