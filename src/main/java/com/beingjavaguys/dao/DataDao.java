@@ -38,5 +38,5 @@ public interface DataDao {
 
     List<SpisokLpmo> getSpisokLpmoList() throws Exception;
 
-    List<SpisokLpmo> getSpisokLpmoFindList(SpisokLpmo sp) throws Exception;
+    List<SpisokLpmo> getSpisokLpmoFindList(SpisokLpmo sp, Obshhee obshhee) throws Exception;
 }

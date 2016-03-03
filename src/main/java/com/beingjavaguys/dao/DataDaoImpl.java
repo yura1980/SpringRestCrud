@@ -139,7 +139,7 @@ public class DataDaoImpl implements DataDao {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<SpisokLpmo> getSpisokLpmoFindList(SpisokLpmo sp) throws Exception {
+    public List<SpisokLpmo> getSpisokLpmoFindList(SpisokLpmo sp, Obshhee obshhee) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
         List<SpisokLpmo> spisokLpmoList = null;
@@ -149,6 +149,22 @@ public class DataDaoImpl implements DataDao {
         if (sp.getSprNameId() != null) cr.add(Restrictions.eqOrIsNull("sprNameId", sp.getSprNameId()));
         if (sp.getSprOtchId() != null) cr.add(Restrictions.eqOrIsNull("sprOtchId", sp.getSprOtchId()));
         if (sp.getDatasRozhd() != null) cr.add(Restrictions.eqOrIsNull("datasRozhd", sp.getDatasRozhd()));
+        if (sp.getPasportaId() != null) {
+            cr.createAlias("pasportaId", "pasp");
+            cr.add(Restrictions.like("pasp.pasport", sp.getPasportaId().getPasport() + "%"));
+        }
+
+        if (obshhee != null) {
+            List<Obshhee> obshheeList = session.createCriteria(Obshhee.class)
+                    .add(Restrictions.like("telefon", obshhee.getTelefon() + "%"))
+                    .list();
+            Long[] ids = new Long[obshheeList.size()];
+            int i = 0;
+            for (Obshhee obshhee1 : obshheeList) {
+                ids[i++] = obshhee1.getId();
+            }
+            cr.add(Restrictions.in("kl", ids));
+        }
 
         spisokLpmoList = cr.list();
         tx.commit();
@@ -194,11 +210,15 @@ public class DataDaoImpl implements DataDao {
         } else if (par[0].equals("ulici")) {
             cl = SprUlici.class;
         }
-        sprFamList = session.createCriteria(cl)
-                //.add(Restrictions.sqlRestriction("lower({alias}."+par[0]+") like lower(?)", par[1].toLowerCase() + "%", StringType.INSTANCE))
-                .add(Restrictions.like(par[0], par[1] + "%"))
-                //.add(Restrictions.ilike(par[0], par[1], MatchMode.ANYWHERE))
-                .list();
+        if (par.length == 1) {
+            sprFamList = session.createCriteria(cl).list();
+        } else {
+            sprFamList = session.createCriteria(cl)
+                    //.add(Restrictions.sqlRestriction("lower({alias}."+par[0]+") like lower(?)", par[1].toLowerCase() + "%", StringType.INSTANCE))
+                    .add(Restrictions.like(par[0], par[1] + "%"))
+                    //.add(Restrictions.ilike(par[0], par[1], MatchMode.ANYWHERE))
+                    .list();
+        }
         //
         tx.commit();
         session.close();

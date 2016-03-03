@@ -1,7 +1,7 @@
 /**
- * Created by yuri on 17.02.16.
+ * Created by yuri on 03.03.16.
  */
-routerApp.controller('CtrlFind', function ($scope, $log, $filter, $uibModal, $interval, $http) {//, $state, theService
+routerApp.controller('CtrlSprav', function ($scope, $log, $filter, $http) {//, $state, theService
     //массив json объектов задач
     $scope.urlst = window.location.pathname + "api/mess/";
 
@@ -55,20 +55,59 @@ routerApp.controller('CtrlFind', function ($scope, $log, $filter, $uibModal, $in
         }
     };
 
-    //массив json объектов listJurnal
-    $scope.getJurnal = function () {
-        $http.get($scope.urlst + 'listSpisokLpmo').success(function (response) {
-            $scope.items = response;
-            $scope.search();
-            $scope.totalItems = $scope.items.length;
+    var _selected;
+    $scope.selected = "fam";
+    $scope.edit=[false];
+    $scope.editVal = [null];
+    $scope.spravList = [
+        //{spr: "poliklinika", name: "", act: false},
+        {spr: "nazvPodrazdelenija", name: "Место работы", act: false},
+        //{spr: "SprVidEkDejtOrg", name: "", act: false},
+        {spr: "fam", name: "Фамилия", act: true},
+        {spr: "naselPunkt", name: "Насел.пункты", act: false},
+        {spr: "gragd", name: "Гражданство", act: false},
+        {spr: "ObshParam", name: "Параметры", act: false},
+        //{spr: "SprPrichNejavkiNaMo", name: "", act: false},
+        //{spr: "SprVidOtchetovNast", name: "", act: false},
+        {spr: "nameOrg", name: "Организации", act: false},
+        //{spr: "SprVidMo", name: "", act: false},
+        //{spr: "MigrSprIss", name: "", act: false},
+        //{spr: "SprLom", name: "", act: false},
+        {spr: "ulici", name: "Улицы", act: false},
+        {spr: "oblast", name: "Область", act: false},
+        //{spr: "SprVrachIssl", name: "", act: false},
+        {spr: "otch", name: "Отчество", act: false},
+        {spr: "gorod", name: "Город", act: false},
+        {spr: "SprPrichina", name: "Причина", act: false},
+        {spr: "raion", name: "Район", act: false},
+        //{spr: "SprPrephOrg", name: "", act: false},
+        //{spr: "SprProfil", name: "", act: false},
+        //{spr: "SprVidOtchetov", name: "", act: false},
+        {spr: "SprAvtors", name: "Пользователь", act: false},
+        //{spr: "SprFormSobsOrg", name: "", act: false},
+        {spr: "professija", name: "Профессия", act: false},
+        //{spr: "Svl", name: "", act: false},
+        //{spr: "SprTipOrg", name: "", act: false},
+        {spr: "Price", name: "Цены", act: false},
+        {spr: "kemVydan", name: "Кем выдан паспорт", act: false},
+        {spr: "name", name: "Имя", act: false}//,
+        //{spr: "SprZkRek", name: "", act: false}
+    ];
+
+    $scope.clEdit = function (val,ind) {
+        $scope.edit[ind] = true;
+        $scope.editVal[ind] = val;
+    }
+    $scope.getLocation = function (val) {
+        return $http.get($scope.urlst + 'fam/' + val, { //params: { fam: val }//{ fam: val, sensor: false }
+        }).then(function (response) {
+            return response.data;//.results.map(function (item) { return item;/*.formatted_address;*/  });
         });
     };
 
     //массив json объектов listJurnal
-    $scope.find = function () {
-        $http.get($scope.urlst + 'find', {//fam=
-            params: { spisokLpmoKl: $scope.sel.spisokLpmoKl, obshhee: $scope.sel.obshhee }         //}//{ fam: val, sensor: false }
-        }).success(function (response) {
+    $scope.getJurnal = function () {
+        $http.get($scope.urlst + 'fam/' + $scope.selected + "=").success(function (response) {
             $scope.items = response;
             $scope.search();
             $scope.totalItems = $scope.items.length;
@@ -96,81 +135,27 @@ routerApp.controller('CtrlFind', function ($scope, $log, $filter, $uibModal, $in
         $scope.percent = 100 * (value / $scope.max);
     };
 
-    // открытие диалогового окна для редактирования задачи
-    $scope.open = function (cl, size) {
-        //если постой объект, создадим новую задачу
-        if (cl === null) {
+    //// открытие диалогового окна для редактирования задачи
+    //$scope.open = function (cl, size) {
+    //    //если постой объект, создадим новую задачу
+    //    if (cl === null) {
+    //
+    //    }
+    //
+    //    //создадим новый экземпляр диалогового окна
+    //    var modalInst = $uibModal.open({
+    //        templateUrl: 'modKl.html', controller: 'ModalInstCtrlKL', size: size,
+    //        resolve: {items: cl}
+    //    });                                     //передадим объект cl
+    //
+    //
+    //    modalInst.result.then(function (selItem) {                      //возвратим результат изменений
+    //        $scope.selected = selItem;
+    //    }, function () {
+    //        $log.info('Modal info');
+    //    });
+    //};
 
-        }
-
-        //создадим новый экземпляр диалогового окна
-        var modalInst = $uibModal.open({
-            templateUrl: 'modKl.html', controller: 'ModalInstCtrlKL', size: size,
-            resolve: {items: cl}
-        });                                     //передадим объект cl
-
-
-        modalInst.result.then(function (selItem) {                      //возвратим результат изменений
-            $scope.selected = selItem;
-        }, function () {
-            $log.info('Modal info');
-        });
-    };
-
-    var _selected;
-    $scope.selected = undefined;
-    //$scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
-
-    $scope.getLocation = function (val) {
-        return $http.get($scope.urlst + 'fam/' + val, {
-            //params: { fam: val }//{ fam: val, sensor: false }
-        }).then(function (response) {
-            return response.data;//.results.map(function (item) { return item;/*.formatted_address;*/  });
-        });
-    };
-
-    $scope.selectedRow = null;  // initialize our variable to null
-    $scope.setClickedRow = function(index){  //function that sets the value of selectedRow to current index
-        $scope.selectedRow = index;
-    }
-
-    //Сохранить
-    $scope.save = function () {
-        $scope.sel.spisokLpmoKl.kl = null;
-        $scope.sel.spisokLpmoKl.pol = false;
-        //$scope.sel.spisokLpmoKl.datasRozhd = null;
-        $scope.sel.spisokLpmoKl.pasportaId = null;
-        $http({
-            url: $scope.urlst + 'createKl',
-            method: "POST",
-            type: "application/json",
-            data: $scope.sel.spisokLpmoKl
-        }).then(function (response) {  // success
-            $scope.sel.spisokLpmoKl.kl = response.data;
-            $scope.items.push($scope.sel.spisokLpmoKl);
-            $scope.search();
-            $scope.totalItems = $scope.items.length;
-        }, function (response) { // optional  // failed
-            alert("Ошибка записи!" + response);
-        });
-    };
-
-    //параметры виджета выбора даты
-    //статус открытия
-    $scope.open = function ($event) {
-        $scope.status.opened = true;
-    };
-    //объект статуса
-    $scope.status = {
-        opened: false
-    };
-
-    $scope.dateOptions = {
-        formatYear: 'yyyy',                   //формат года
-        startingDay: 1                      //начало месяца
-    };
-    //формат даты виджета
-    $scope.format = 'dd.MM.yyyy';
 
 });
 
@@ -219,7 +204,7 @@ routerApp.controller('CtrlFind', function ($scope, $log, $filter, $uibModal, $in
 //            data: num+"="+it
 //        }).then(function (response) {  // success
 //            if(num === 'fam') {
-//               $scope.items.spisokLpmoKl.sprFamId = { id: response.data, fam: it };
+//                $scope.items.spisokLpmoKl.sprFamId = { id: response.data, fam: it };
 //            } else if(num === 'name') {
 //                $scope.items.spisokLpmoKl.sprNameId = { id: response.data, name: it };
 //            }else if(num === 'otch') {
@@ -254,16 +239,16 @@ routerApp.controller('CtrlFind', function ($scope, $log, $filter, $uibModal, $in
 //    };
 //
 //    /*$scope.getLocation2 = function (val) {
-//        return $http.get($scope.urlst + 'fam/name=' + val, {}).then(function (response) {
-//            return response.data;
-//        });
-//    };
+//     return $http.get($scope.urlst + 'fam/name=' + val, {}).then(function (response) {
+//     return response.data;
+//     });
+//     };
 //
-//    $scope.getLocation3 = function (val) {
-//        return $http.get($scope.urlst + 'fam/otch=' + val, {}).then(function (response) {
-//            return response.data;
-//        });
-//    };*/
+//     $scope.getLocation3 = function (val) {
+//     return $http.get($scope.urlst + 'fam/otch=' + val, {}).then(function (response) {
+//     return response.data;
+//     });
+//     };*/
 //
 //    //$scope.ok = function () {
 //    //    $uibModalInstance.close($scope.selected.item);

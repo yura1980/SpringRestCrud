@@ -50,6 +50,16 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: 'partial-find.html',
             controller: 'CtrlFind'
         })
+        .state('scrum', {
+            url: '/home',
+            templateUrl: 'partial-scrum.html',
+            controller: 'myCtrl'
+        })
+        .state('sprav', {
+            url: '/home',
+            templateUrl: 'partial-sprav.html',
+            controller: 'CtrlSprav'
+        })
         // Описание
         .state('about', {
             url: '/home',

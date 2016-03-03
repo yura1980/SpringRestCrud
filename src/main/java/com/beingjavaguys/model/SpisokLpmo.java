@@ -42,7 +42,7 @@ public class SpisokLpmo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "kl")
-    private Integer kl;
+    private long kl;
     @Basic(optional = false)
     @NotNull
     @Column(name = "pol")
@@ -82,20 +82,20 @@ public class SpisokLpmo implements Serializable {
     public SpisokLpmo() {
     }
 
-    public SpisokLpmo(Integer kl) {
-        this.kl = kl;
-    }
+//    public SpisokLpmo(Integer kl) {
+//        this.kl = kl;
+//    }
+//
+//    public SpisokLpmo(Integer kl, boolean pol) {
+//        this.kl = kl;
+//        this.pol = pol;
+//    }
 
-    public SpisokLpmo(Integer kl, boolean pol) {
-        this.kl = kl;
-        this.pol = pol;
-    }
-
-    public Integer getKl() {
+    public long getKl() {
         return kl;
     }
 
-    public void setKl(Integer kl) {
+    public void setKl(long kl) {
         this.kl = kl;
     }
 
@@ -214,7 +214,7 @@ public class SpisokLpmo implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (kl != null ? kl.hashCode() : 0);
+        hash += (int) kl;
         return hash;
     }
 
@@ -225,7 +225,7 @@ public class SpisokLpmo implements Serializable {
             return false;
         }
         SpisokLpmo other = (SpisokLpmo) object;
-        if ((this.kl == null && other.kl != null) || (this.kl != null && !this.kl.equals(other.kl))) {
+        if (this.kl != other.kl) {
             return false;
         }
         return true;
