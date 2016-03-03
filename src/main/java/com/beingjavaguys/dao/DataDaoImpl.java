@@ -210,11 +210,15 @@ public class DataDaoImpl implements DataDao {
         } else if (par[0].equals("ulici")) {
             cl = SprUlici.class;
         }
-        sprFamList = session.createCriteria(cl)
-                //.add(Restrictions.sqlRestriction("lower({alias}."+par[0]+") like lower(?)", par[1].toLowerCase() + "%", StringType.INSTANCE))
-                .add(Restrictions.like(par[0], par[1] + "%"))
-                //.add(Restrictions.ilike(par[0], par[1], MatchMode.ANYWHERE))
-                .list();
+        if (par.length == 1) {
+            sprFamList = session.createCriteria(cl).list();
+        } else {
+            sprFamList = session.createCriteria(cl)
+                    //.add(Restrictions.sqlRestriction("lower({alias}."+par[0]+") like lower(?)", par[1].toLowerCase() + "%", StringType.INSTANCE))
+                    .add(Restrictions.like(par[0], par[1] + "%"))
+                    //.add(Restrictions.ilike(par[0], par[1], MatchMode.ANYWHERE))
+                    .list();
+        }
         //
         tx.commit();
         session.close();
