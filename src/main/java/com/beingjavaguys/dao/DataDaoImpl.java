@@ -215,10 +215,9 @@ public class DataDaoImpl implements DataDao {
         } else {
             sprFamList = session.createCriteria(cl)
                     //.add(Restrictions.sqlRestriction("lower({alias}."+par[0]+") like lower(?)", par[1].toLowerCase() + "%", StringType.INSTANCE))
-                    .add(Restrictions.ilike(par[0],"%"+ par[1] + "%")) //Restrictions.or(
-                            //Restrictions.like(par[0], par[1] + "%"),
-                            //Restrictions.ilike(par[0],"%"+ par[1] + "%")))
-                    //.add(Restrictions.ilike(par[0], par[1], MatchMode.ANYWHERE))
+                    .add(Restrictions.or(
+                            Restrictions.like(par[0], Character.toUpperCase(par[1].charAt(0)) + par[1].substring(1) + "%"),
+                            Restrictions.ilike(par[0],par[1], MatchMode.ANYWHERE)))//"%"+ par[1] + "%"
                     .list();
         }
         //
