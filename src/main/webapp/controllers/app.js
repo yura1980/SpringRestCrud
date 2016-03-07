@@ -10,8 +10,10 @@
  */
 var routerApp = angular.module('routerApp', [
     'ui.router',                //организации навигации между различными частями нашего приложения
-    'ui.bootstrap',              //использование виджетов bootstrap
-    'ngAnimate'
+    'ui.bootstrap',             //использование виджетов bootstrap
+    'ngAnimate'//,
+    //'myApp.auth',
+    //'ngStorage'
 ]);
 
 //сервис фабрика для передачи параметров между контроллерами
@@ -29,6 +31,14 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/home');          //страница по умолчанию
     $stateProvider
     //Аутентификация пользователя
+    //    .state('login', {
+    //        url: '/login',
+    //        templateUrl: 'login.html',//'src/auth/partials/login.html',
+    //        controller: 'CtrlAutor'//,             //контроллер
+    //        //data: {
+    //        //    'noLogin': true
+    //        //}
+    //    })
         .state('autor', {
             url: '/home',                       //адрес
             templateUrl: 'partial-autor.html',  //шаблон
@@ -66,3 +76,45 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: 'partial-about.html'
         });
 });
+
+//routerApp.service('SessionService', [
+//    '$injector',
+//    function($injector) {
+//        "use strict";
+//
+//        this.checkAccess = function(event, toState, toParams, fromState, fromParams) {
+//            var $scope = $injector.get('$rootScope'),
+//                $sessionStorage = $injector.get('$sessionStorage');
+//
+//            if (toState.data !== undefined) {
+//                if (toState.data.noLogin !== undefined && toState.data.noLogin) {
+//                    // если нужно, выполняйте здесь какие-то действия перед входом без авторизации
+//                }
+//            } else {
+//                // вход с авторизацией
+//                if ($sessionStorage.user) {
+//                    $scope.$root.user = $sessionStorage.user;
+//                } else {
+//                    // если пользователь не авторизован - отправляем на страницу авторизации
+//                    event.preventDefault();
+//                    $scope.$state.go('auth.login');
+//                }
+//            }
+//        };
+//    }
+//]);
+//
+//routerApp.run(['$rootScope', '$state', '$stateParams', 'SessionService',
+//    function ($rootScope, $state, $stateParams, SessionService) {
+//        $rootScope.$state = $state;
+//        $rootScope.$stateParams = $stateParams;
+//        $rootScope.user = null;
+//
+//        // Здесь мы будем проверять авторизацию
+//        $rootScope.$on('$stateChangeStart',
+//            function (event, toState, toParams, fromState, fromParams) {
+//                SessionService.checkAccess(event, toState, toParams, fromState, fromParams);
+//            }
+//        );
+//        console.log("::use::run");
+//    }]);

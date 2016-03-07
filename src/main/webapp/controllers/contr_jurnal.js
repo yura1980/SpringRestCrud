@@ -9,7 +9,8 @@ routerApp.controller('CtrlTask', function ($scope, $log, $filter, $uibModal, $in
     //массив json объектов задач
     $scope.urlst = window.location.pathname + "api/mess/";
 
-    $scope.someThing = theService.thing;                            //праметры из другого контроллера
+    //theService.thing.visibleNav=true;
+    //$scope.someThing = theService.thing;                            //праметры из другого контроллера
     $scope.sort = {sortingOrder: 'id', reverse: false};             //праметры сортировки
 
     $scope.gap = 5;                                                 //шаг страницы для таблицы

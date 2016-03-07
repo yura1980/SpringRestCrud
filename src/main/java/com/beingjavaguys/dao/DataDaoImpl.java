@@ -218,6 +218,7 @@ public class DataDaoImpl implements DataDao {
                     .add(Restrictions.or(
                             Restrictions.like(par[0], Character.toUpperCase(par[1].charAt(0)) + par[1].substring(1) + "%"),
                             Restrictions.ilike(par[0],par[1], MatchMode.ANYWHERE)))//"%"+ par[1] + "%"
+                    .setMaxResults(10)
                     .list();
         }
         //

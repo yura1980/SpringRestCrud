@@ -16,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import com.beingjavaguys.services.DataServices;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping("/mess")
@@ -187,6 +189,18 @@ public class RestController {
         return msList;
     }
 
+    @RequestMapping(value = "/login/{val}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    char[] getLogin(@PathVariable("val") String val) {
+        List<MyPassword> msList = null;
+        try {
+            msList = dataServices.getPassList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "home".toCharArray();
+    }
 
     @RequestMapping(value = "/listJurnal", method = RequestMethod.GET)
     public
@@ -311,4 +325,5 @@ public class RestController {
         }
         return ms;
     }
+
 }

@@ -1,9 +1,10 @@
 /**
  * Created by yuri on 15.02.16.
  */
-routerApp.controller('CtrlAutor', function ($scope, $state, $http, theService) {
+routerApp.controller('CtrlAutor', function ($scope, $http, $state) {//, theService
 
-    theService.thing.visibleNav = false;                                //скрыть панели
+    //$scope.isAutorized = false;
+    //theService.thing.visibleNav = false;                                //скрыть панели
 
     $scope.urlst = window.location.pathname + "api/mess/";
 
@@ -19,13 +20,29 @@ routerApp.controller('CtrlAutor', function ($scope, $state, $http, theService) {
 
     //функция проверки Аутентификации пользователя
     $scope.checkLogin = function () {
-        $scope.users.forEach(function (it) {
-            if ($scope.usr === it.id && $scope.psw === it.pole2) {
-                theService.thing.visibleNav = true;                     //показать панели
-                theService.thing.idUser = it.id;                    //id пользователя
-                $state.transitionTo('home');                            //переместиться по адресу
-            }
-        });
+        //$scope.users.forEach(function (it) {
+        //    if ($scope.usr === it.id && $scope.psw === it.pole2) {
+        //        //theService.thing.visibleNav = true;                     //показать панели
+        //        //theService.thing.idUser = it.id;                    //id пользователя
+        //        //$state.transitionTo('home');                            //переместиться по адресу
+        //    }
+        //});
+
+        $http.get($scope.urlst + 'login/' + $scope.usr + "=" + $scope.psw)
+            .success(function (response) {
+                $state.transitionTo(response);
+            });
+
+        //$http({
+        //    url: $scope.urlst + 'login',
+        //    method: "POST",
+        //    type: "application/json",
+        //    data: $scope.usr+"="+$scope.psw
+        //}).then(function (response) {  // success
+        //    $scope.rez = response.data;
+        //}, function (response) { // optional  // failed
+        //    alert("Ошибка!" + response);
+        //});
     };
 
 });
