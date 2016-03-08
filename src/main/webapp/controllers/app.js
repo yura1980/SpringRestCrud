@@ -11,10 +11,14 @@
 var routerApp = angular.module('routerApp', [
     'ui.router',                //организации навигации между различными частями нашего приложения
     'ui.bootstrap',             //использование виджетов bootstrap
-    'ngAnimate'//,
-    //'myApp.auth',
+    'ngAnimate',
+    'restangular'//ngResource,
     //'ngStorage'
 ]);
+
+routerApp.constant('CONST', {
+    curr_url: window.location.pathname + "api/mess/"
+});
 
 //сервис фабрика для передачи параметров между контроллерами
 routerApp.factory('theService', function () {
@@ -27,7 +31,18 @@ routerApp.factory('theService', function () {
     };
 });
 
-routerApp.config(function ($stateProvider, $urlRouterProvider) {
+//routerApp.factory("Pass", function($resource) {
+//    return $resource(window.location.pathname  + "api/mess/"+ 'listPass');
+//});
+
+//routerApp.config(['$resourceProvider', function($resourceProvider) {
+//    // Don't strip trailing slashes from calculated URLs
+//    $resourceProvider.defaults.stripTrailingSlashes = false;
+//}]);
+
+routerApp.config(function ($stateProvider, $urlRouterProvider, RestangularProvider) {
+    RestangularProvider.setBaseUrl(window.location.pathname + "api/mess/");
+
     $urlRouterProvider.otherwise('/home');          //страница по умолчанию
     $stateProvider
     //Аутентификация пользователя
