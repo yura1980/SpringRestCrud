@@ -1,31 +1,70 @@
 /**
  * Created by yuri on 15.02.16.
  */
-routerApp.controller('CtrlAutor', function ($scope, $state, $http, theService) {
+routerApp.controller('CtrlAutor', function ($scope, $state,Restangular) {//, $http, theService
 
-    theService.thing.visibleNav = false;                                //скрыть панели
+    //$scope.isAutorized = false;
+    //theService.thing.visibleNav = false;                                //скрыть панели
 
-    $scope.urlst = window.location.pathname + "api/mess/";
+    //$scope.urlst = window.location.pathname + "api/mess/";
 
     //массив json объектов пользователей
-    $scope.getUsers = function () {
-        $http.get($scope.urlst + 'listPass').success(function (response) {
+    Restangular.all('listPass').getList()  // GET: /users
+        .then(function(response) {
             $scope.users = response;
             $scope.usr = $scope.users[0].id;
         });
-    };
-
-    $scope.getUsers();
+    //$scope.getUsers = function () {
+    //    $scope.users =Restangular.all('listPass').getList().$object;  // GET: /users
+    //    $scope.usr = $scope.users[0];
+    //        //.then(function(users) {
+    //        //    $scope.users =users;
+    //        //    // returns a list of users
+    //        //    $scope.usr = users[0]; // first Restangular obj in list: { id: 123 }
+    //        //})
+    //
+    //    //$scope.users = $resource(CONST.curr_url + 'listPass/', {}, {
+    //    //    query: {method: 'GET', isArray: true,  cache: true}}
+    //    //).query();
+    //    //$scope.usr = $scope.users[0].id;
+    //
+    //    //$http.get(CONST.curr_url + 'listPass').success(function (response) {
+    //    //    $scope.users = response;
+    //    //    $scope.usr = $scope.users[0].id;
+    //    //});
+    //};
+    //
+    //$scope.getUsers();
 
     //функция проверки Аутентификации пользователя
     $scope.checkLogin = function () {
-        $scope.users.forEach(function (it) {
-            if ($scope.usr === it.id && $scope.psw === it.pole2) {
-                theService.thing.visibleNav = true;                     //показать панели
-                theService.thing.idUser = it.id;                    //id пользователя
-                $state.transitionTo('home');                            //переместиться по адресу
-            }
-        });
+        //$scope.users.forEach(function (it) {
+        //    if ($scope.usr === it.id && $scope.psw === it.pole2) {
+        //        //theService.thing.visibleNav = true;                     //показать панели
+        //        //theService.thing.idUser = it.id;                    //id пользователя
+        //        //$state.transitionTo('home');                            //переместиться по адресу
+        //    }
+        //});
+        Restangular.one('login', $scope.usr + "=" + $scope.psw).get()
+            .then(function(response) {
+                $state.transitionTo(response);
+            });
+
+        //$http.get(CONST.curr_url + 'login/' + $scope.usr + "=" + $scope.psw)
+        //    .success(function (response) {
+        //        $state.transitionTo(response);
+        //    });
+
+        //$http({
+        //    url: $scope.urlst + 'login',
+        //    method: "POST",
+        //    type: "application/json",
+        //    data: $scope.usr+"="+$scope.psw
+        //}).then(function (response) {  // success
+        //    $scope.rez = response.data;
+        //}, function (response) { // optional  // failed
+        //    alert("Ошибка!" + response);
+        //});
     };
 
 });

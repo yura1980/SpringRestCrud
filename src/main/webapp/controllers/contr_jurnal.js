@@ -5,11 +5,12 @@
  Created on : 28.10.2015, 9:33:58
  Author     : Vasyanin Yuri
  */
-routerApp.controller('CtrlTask', function ($scope, $log, $filter, $uibModal, $interval, $http, $state, theService) {
+routerApp.controller('CtrlTask', function ($scope, $log, $filter, $uibModal, $interval, $http, $state, CONST) {
     //массив json объектов задач
     $scope.urlst = window.location.pathname + "api/mess/";
 
-    $scope.someThing = theService.thing;                            //праметры из другого контроллера
+    //theService.thing.visibleNav=true;
+    //$scope.someThing = theService.thing;                            //праметры из другого контроллера
     $scope.sort = {sortingOrder: 'id', reverse: false};             //праметры сортировки
 
     $scope.gap = 5;                                                 //шаг страницы для таблицы
@@ -63,7 +64,7 @@ routerApp.controller('CtrlTask', function ($scope, $log, $filter, $uibModal, $in
 
     //массив json объектов listJurnal
     $scope.getJurnal = function () {
-        $http.get($scope.urlst + 'listJurnal').success(function (response) {
+        $http.get(CONST.curr_url + 'listJurnal').success(function (response) {
             $scope.items = response;
             $scope.search();
             $scope.totalItems = $scope.items.length;
@@ -115,7 +116,7 @@ routerApp.controller('CtrlTask', function ($scope, $log, $filter, $uibModal, $in
 
     //посещения
     $scope.getPoseshenie = function () {
-        $http.get($scope.urlst + 'listPoseshenie').success(function (response) {
+        $http.get(CONST.curr_url + 'listPoseshenie').success(function (response) {
             $scope.poseshenie = response;
             $log.info($scope.poseshenie);
         });
@@ -145,12 +146,12 @@ routerApp.controller('CtrlTask', function ($scope, $log, $filter, $uibModal, $in
 });
 
 //контроллер созданного диалогового окна
-routerApp.controller('ModalInstCtrl', function ($scope, $uibModalInstance, $http, items) {
+routerApp.controller('ModalInstCtrl', function ($scope, $uibModalInstance, $http, items, CONST) {
 
     $scope.urlst = window.location.pathname + "api/mess/";
 
     $scope.getLocation = function (val) {
-        return $http.get($scope.urlst + 'fam/' + val, {//fam=
+        return $http.get(CONST.curr_url + 'fam/' + val, {//fam=
             //params: { fam: val }//{ fam: val, sensor: false }
         }).then(function (response) {
             return response.data;//.results.map(function (item) { return item;/*.formatted_address;*/  });
