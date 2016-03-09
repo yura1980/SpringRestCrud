@@ -121,13 +121,13 @@ routerApp.controller('CtrlFind', function ($scope, $log, $filter, $uibModal, $in
     $scope.selected = undefined;
     //$scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
 
-    $scope.getLocation = function (val) {
-        return $http.get($scope.urlst + 'fam/' + val, {
-            //params: { fam: val }//{ fam: val, sensor: false }
-        }).then(function (response) {
-            return response.data;//.results.map(function (item) { return item;/*.formatted_address;*/  });
-        });
-    };
+    //$scope.getLocation = function (val) {
+    //    return $http.get($scope.urlst + 'fam/' + val, {
+    //        //params: { fam: val }//{ fam: val, sensor: false }
+    //    }).then(function (response) {
+    //        return response.data;//.results.map(function (item) { return item;/*.formatted_address;*/  });
+    //    });
+    //};
 
     $scope.selectedRow = null;  // initialize our variable to null
     $scope.setClickedRow = function(index){  //function that sets the value of selectedRow to current index
@@ -157,20 +157,20 @@ routerApp.controller('CtrlFind', function ($scope, $log, $filter, $uibModal, $in
 
     //параметры виджета выбора даты
     //статус открытия
-    $scope.open = function ($event) {
-        $scope.status.opened = true;
-    };
-    //объект статуса
-    $scope.status = {
-        opened: false
-    };
-
-    $scope.dateOptions = {
-        formatYear: 'yyyy',                   //формат года
-        startingDay: 1                      //начало месяца
-    };
-    //формат даты виджета
-    $scope.format = 'dd.MM.yyyy';
+    //$scope.open = function ($event) {
+    //    $scope.status.opened = true;
+    //};
+    ////объект статуса
+    //$scope.status = {
+    //    opened: false
+    //};
+    //
+    //$scope.dateOptions = {
+    //    formatYear: 'yyyy',                   //формат года
+    //    startingDay: 1                      //начало месяца
+    //};
+    ////формат даты виджета
+    //$scope.format = 'dd.MM.yyyy';
 
 });
 

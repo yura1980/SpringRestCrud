@@ -1,7 +1,5 @@
 <div ng-include="'navigation.html'"></div>
 <!-- Панель таск трекера -->
-<div ng-include="'navbar.html'"></div>
-
 <div class="panel panel-default" ng-controller="CtrlFind">
     <div class="panel-heading text-left">Панель поиска: <span
             class="text-danger">text-danger </span><br>
@@ -15,14 +13,15 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="fam">Фамилия:<i ng-show="loadingLocations[1]"
-                                                    class="glyphicon glyphicon-refresh"></i></label>
-                        <input type="text" ng-model="sel.spisokLpmoKl.sprFamId" placeholder="Фамилия"
-                               uib-typeahead="item as item.fam for item in getLocation('fam=' + $viewValue)"
-                               typeahead-loading="loadingLocations[1]" typeahead-no-results="noResults[1]"
-                               class="form-control" id="fam">
-                        <div ng-show="noResults[1]"><i class="glyphicon glyphicon-remove"></i> Запись отсутсвует.
-                        </div>
+                        <autoc par="fam" placeh="Фамилия" model="sel.spisokLpmoKl.sprFamId"/>
+                        <!--<label for="fam">Фамилия:<i ng-show="loadingLocations[1]"-->
+                                                    <!--class="glyphicon glyphicon-refresh"></i></label>-->
+                        <!--<input type="text" ng-model="sel.spisokLpmoKl.sprFamId" placeholder="Фамилия"-->
+                               <!--uib-typeahead="item as item.fam for item in getLocation('fam=' + $viewValue)"-->
+                               <!--typeahead-loading="loadingLocations[1]" typeahead-no-results="noResults[1]"-->
+                               <!--class="form-control" id="fam">-->
+                        <!--<div ng-show="noResults[1]"><i class="glyphicon glyphicon-remove"></i> Запись отсутсвует.-->
+                        <!--</div>-->
                     </div>
                     <div class="form-group">
                         <label>Паспорт:</label>
@@ -31,14 +30,15 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="nam">Имя:<i ng-show="loadingLocations[2]"
-                                                class="glyphicon glyphicon-refresh"></i></label>
-                        <input type="text" ng-model="sel.spisokLpmoKl.sprNameId" placeholder="Имя"
-                               uib-typeahead="item as item.name for item in getLocation('name=' + $viewValue)"
-                               typeahead-loading="loadingLocations[2]" typeahead-no-results="noResults[2]"
-                               class="form-control" id="nam">
-                        <div ng-show="noResults[2]"><i class="glyphicon glyphicon-remove"></i> Запись отсутсвует.
-                        </div>
+                        <autoc par="name" placeh="Имя" model="sel.spisokLpmoKl.sprNameId"/>
+                        <!--<label for="nam">Имя:<i ng-show="loadingLocations[2]"-->
+                                                <!--class="glyphicon glyphicon-refresh"></i></label>-->
+                        <!--<input type="text" ng-model="sel.spisokLpmoKl.sprNameId" placeholder="Имя"-->
+                               <!--uib-typeahead="item as item.name for item in getLocation('name=' + $viewValue)"-->
+                               <!--typeahead-loading="loadingLocations[2]" typeahead-no-results="noResults[2]"-->
+                               <!--class="form-control" id="nam">-->
+                        <!--<div ng-show="noResults[2]"><i class="glyphicon glyphicon-remove"></i> Запись отсутсвует.-->
+                        <!--</div>-->
                     </div>
                     <div class="form-group">
                         <label>Телефон:</label>
@@ -47,25 +47,27 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="otch">Отчество:<i ng-show="loadingLocations[3]"
-                                                      class="glyphicon glyphicon-refresh"></i></label>
-                        <input type="text" ng-model="sel.spisokLpmoKl.sprOtchId" placeholder="Отчество"
-                               uib-typeahead="item as item.otch for item in getLocation('otch=' + $viewValue)"
-                               typeahead-loading="loadingLocations[3]" typeahead-no-results="noResults[3]"
-                               class="form-control" id="otch">
-                        <div ng-show="noResults[3]"><i class="glyphicon glyphicon-remove"></i> Запись отсутсвует.</div>
+                        <autoc par="otch" placeh="Отчество" model="sel.spisokLpmoKl.sprOtchId"/>
+                        <!--<label for="otch">Отчество:<i ng-show="loadingLocations[3]"-->
+                                                      <!--class="glyphicon glyphicon-refresh"></i></label>-->
+                        <!--<input type="text" ng-model="sel.spisokLpmoKl.sprOtchId" placeholder="Отчество"-->
+                               <!--uib-typeahead="item as item.otch for item in getLocation('otch=' + $viewValue)"-->
+                               <!--typeahead-loading="loadingLocations[3]" typeahead-no-results="noResults[3]"-->
+                               <!--class="form-control" id="otch">-->
+                        <!--<div ng-show="noResults[3]"><i class="glyphicon glyphicon-remove"></i> Запись отсутсвует.</div>-->
                     </div>
                     <div class="form-group">
-                        <label>Дата рождения:</label>
-                        <p class="input-group">
-                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" placeholder="Дата рождения"
-                                   ng-model="sel.spisokLpmoKl.datasRozhd" is-open="status.opened" datepicker-options="dateOptions"
-                                   ng-required="true" close-text="Close"/>
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="open($event)"><i
-                                        class="glyphicon glyphicon-calendar"></i></button>
-                            </span>
-                        </p>
+                        <dateb placeh="Дата рождения" model="sel.spisokLpmoKl.datasRozhd"/>
+                        <!--<label>Дата рождения:</label>-->
+                        <!--<p class="input-group">-->
+                            <!--<input type="text" class="form-control" uib-datepicker-popup="{{format}}" placeholder="Дата рождения"-->
+                                   <!--ng-model="sel.spisokLpmoKl.datasRozhd" is-open="status.opened" datepicker-options="dateOptions"-->
+                                   <!--ng-required="true" close-text="Close"/>-->
+                            <!--<span class="input-group-btn">-->
+                                <!--<button type="button" class="btn btn-default" ng-click="open($event)"><i-->
+                                        <!--class="glyphicon glyphicon-calendar"></i></button>-->
+                            <!--</span>-->
+                        <!--</p>-->
                         <!--<input type="text" ng-model="sel.spisokLpmoKl.datasRozhd" class="form-control">-->
                     </div>
                 </div>

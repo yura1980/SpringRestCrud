@@ -150,13 +150,13 @@ routerApp.controller('ModalInstCtrl', function ($scope, $uibModalInstance, $http
 
     $scope.urlst = window.location.pathname + "api/mess/";
 
-    $scope.getLocation = function (val) {
-        return $http.get(CONST.curr_url + 'fam/' + val, {//fam=
-            //params: { fam: val }//{ fam: val, sensor: false }
-        }).then(function (response) {
-            return response.data;//.results.map(function (item) { return item;/*.formatted_address;*/  });
-        });
-    };
+    //$scope.getLocation = function (val) {
+    //    return $http.get(CONST.curr_url + 'fam/' + val, {//fam=
+    //        //params: { fam: val }//{ fam: val, sensor: false }
+    //    }).then(function (response) {
+    //        return response.data;//.results.map(function (item) { return item;/*.formatted_address;*/  });
+    //    });
+    //};
 
     items.datasReg = new Date(items.datasReg);
     items.zaklAkt = new Date(items.zaklAkt);

@@ -108,15 +108,15 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, $inte
 
     var _selected;
     $scope.selected = undefined;
-    $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
-
-    $scope.getLocation = function (val) {
-        return $http.get($scope.urlst + 'fam/' + val, {
-            //params: { fam: val }//{ fam: val, sensor: false }
-        }).then(function (response) {
-            return response.data;//.results.map(function (item) { return item;/*.formatted_address;*/  });
-        });
-    };
+    //$scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+    //
+    //$scope.getLocation = function (val) {
+    //    return $http.get($scope.urlst + 'fam/' + val, {
+    //        //params: { fam: val }//{ fam: val, sensor: false }
+    //    }).then(function (response) {
+    //        return response.data;//.results.map(function (item) { return item;/*.formatted_address;*/  });
+    //    });
+    //};
 });
 
 //контроллер созданного диалогового окна
@@ -133,13 +133,13 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, $ht
         $scope.toppanel = val;
     };
 
-    $scope.getLocation = function (val) {
-        return $http.get($scope.urlst + 'fam/' + val, {//fam=
-            //params: { fam: val }//{ fam: val, sensor: false }
-        }).then(function (response) {
-            return response.data;//.results.map(function (item) { return item;/*.formatted_address;*/  });
-        });
-    };
+    //$scope.getLocation = function (val) {
+    //    return $http.get($scope.urlst + 'fam/' + val, {//fam=
+    //        //params: { fam: val }//{ fam: val, sensor: false }
+    //    }).then(function (response) {
+    //        return response.data;//.results.map(function (item) { return item;/*.formatted_address;*/  });
+    //    });
+    //};
 
     $scope.loadAdres = function () {
         $http.get($scope.urlst + 'adr/' + $scope.items.spisokLpmoKl.kl).success(function (response) {
@@ -156,47 +156,47 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, $ht
     };
 
     //Сохранить
-    $scope.save = function (it, num, ind) {
-        $http({
-            url: $scope.urlst + 'crspr',
-            method: "POST",
-            type: "application/json",
-            data: num+"="+it
-        }).then(function (response) {  // success
-            if(num === 'fam') {
-               $scope.items.spisokLpmoKl.sprFamId = { id: response.data, fam: it };
-            } else if(num === 'name') {
-                $scope.items.spisokLpmoKl.sprNameId = { id: response.data, name: it };
-            }else if(num === 'otch') {
-                $scope.items.spisokLpmoKl.sprOtchId = { id: response.data, otch: it };
-            }else if(num === 'gragd') {
-                $scope.items.spisokLpmoKl.pasportaId.sprGragdanstvoId = { id: response.data, gragd: it };
-            }else if(num === 'kemVydan') {
-                $scope.items.spisokLpmoKl.pasportaId.sprPaspKemVydanId = { id: response.data, kemVydan: it };
-            }else if(num === 'oblast') {
-                $scope.adres.sprOblastId = { id: response.data, oblast: it };
-            }else if(num === 'gorod') {
-                $scope.adres.sprGorodId = { id: response.data, gorod: it };
-            }else if(num === 'raion') {
-                $scope.adres.sprRaionId = { id: response.data, raion: it };
-            }else if(num === 'ulici') {
-                $scope.adres.sprUliciId = { id: response.data, ulici: it };
-            }else if(num === 'naselPunkt') {
-                $scope.adres.sprNaselPunktId = { id: response.data, naselPunkt: it };
-            }else if(num === 'nameOrg') {
-                $scope.items.rabotaId.sprOrgId = { id: response.data, nameOrg: it };
-            }else if(num === 'nazvPodrazdelenija') {
-                $scope.items.rabotaId.sprMestoRabotyId = { id: response.data, nazvPodrazdelenija: it };
-            }else if(num === 'professija') {
-                $scope.items.rabotaId.sprProfesijaId = { id: response.data, professija: it };
-            }else if(num === 'nameOrg2') {
-                $scope.obshhee.medOrg = { id: response.data, nameOrg: it };
-            }
-            $scope.noResults[ind] = false;
-        }, function (response) { // optional  // failed
-            alert("Ошибка записи!" + response);
-        });
-    };
+    //$scope.save = function (it, num, ind) {
+    //    $http({
+    //        url: $scope.urlst + 'crspr',
+    //        method: "POST",
+    //        type: "application/json",
+    //        data: num+"="+it
+    //    }).then(function (response) {  // success
+    //        if(num === 'fam') {
+    //           $scope.items.spisokLpmoKl.sprFamId = { id: response.data, fam: it };
+    //        } else if(num === 'name') {
+    //            $scope.items.spisokLpmoKl.sprNameId = { id: response.data, name: it };
+    //        }else if(num === 'otch') {
+    //            $scope.items.spisokLpmoKl.sprOtchId = { id: response.data, otch: it };
+    //        }else if(num === 'gragd') {
+    //            $scope.items.spisokLpmoKl.pasportaId.sprGragdanstvoId = { id: response.data, gragd: it };
+    //        }else if(num === 'kemVydan') {
+    //            $scope.items.spisokLpmoKl.pasportaId.sprPaspKemVydanId = { id: response.data, kemVydan: it };
+    //        }else if(num === 'oblast') {
+    //            $scope.adres.sprOblastId = { id: response.data, oblast: it };
+    //        }else if(num === 'gorod') {
+    //            $scope.adres.sprGorodId = { id: response.data, gorod: it };
+    //        }else if(num === 'raion') {
+    //            $scope.adres.sprRaionId = { id: response.data, raion: it };
+    //        }else if(num === 'ulici') {
+    //            $scope.adres.sprUliciId = { id: response.data, ulici: it };
+    //        }else if(num === 'naselPunkt') {
+    //            $scope.adres.sprNaselPunktId = { id: response.data, naselPunkt: it };
+    //        }else if(num === 'nameOrg') {
+    //            $scope.items.rabotaId.sprOrgId = { id: response.data, nameOrg: it };
+    //        }else if(num === 'nazvPodrazdelenija') {
+    //            $scope.items.rabotaId.sprMestoRabotyId = { id: response.data, nazvPodrazdelenija: it };
+    //        }else if(num === 'professija') {
+    //            $scope.items.rabotaId.sprProfesijaId = { id: response.data, professija: it };
+    //        }else if(num === 'nameOrg2') {
+    //            $scope.obshhee.medOrg = { id: response.data, nameOrg: it };
+    //        }
+    //        $scope.noResults[ind] = false;
+    //    }, function (response) { // optional  // failed
+    //        alert("Ошибка записи!" + response);
+    //    });
+    //};
 
     /*$scope.getLocation2 = function (val) {
         return $http.get($scope.urlst + 'fam/name=' + val, {}).then(function (response) {
