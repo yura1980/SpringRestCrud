@@ -123,8 +123,13 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, $inte
 routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, $http, items) {
 
     $scope.urlst = window.location.pathname + "api/mess/";
-    //items.spisokLpmoKl = new Date(items.datasReg);
-    //items.zaklAkt = new Date(items.zaklAkt);
+
+    items.dataPos = new Date(items.dataPos);
+    items.spisokLpmoKl.datasRozhd = new Date(items.spisokLpmoKl.datasRozhd);
+    items.spisokLpmoKl.pasportaId.datasVydachi = new Date(items.spisokLpmoKl.pasportaId.datasVydachi);
+    items.rabotaId.stazhObshh = new Date(items.rabotaId.stazhObshh);
+    items.rabotaId.stazhTekushh = new Date(items.rabotaId.stazhTekushh);
+
     $scope.items = items;                                               //входные параметры
     $scope.selected = {item: $scope.items}; //[0]                     //изменения
     $scope.toppanel=true;

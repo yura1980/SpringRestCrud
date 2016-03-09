@@ -58,7 +58,11 @@ routerApp.directive('autoc', function () {
                     type: "application/json",
                     data: $scope.par + "=" + $scope.model
                 }).then(function (response) {  // success
-                    $scope.model.id = response.data;
+                    //var jsontext = '{"id":"'+response.data+'","'+ $scope.par +'":"'+$scope.model+'"}';
+                    $scope.model = JSON.parse('{"id":"'+response.data+'","'+ $scope.par +'":"'+$scope.model+'"}');
+                    //var tmp = $scope.model;
+                    //$scope.model = {id: response.data};
+                    //$scope.model[$scope.par] = tmp;
                     $scope.noResults = false;
                 }, function (response) { // optional  // failed
                     alert("Ошибка записи!" + response);
@@ -79,7 +83,7 @@ routerApp.directive('dateb', function () {
         },
         template: '<label>{{placeh}}:</label>' +
         '<p class="input-group">' +
-        '<input type="text" class="form-control" uib-datepicker-popup="{{format}}" placeholder="{{placeh}}"' +
+        '<input type="text" size="10" class="form-control" uib-datepicker-popup="{{format}}" placeholder="{{placeh}}"' +
         'ng-model="model" is-open="status.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>' +
         '<span class="input-group-btn">' +
         '<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>' +

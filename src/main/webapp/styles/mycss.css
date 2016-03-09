@@ -18,3 +18,11 @@ tbody td {
     color:white;
     /*font-weight:bold;*/
 }
+
+.mb10{
+    margin-bottom: 10px;
+}
+
+.mt25{
+    margin-top: 25px;
+}
