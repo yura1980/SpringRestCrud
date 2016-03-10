@@ -26,7 +26,7 @@ public class Poseshenie implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Integer id;
+    private long id;
     @Basic(optional = false)
     @NotNull
     @Column(name = "data_pos")
@@ -60,9 +60,14 @@ public class Poseshenie implements Serializable {
     private RezultatMo rezultatMo;
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "poseshenie")
 //    private Collection<IstorijaTrodovoj> istorijaTrodovojCollection;
-    @JoinColumn(name = "jurnal_rn", referencedColumnName = "rn")
-    @ManyToOne(optional = false)
-    private Jurnal jurnalRn;
+//    @JoinColumn(name = "jurnal_rn", referencedColumnName = "rn")
+//    @ManyToOne(optional = false)
+//    private Jurnal jurnalRn;
+
+    @NotNull
+    @Column(name = "jurnal_rn")
+    private Integer jurnalRn;
+
     @JoinColumn(name = "spisok_lpmo_kl", referencedColumnName = "kl")
     @ManyToOne(optional = false)
     private SpisokLpmo spisokLpmoKl;
@@ -103,11 +108,11 @@ public class Poseshenie implements Serializable {
         this.rabotaId = rabotaId;
     }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -207,11 +212,11 @@ public class Poseshenie implements Serializable {
 //        this.istorijaTrodovojCollection = istorijaTrodovojCollection;
 //    }
 
-    public Jurnal getJurnalRn() {
+    public Integer getJurnalRn() {
         return jurnalRn;
     }
 
-    public void setJurnalRn(Jurnal jurnalRn) {
+    public void setJurnalRn(Integer jurnalRn) {
         this.jurnalRn = jurnalRn;
     }
 
@@ -258,7 +263,7 @@ public class Poseshenie implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (int) id;
         return hash;
     }
 
@@ -269,7 +274,7 @@ public class Poseshenie implements Serializable {
             return false;
         }
         Poseshenie other = (Poseshenie) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (this.id != other.id) {
             return false;
         }
         return true;

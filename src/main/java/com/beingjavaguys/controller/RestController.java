@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.ext.OptionalHandlerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
@@ -109,6 +110,25 @@ public class RestController {
     @ResponseBody
     long addPoseshenie(@RequestBody Poseshenie ms) {
         try {
+//            Long id = -1L;
+            //Pasporta pasporta = ms.getSpisokLpmoKl().getPasportaId();
+            //ms.getSpisokLpmoKl().setPasportaId(null);
+//            Oplata oplata = ms.getOplata();
+//            ms.setOplata(null);
+
+//            if (ms.getSpisokLpmoKl().getKl() < 0) {
+//                id = dataServices.addSpisokLpmo(ms.getSpisokLpmoKl());
+//                if (id > 0) ms.getSpisokLpmoKl().setKl(id);
+//            }
+//            if (pasporta != null && pasporta.getId() < 0) {
+//                pasporta.setId(id);
+//                dataServices.addPasporta(pasporta);
+//                ms.getSpisokLpmoKl().setPasportaId(pasporta);
+//            }
+//            if (ms.getRabotaId() != null && ms.getRabotaId().getId() < 0) {
+//                ms.getRabotaId().setId(id);
+//                dataServices.addRabota(ms.getRabotaId());
+//            }
             return dataServices.addPoseshenie(ms);
         } catch (Exception e) {
             return -1;
@@ -338,7 +358,7 @@ public class RestController {
             Obshhee obsh = null;
             ObjectMapper mapper = new ObjectMapper();
             try {
-                sp= mapper.readValue(kl, SpisokLpmo.class);
+                sp = mapper.readValue(kl, SpisokLpmo.class);
                 if (obshhee != null && !obshhee.isEmpty()) {
                     obsh = new Obshhee();
                     obsh = mapper.readValue(obshhee, Obshhee.class);

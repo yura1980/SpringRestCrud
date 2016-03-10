@@ -24,7 +24,6 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 /**
- *
  * @author yuri
  */
 @Entity
@@ -37,14 +36,14 @@ public class Rabota implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")
-    private Integer id;
+    private long id;
     @Column(name = "stazh_obshh")
     @Temporal(TemporalType.DATE)
     private Date stazhObshh;
     @Column(name = "stazh_tekushh")
     @Temporal(TemporalType.DATE)
     private Date stazhTekushh;
-//    @JoinColumn(name = "spisok_lpmo_kl", referencedColumnName = "kl", insertable = false, updatable = false)
+    //    @JoinColumn(name = "spisok_lpmo_kl", referencedColumnName = "kl", insertable = false, updatable = false)
 //    @OneToOne(optional = false)
 //    private SpisokLpmo spisokLpmo;
     @JoinColumn(name = "spr_mesto_raboty_id", referencedColumnName = "id")
@@ -60,15 +59,15 @@ public class Rabota implements Serializable {
     public Rabota() {
     }
 
-    public Rabota(Integer id) {
-        this.id = id;
-    }
+//    public Rabota(Integer id) {
+//        this.id = id;
+//    }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -123,7 +122,7 @@ public class Rabota implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (int) id;
         return hash;
     }
 
@@ -134,9 +133,12 @@ public class Rabota implements Serializable {
             return false;
         }
         Rabota other = (Rabota) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (this.id != other.id) {
             return false;
         }
+//        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+//            return false;
+//        }
         return true;
     }
 
@@ -144,5 +146,5 @@ public class Rabota implements Serializable {
     public String toString() {
         return "Rabota[ spisokLpmoKl=" + id + " ]";
     }
-    
+
 }

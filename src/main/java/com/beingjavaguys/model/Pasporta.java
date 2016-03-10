@@ -39,7 +39,7 @@ public class Pasporta implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")//"spisok_lpmo_kl")
-    private Integer id;//spisokLpmoKl;
+    private long id;//spisokLpmoKl;
     @Size(max = 15)
     @Column(name = "pasport")
     private String pasport;
@@ -74,11 +74,11 @@ public class Pasporta implements Serializable {
 //        this.migrant1 = migrant1;
 //    }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -149,7 +149,7 @@ public class Pasporta implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (int) id;
         return hash;
     }
 
@@ -160,7 +160,7 @@ public class Pasporta implements Serializable {
             return false;
         }
         Pasporta other = (Pasporta) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (this.id != other.id) {
             return false;
         }
         return true;
@@ -168,7 +168,7 @@ public class Pasporta implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.genentyity2.Pasporta[ spisokLpmoKl=" + id + " ]";
+        return "Pasporta[ spisokLpmoKl=" + id + " ]";
     }
     
 }

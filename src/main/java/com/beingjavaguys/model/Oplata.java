@@ -36,7 +36,7 @@ public class Oplata implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")
-    private Integer id;
+    private long id;
     @Basic(optional = false)
     @NotNull
     @Column(name = "oplata")
@@ -79,11 +79,11 @@ public class Oplata implements Serializable {
 //    }
 
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -138,7 +138,8 @@ public class Oplata implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (int) id;
+//        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -149,9 +150,12 @@ public class Oplata implements Serializable {
             return false;
         }
         Oplata other = (Oplata) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (this.id != other.id) {
             return false;
         }
+//        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+//            return false;
+//        }
         return true;
     }
 

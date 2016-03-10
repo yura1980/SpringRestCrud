@@ -242,7 +242,17 @@ public class DataDaoImpl implements DataDao {
     public long addSpisokLpmo(SpisokLpmo ms) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
+        Pasporta pasporta = ms.getPasportaId();
+        ms.setPasportaId(null);
         session.save(ms);
+        session.flush();
+
+        pasporta.setId(ms.getKl());
+        session.save(pasporta);
+
+        ms.setPasportaId(pasporta);
+        session.update(ms);
+
         tx.commit();
         session.close();
         return ms.getKl();
@@ -267,6 +277,7 @@ public class DataDaoImpl implements DataDao {
         session.close();
         return ms.getId();
     }
+
     @Override
     public long addRabota(Rabota ms) throws Exception {
         session = sessionFactory.openSession();
@@ -276,6 +287,7 @@ public class DataDaoImpl implements DataDao {
         session.close();
         return ms.getId();
     }
+
     @Override
     public long addObshhee(Obshhee ms) throws Exception {
         session = sessionFactory.openSession();
@@ -285,10 +297,35 @@ public class DataDaoImpl implements DataDao {
         session.close();
         return ms.getId();
     }
+
     @Override
     public long addPoseshenie(Poseshenie ms) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
+
+        Pasporta pasporta = ms.getSpisokLpmoKl().getPasportaId();
+        ms.getSpisokLpmoKl().setPasportaId(null);
+        session.save(ms.getSpisokLpmoKl());
+        session.flush();
+
+        if (pasporta != null && pasporta.getId() < 0) {
+            pasporta.setId(ms.getSpisokLpmoKl().getKl());
+            session.save(pasporta);
+
+            ms.getSpisokLpmoKl().setPasportaId(pasporta);
+            session.update(ms.getSpisokLpmoKl());
+        }
+
+        if (ms.getRabotaId() != null && ms.getRabotaId().getId() < 0) {
+            ms.getRabotaId().setId(ms.getSpisokLpmoKl().getKl());
+            session.save(ms.getRabotaId());
+        }
+
+        if (ms.getOplata() != null && ms.getOplata().getId() < 0) {
+            ms.getOplata().setId(ms.getSpisokLpmoKl().getKl());
+            session.save(ms.getOplata());
+        }
+
         session.save(ms);
         tx.commit();
         session.close();

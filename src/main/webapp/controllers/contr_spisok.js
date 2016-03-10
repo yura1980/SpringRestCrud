@@ -90,49 +90,49 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, $inte
         //если постой объект, создадим новую задачу
         if (cl === null) {
             var cl = {
-                "id": -1,
-                "dataPos": "",//"2016-02-01T00:00:00.000Z",
-                "utochn": false,
-                "zakl": false,
-                "dogovora": null,
-                "potok": null,
-                "oplata": {"id": -1, "oplata": true, "cena": 0, "skidka": 0, "dispans": false, "dataDispans": null},
-                "rezultatMo": null,
-                "jurnalRn": {
-                    "rn": 1,
-                    "datasReg": "",
-                    "obrabotkaDok": true,
-                    "zaklAkt": "",
-                    "idVidPmo": 1,
-                    "sprOrgId": {"id": 1, "nameOrg": "физ.лица", "sprOrgDopInf": null, "cenyMoOrg": null},
-                    "sprPoliklinikiId": {"id": 1, "poliklinika": "тест", "idR": null, "sprTipPoliklinikiId": null}
-                },
-                "spisokLpmoKl": {
-                    "kl": -1,
-                    "pol": false,
-                    "datasRozhd": null,//"1980-11-11T00:00:00.000Z",
-                    "sprFamId": null,//{"id": 1, "fam": "Васянин"},
-                    "sprNameId": null,//{"id": 1, "name": "Юрий"},
-                    "sprOtchId": null,
-                    "pasportaId": {
-                        "id": -1,
-                        "pasport": "",
-                        "datasVydachi": null,//"2011-11-11T00:00:00.000Z",
-                        "migrant1": false,
-                        "sprGragdanstvoId": null,//{"id": 1, "gragd": "Россия"},
-                        "sprPaspKemVydanId": null//{"id": 1, "kemVydan": "УВД Ульяновского района"}
+                id: -1,
+                dataPos: new Date(),//"2016-02-01T00:00:00.000Z",
+                utochn: false,
+                zakl: false,
+                dogovora: null,
+                potok: null,
+                oplata: {"id": -1, "oplata": true, "cena": 0, "skidka": 0, "dispans": false, "dataDispans": null},
+                rezultatMo: null,
+                jurnalRn: 1, //{
+                //    "rn": 1,
+                //    "datasReg": "",
+                //    "obrabotkaDok": true,
+                //    "zaklAkt": "",
+                //    "idVidPmo": 1,
+                //    "sprOrgId": {"id": 1, "nameOrg": "физ.лица", "sprOrgDopInf": null, "cenyMoOrg": null},
+                //    "sprPoliklinikiId": {"id": 1, "poliklinika": "тест", "idR": null, "sprTipPoliklinikiId": null}
+                //},
+                spisokLpmoKl: {
+                    kl: -1,
+                    pol: false,
+                    datasRozhd: null,//"1980-11-11T00:00:00.000Z",
+                    sprFamId: null,//{"id": 1, "fam": "Васянин"},
+                    sprNameId: null,//{"id": 1, "name": "Юрий"},
+                    sprOtchId: null,
+                    pasportaId: {
+                        id: -1,
+                        pasport: "",
+                        datasVydachi: null,//"2011-11-11T00:00:00.000Z",
+                        migrant1: false,
+                        sprGragdanstvoId: null,//{"id": 1, "gragd": "Россия"},
+                        sprPaspKemVydanId: null//{"id": 1, "kemVydan": "УВД Ульяновского района"}
                     }
                 },
-                "sprPrichNejavkiNaMoId": null,
-                "prichinaId": null,//{"id": 1, "prich": "МО"},
-                "sprVidMoId": {"id": 1, "vidMo": "Предв", "sokr": "Предв"},
-                "rabotaId": {
-                    "id": -1,
-                    "stazhObshh": null,//"1970-01-01T00:00:00.000Z",
-                    "stazhTekushh": null,//"1970-01-01T00:00:00.000Z",
-                    "sprMestoRabotyId": null,//{"id": 1, "nazvPodrazdelenija": "Основное"},
-                    "sprOrgId": null,//{"id": 1, "nameOrg": "физ.лица", "sprOrgDopInf": null, "cenyMoOrg": null},
-                    "sprProfesijaId": null//{"id": 1, "professija": "программист"}
+                sprPrichNejavkiNaMoId: null,
+                prichinaId: null,//{"id": 1, "prich": "МО"},
+                sprVidMoId: {"id": 1, "vidMo": "Предв", "sokr": "Предв"},
+                rabotaId: {
+                    id: -1,
+                    stazhObshh: null,//"1970-01-01T00:00:00.000Z",
+                    stazhTekushh: null,//"1970-01-01T00:00:00.000Z",
+                    sprMestoRabotyId: null,//{"id": 1, "nazvPodrazdelenija": "Основное"},
+                    sprOrgId: null,//{"id": 1, "nameOrg": "физ.лица", "sprOrgDopInf": null, "cenyMoOrg": null},
+                    sprProfesijaId: null//{"id": 1, "professija": "программист"}
                 }
             };
             $scope.items.push(cl);
@@ -169,13 +169,24 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, $inte
 });
 
 //контроллер созданного диалогового окна
-routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, $http, items) {
+routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, items, Restangular) {
 
-    $scope.urlst = window.location.pathname + "api/mess/";
+    //$scope.urlst = window.location.pathname + "api/mess/";
 
     items.dataPos = new Date(items.dataPos);
     items.spisokLpmoKl.datasRozhd = new Date(items.spisokLpmoKl.datasRozhd);
-    items.spisokLpmoKl.pasportaId.datasVydachi = new Date(items.spisokLpmoKl.pasportaId.datasVydachi);
+    if (items.spisokLpmoKl.pasportaId === null) {
+        items.spisokLpmoKl.pasportaId = {
+            id: -1,
+            pasport: "",
+            datasVydachi: "",
+            migrant1: false,
+            sprGragdanstvoId: null,
+            sprPaspKemVydanId: null
+        }
+    } else {
+        items.spisokLpmoKl.pasportaId.datasVydachi = new Date(items.spisokLpmoKl.pasportaId.datasVydachi);
+    }
     items.rabotaId.stazhObshh = new Date(items.rabotaId.stazhObshh);
     items.rabotaId.stazhTekushh = new Date(items.rabotaId.stazhTekushh);
 
@@ -187,19 +198,23 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, $ht
         $scope.toppanel = val;
     };
 
-    $scope.loadAdres = function () {
-        $http.get($scope.urlst + 'adr/' + $scope.items.spisokLpmoKl.kl).success(function (response) {
-            $scope.adres = response;
-        });
+    $scope.loadObj = function (val) {
+        Restangular.one(val, $scope.items.spisokLpmoKl.kl).get()
+            .then(function (response) {
+                $scope.adres = response;
+            });
+        //$http.get($scope.urlst + 'adr/' + $scope.items.spisokLpmoKl.kl).success(function (response) {
+        //    $scope.adres = response;
+        //});
         $scope.toppanel = false;
     };
 
-    $scope.loadObshhee = function () {
-        $http.get($scope.urlst + 'obsh/' + $scope.items.spisokLpmoKl.kl).success(function (response) {
-            $scope.obshhee = response;
-        });
-        $scope.toppanel = false;
-    };
+    //$scope.loadObshhee = function () {
+    //    //$http.get($scope.urlst + 'obsh/' + $scope.items.spisokLpmoKl.kl).success(function (response) {
+    //    //    $scope.obshhee = response;
+    //    //});
+    //    $scope.toppanel = false;
+    //};
 
     //Сохранить
     //$scope.save = function (it, num, ind) {
@@ -262,7 +277,12 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, $ht
     };
 
     $scope.save = function () {
-        alert(JSON.stringify($scope.items));
+        Restangular.all('createPos').post($scope.items).then(function (response) {
+            $scope.items.id = response;
+        });
+
+        $uibModalInstance.close($scope.selected.item);
+        //alert(JSON.stringify($scope.items));
     };
 
 });
