@@ -56,11 +56,12 @@
                 <tr ng-repeat="item in pagedItems[(currentPage - 1)]| orderBy:sort.sortingOrder:sort.reverse  | filter:findStr ">
                     <td width="60">{{item.id}}</td>
                     <td>
-                        <div ng-click="clEdit(item[selected],$index)" ng-if="!edit[$index]" >{{item[selected]}}</div>
+                        <div ng-click="clEdit(item[selected],$index)" ng-if="!edit[$index]">{{item[selected]}}</div>
                         <div ng-if="edit[$index]" class="input-group">
                             <input type="text" ng-model="editVal[$index]" class="form-control">
                             <span class="input-group-btn">
-                                  <button class="btn btn-primary" ng-click="edit[$index]=false" type="button">Ок</button>
+                                <button class="btn btn-primary" ng-click="edit[$index]=false" type="button">Отмена</button>
+                                <button class="btn btn-success" ng-click="edit[$index]=false" type="button">Ок</button>
                             </span>
                         </div>
                     </td>

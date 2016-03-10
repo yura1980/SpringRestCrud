@@ -7,8 +7,6 @@ routerApp.controller('CtrlAutor', function ($scope, $state, Restangular) {//, $h
     //theService.thing.visibleNav = false;                                //скрыть панели
     //$scope.urlst = window.location.pathname + "api/mess/";
 
-    $scope.sayHello = function(name) { alert("Привет, " + name + "!") }
-
     //массив json объектов пользователей
     Restangular.all('listPass').getList()  // GET: /users
         .then(function(response) {

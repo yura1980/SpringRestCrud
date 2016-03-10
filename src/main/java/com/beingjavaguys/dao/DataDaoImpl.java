@@ -321,10 +321,11 @@ public class DataDaoImpl implements DataDao {
             session.save(ms.getRabotaId());
         }
 
-        if (ms.getOplata() != null && ms.getOplata().getId() < 0) {
-            ms.getOplata().setId(ms.getSpisokLpmoKl().getKl());
-            session.save(ms.getOplata());
-        }
+        ms.setOplata(null);
+//        if (ms.getOplata() != null && ms.getOplata().getId() < 0) {
+//            ms.getOplata().setId(ms.getSpisokLpmoKl().getKl());
+//            session.save(ms.getOplata());
+//        }
 
         session.save(ms);
         tx.commit();

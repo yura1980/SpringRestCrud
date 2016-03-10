@@ -201,7 +201,11 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, ite
     $scope.loadObj = function (val) {
         Restangular.one(val, $scope.items.spisokLpmoKl.kl).get()
             .then(function (response) {
-                $scope.adres = response;
+                if (val === 'adr') {
+                    $scope.adres = response;
+                } else if (val === 'obsh') {
+                    $scope.obshhee = response;
+                }
             });
         //$http.get($scope.urlst + 'adr/' + $scope.items.spisokLpmoKl.kl).success(function (response) {
         //    $scope.adres = response;
@@ -279,9 +283,10 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, ite
     $scope.save = function () {
         Restangular.all('createPos').post($scope.items).then(function (response) {
             $scope.items.id = response;
+            //$uibModalInstance.dismiss('cancel');
         });
-
         $uibModalInstance.close($scope.selected.item);
+
         //alert(JSON.stringify($scope.items));
     };
 
