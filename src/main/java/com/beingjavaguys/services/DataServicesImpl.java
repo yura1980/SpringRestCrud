@@ -6,6 +6,7 @@ import com.beingjavaguys.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.beingjavaguys.dao.DataDao;
+import org.springframework.web.bind.annotation.RequestBody;
 
 public class DataServicesImpl implements DataServices {
 
@@ -85,6 +86,36 @@ public class DataServicesImpl implements DataServices {
     @Override
     public long addSpisokLpmo(SpisokLpmo ms) throws Exception {
         return dataDao.addSpisokLpmo(ms);
+    }
+
+    @Override
+    public long addPasporta(Pasporta ms) throws Exception {
+        return dataDao.addPasporta(ms);
+    }
+
+    @Override
+    public long addAdres(Adres ms) throws Exception {
+        return dataDao.addAdres(ms);
+    }
+
+    @Override
+    public long addRabota(Rabota ms) throws Exception {
+        return dataDao.addRabota(ms);
+    }
+
+    @Override
+    public long addObshhee(Obshhee ms) throws Exception {
+        return dataDao.addObshhee(ms);
+    }
+
+    @Override
+    public long addPoseshenie(Poseshenie ms) throws Exception {
+        return dataDao.addPoseshenie(ms);
+    }
+
+    @Override
+    public long addJurnal(Jurnal ms) throws Exception {
+        return dataDao.addJurnal(ms);
     }
 
     @Override

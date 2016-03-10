@@ -8,6 +8,7 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.type.StringType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 
 public class DataDaoImpl implements DataDao {
 
@@ -217,7 +218,7 @@ public class DataDaoImpl implements DataDao {
                     //.add(Restrictions.sqlRestriction("lower({alias}."+par[0]+") like lower(?)", par[1].toLowerCase() + "%", StringType.INSTANCE))
                     .add(Restrictions.or(
                             Restrictions.like(par[0], Character.toUpperCase(par[1].charAt(0)) + par[1].substring(1) + "%"),
-                            Restrictions.ilike(par[0],par[1], MatchMode.ANYWHERE)))//"%"+ par[1] + "%"
+                            Restrictions.ilike(par[0], par[1], MatchMode.ANYWHERE)))//"%"+ par[1] + "%"
                     .setMaxResults(10)
                     .list();
         }
@@ -247,6 +248,62 @@ public class DataDaoImpl implements DataDao {
         return ms.getKl();
     }
 
+    @Override
+    public long addPasporta(Pasporta ms) throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        session.save(ms);
+        tx.commit();
+        session.close();
+        return ms.getId();
+    }
+
+    @Override
+    public long addAdres(Adres ms) throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        session.save(ms);
+        tx.commit();
+        session.close();
+        return ms.getId();
+    }
+    @Override
+    public long addRabota(Rabota ms) throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        session.save(ms);
+        tx.commit();
+        session.close();
+        return ms.getId();
+    }
+    @Override
+    public long addObshhee(Obshhee ms) throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        session.save(ms);
+        tx.commit();
+        session.close();
+        return ms.getId();
+    }
+    @Override
+    public long addPoseshenie(Poseshenie ms) throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        session.save(ms);
+        tx.commit();
+        session.close();
+        return ms.getId();
+    }
+
+    @Override
+    public long addJurnal(Jurnal ms) throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        session.save(ms);
+        tx.commit();
+        session.close();
+        return ms.getRn();
+    }
 
     @Override
     public Adres getAdresById(long id) throws Exception {

@@ -48,18 +48,83 @@ public class RestController {
 
     }
 
+    /////////////////
     @RequestMapping(value = "/createKl", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public
     @ResponseBody
     long addSpisokLpmo(@RequestBody SpisokLpmo ms) {
         try {
-            return dataServices.addSpisokLpmo(ms);
-//            return new Status(1, "Messege added Successfully !");
-        } catch (Exception e) {
-            // e.printStackTrace();
+            return dataServices.addSpisokLpmo(ms);//            return new Status(1, "Messege added Successfully !");
+        } catch (Exception e) {            // e.printStackTrace();
             return -1;//new Status(0, e.toString());
         }
+    }
 
+    @RequestMapping(value = "/createPasp", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public
+    @ResponseBody
+    long addPasporta(@RequestBody Pasporta ms) {
+        try {
+            return dataServices.addPasporta(ms);
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
+    @RequestMapping(value = "/createAdr", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public
+    @ResponseBody
+    long addAdres(@RequestBody Adres ms) {
+        try {
+            return dataServices.addAdres(ms);
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
+    @RequestMapping(value = "/createRab", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public
+    @ResponseBody
+    long addRabota(@RequestBody Rabota ms) {
+        try {
+            return dataServices.addRabota(ms);
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
+    @RequestMapping(value = "/createObsh", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public
+    @ResponseBody
+    long addObshhee(@RequestBody Obshhee ms) {
+        try {
+            return dataServices.addObshhee(ms);
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
+    @RequestMapping(value = "/createPos", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public
+    @ResponseBody
+    long addPoseshenie(@RequestBody Poseshenie ms) {
+        try {
+            return dataServices.addPoseshenie(ms);
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+    /////////////////
+
+    @RequestMapping(value = "/createJurn", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public
+    @ResponseBody
+    long addJurnal(@RequestBody Jurnal ms) {
+        try {
+            return dataServices.addJurnal(ms);
+        } catch (Exception e) {
+            return -1;
+        }
     }
 
     @RequestMapping(value = "/crspr", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

@@ -87,15 +87,13 @@ routerApp.controller('CtrlTask', function ($scope, $log, $filter, $uibModal, $in
         //если постой объект, создадим новую задачу
         if (cl === null) {
             cl = {
-                "id": $scope.items.length + 1,
-                "idUser": $scope.someThing.idUser,
-                "name": "--",
-                "description": "--",
-                "curdata": new Date(),
-                "prior": 1,
-                "pltime": "0",
-                "zatrtime": "0",
-                "stat": "false"
+                rn: $scope.items.length + 1,
+                datasReg: new Date(),
+                obrabotkaDok: false,
+                zaklAkt: null,
+                idVidPmo: 1,
+                sprOrgId: $scope.items[0].sprOrgId,
+                sprPoliklinikiId: $scope.items[0].sprPoliklinikiId
             };
             $scope.items.push(cl);
             $scope.totalItems = $scope.items.length;
@@ -146,17 +144,7 @@ routerApp.controller('CtrlTask', function ($scope, $log, $filter, $uibModal, $in
 });
 
 //контроллер созданного диалогового окна
-routerApp.controller('ModalInstCtrl', function ($scope, $uibModalInstance, $http, items, CONST) {
-
-    $scope.urlst = window.location.pathname + "api/mess/";
-
-    //$scope.getLocation = function (val) {
-    //    return $http.get(CONST.curr_url + 'fam/' + val, {//fam=
-    //        //params: { fam: val }//{ fam: val, sensor: false }
-    //    }).then(function (response) {
-    //        return response.data;//.results.map(function (item) { return item;/*.formatted_address;*/  });
-    //    });
-    //};
+routerApp.controller('ModalInstCtrl', function ($scope, $uibModalInstance, items, Restangular) {
 
     items.datasReg = new Date(items.datasReg);
     items.zaklAkt = new Date(items.zaklAkt);
@@ -170,22 +158,13 @@ routerApp.controller('ModalInstCtrl', function ($scope, $uibModalInstance, $http
         }
     };
 
-    //параметры виджета выбора даты
-    //статус открытия
-    $scope.open = function ($event) {
-        $scope.status.opened = true;
-    };
-    //объект статуса
-    $scope.status = {
-        opened: false
-    };
+    $scope.save = function () {
+        Restangular.all('createJurn').post($scope.items).then(function(response) {
+            $scope.items.rn = response;
+        });;
 
-    $scope.dateOptions = {
-        formatYear: 'yyyy',                   //формат года
-        startingDay: 1                      //начало месяца
-    };
-    //формат даты виджета
-    $scope.format = 'dd.MM.yyyy';
+        $uibModalInstance.close($scope.selected.item);
+    }
 
 });
 

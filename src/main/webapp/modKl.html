@@ -105,7 +105,7 @@
                                     Действие <span class="caret"></span>
                                 </button>
                                 <ul uib-dropdown-menu role="menu" aria-labelledby="simple-btn-keyboard-nav">
-                                    <li role="menuitem"><a href="#">Сохранить</a></li>
+                                    <li role="menuitem"><a href="#" ng-click="save()">Сохранить</a></li>
                                     <li role="menuitem"><a href="#">Удалить</a></li>
                                     <li class="divider"></li>
                                     <li role="menuitem"><a href="#">Другое</a></li>
@@ -198,7 +198,7 @@
                                             <!--<div class="form-inline">-->
                                             <!--<div class="form-group">-->
                                             <label>Возраст:</label>
-                                            <input type="number" class="form-control">
+                                            <input type="number" class="form-control mb10">
                                             <!--</div>-->
                                             <!--<div class="form-group">-->
                                             <dateb placeh="Дата выдачи" model="items.spisokLpmoKl.pasportaId.datasVydachi"/>
@@ -289,12 +289,12 @@
                                         <label>Дом: </label>
                                         <input type="text" size="5" class="form-control" ng-model="adres.nomerDoma">
                                     </div>
-                                    <div class="form-group">
-                                        <label> Корпус: </label>
+                                    <div class="form-group ml10">
+                                        <label>Корпус:</label>
                                         <input type="text" size="5" class="form-control" ng-model="adres.korpus">
                                     </div>
-                                    <div class="form-group">
-                                        <label> Квартира: </label>
+                                    <div class="form-group ml10">
+                                        <label>Квартира:</label>
                                         <input type="text" size="5" class="form-control" ng-model="adres.nomerKvartiry">
                                     </div>
                                 </div>
@@ -339,7 +339,7 @@
                                     <!--отсутсвует. <a-->
                                             <!--ng-click="save(items.rabotaId.sprProfesijaId, 'professija',13)">Добавить</a>-->
                                 <!--</div>-->
-                                <div class="form-inline" style="margin-top: 10px;">
+                                <div class="form-inline mt10">
                                     <dateb placeh="Стаж: общий" model="items.rabotaId.stazhObshh"/>
                                     <dateb placeh="Текущий" model="items.rabotaId.stazhTekushh"/>
                                     <!--<label>Стаж: общий:</label>-->

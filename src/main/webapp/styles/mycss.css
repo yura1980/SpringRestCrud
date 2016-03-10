@@ -14,15 +14,23 @@ tbody td {
 }
 
 .selected {
-    background-color:darkblue !important;
-    color:white;
+    background-color: darkblue !important;
+    color: white;
     /*font-weight:bold;*/
 }
 
-.mb10{
+.mb10 {
     margin-bottom: 10px;
 }
 
-.mt25{
+.mt25 {
     margin-top: 25px;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.ml10 {
+    margin-left: 10px;
 }
