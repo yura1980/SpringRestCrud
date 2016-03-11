@@ -321,13 +321,18 @@ public class DataDaoImpl implements DataDao {
             session.save(ms.getRabotaId());
         }
 
+        Oplata oplata = ms.getOplata();
         ms.setOplata(null);
-//        if (ms.getOplata() != null && ms.getOplata().getId() < 0) {
-//            ms.getOplata().setId(ms.getSpisokLpmoKl().getKl());
-//            session.save(ms.getOplata());
-//        }
-
         session.save(ms);
+
+        if (oplata != null && oplata.getId() < 0) {
+            oplata.setId(ms.getId());
+            session.save(oplata);
+        }
+
+        ms.setOplata(oplata);
+        session.update(ms);
+
         tx.commit();
         session.close();
         return ms.getId();
@@ -341,6 +346,16 @@ public class DataDaoImpl implements DataDao {
         tx.commit();
         session.close();
         return ms.getRn();
+    }
+
+    @Override
+    public long addOplata(Oplata ms) throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        session.save(ms);
+        tx.commit();
+        session.close();
+        return ms.getId();
     }
 
     @Override

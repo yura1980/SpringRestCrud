@@ -96,7 +96,7 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, $inte
                 zakl: false,
                 dogovora: null,
                 potok: null,
-                oplata: {"id": -1, "oplata": true, "cena": 0, "skidka": 0, "dispans": false, "dataDispans": null},
+                oplata: {id: -1, oplata: true, cena: 0, skidka: 0, dispans: false, dataDispans: null},
                 rezultatMo: null,
                 jurnalRn: 1, //{
                 //    "rn": 1,
@@ -281,6 +281,15 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, ite
     };
 
     $scope.save = function () {
+        if(!$scope.formKl.osnForm.$dirty || !$scope.formKl.osnForm.$valid){
+            items.oplata = null;
+        }
+        if(!$scope.formKl.paspForm.$dirty || !$scope.formKl.paspForm.$valid){
+            items.spisokLpmoKl.pasportaId = null;
+        }
+        if(!$scope.formKl.rabForm.$dirty || !$scope.formKl.rabForm.$valid){
+            items.rabotaId = null;
+        }
         Restangular.all('createPos').post($scope.items).then(function (response) {
             $scope.items.id = response;
             //$uibModalInstance.dismiss('cancel');

@@ -119,6 +119,11 @@ public class DataServicesImpl implements DataServices {
     }
 
     @Override
+    public long addOplata(Oplata ms) throws Exception {
+        return dataDao.addOplata(ms);
+    }
+
+    @Override
     public List<SpisokLpmo> getSpisokLpmoList() throws Exception {
         return dataDao.getSpisokLpmoList();
     }

@@ -43,6 +43,8 @@ public interface DataServices {
 
     long addJurnal(Jurnal ms) throws Exception;
 
+    long addOplata(Oplata ms) throws Exception;
+
     List<SpisokLpmo> getSpisokLpmoFindList(SpisokLpmo sp, Obshhee obshhee) throws Exception;
 
     List<SpisokLpmo> getSpisokLpmoList() throws Exception;

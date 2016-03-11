@@ -105,30 +105,22 @@ public class RestController {
         }
     }
 
+    @RequestMapping(value = "/createOpl", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public
+    @ResponseBody
+    long addOplata(@RequestBody Oplata ms) {
+        try {
+            return dataServices.addOplata(ms);
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
     @RequestMapping(value = "/createPos", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public
     @ResponseBody
     long addPoseshenie(@RequestBody Poseshenie ms) {
         try {
-//            Long id = -1L;
-            //Pasporta pasporta = ms.getSpisokLpmoKl().getPasportaId();
-            //ms.getSpisokLpmoKl().setPasportaId(null);
-//            Oplata oplata = ms.getOplata();
-//            ms.setOplata(null);
-
-//            if (ms.getSpisokLpmoKl().getKl() < 0) {
-//                id = dataServices.addSpisokLpmo(ms.getSpisokLpmoKl());
-//                if (id > 0) ms.getSpisokLpmoKl().setKl(id);
-//            }
-//            if (pasporta != null && pasporta.getId() < 0) {
-//                pasporta.setId(id);
-//                dataServices.addPasporta(pasporta);
-//                ms.getSpisokLpmoKl().setPasportaId(pasporta);
-//            }
-//            if (ms.getRabotaId() != null && ms.getRabotaId().getId() < 0) {
-//                ms.getRabotaId().setId(id);
-//                dataServices.addRabota(ms.getRabotaId());
-//            }
             return dataServices.addPoseshenie(ms);
         } catch (Exception e) {
             return -1;

@@ -48,6 +48,7 @@ public interface DataDao {
     long addPoseshenie(Poseshenie ms) throws Exception;
 
     long addJurnal(Jurnal ms) throws Exception;
+    long addOplata(Oplata ms) throws Exception;
 
     List<SpisokLpmo> getSpisokLpmoList() throws Exception;
 
