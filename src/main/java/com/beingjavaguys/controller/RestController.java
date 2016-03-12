@@ -119,11 +119,11 @@ public class RestController {
     @RequestMapping(value = "/createPos", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public
     @ResponseBody
-    long addPoseshenie(@RequestBody Poseshenie ms) {
+    long[] addPoseshenie(@RequestBody Klient ms) {//Poseshenie
         try {
             return dataServices.addPoseshenie(ms);
         } catch (Exception e) {
-            return -1;
+            return new long[]{-1,-1};
         }
     }
     /////////////////

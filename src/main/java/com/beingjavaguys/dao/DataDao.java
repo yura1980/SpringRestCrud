@@ -45,7 +45,7 @@ public interface DataDao {
 
     long addObshhee(Obshhee ms) throws Exception;
 
-    long addPoseshenie(Poseshenie ms) throws Exception;
+    long[] addPoseshenie(Klient ms) throws Exception;
 
     long addJurnal(Jurnal ms) throws Exception;
     long addOplata(Oplata ms) throws Exception;

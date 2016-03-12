@@ -131,7 +131,7 @@
                 <div class="tab-form-demo" style="padding: 15px">
                     <uib-tabset justified="true">
                         <uib-tab heading="Основное" select="showHideFIO(true)">
-                            <ng-form name="osnForm">
+                            <ng-form name="osnForm" novalidate>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-4">
@@ -197,8 +197,6 @@
                                                 <label>Паспорт: Серия, №:</label>
                                                 <input type="text" ng-model="items.spisokLpmoKl.pasportaId.pasport"
                                                        class="form-control">
-                                                <label style="color:red" ng-show="paspForm.$dirty">$dirty</label>
-                                                <br/>paspForm.$dirty: {{paspForm.$dirty}}
                                             </div>
                                         </div>
 
@@ -243,7 +241,7 @@
                             </ng-form>
                         </uib-tab>
                         <uib-tab heading="Адрес" select="loadObj('adr')">
-                            <ng-form name="adrForm">
+                            <ng-form name="adrForm" novalidate>
                                 <div class="form-group">
                                     <autoc par="oblast" placeh="Область" model="adres.sprOblastId"/>
                                     <!--<label>Область:<i ng-show="loadingLocations[6]" class="glyphicon glyphicon-refresh"></i></label>-->
@@ -317,7 +315,7 @@
                             </ng-form>
                         </uib-tab>
                         <uib-tab heading="Работа" select="showHideFIO(false)">
-                            <ng-form name="rabForm">
+                            <ng-form name="rabForm" novalidate>
                                 <div class="form-group">
                                     <autoc par="nameOrg" placeh="Организация" model="items.rabotaId.sprOrgId"/>
                                     <!--<label>Организация:<i ng-show="loadingLocations[11]"-->
@@ -364,7 +362,7 @@
                             </ng-form>
                         </uib-tab>
                         <uib-tab heading="Общее" select="loadObj('obsh')">
-                            <ng-form name="obshForm">
+                            <ng-form name="obshForm" novalidate>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">

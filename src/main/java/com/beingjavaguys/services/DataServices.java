@@ -39,7 +39,7 @@ public interface DataServices {
     long addAdres(Adres ms) throws Exception;
     long addRabota(Rabota ms) throws Exception;
     long addObshhee(Obshhee ms) throws Exception;
-    long addPoseshenie(Poseshenie ms) throws Exception;
+    long[] addPoseshenie(Klient ms) throws Exception;
 
     long addJurnal(Jurnal ms) throws Exception;
 

@@ -299,43 +299,54 @@ public class DataDaoImpl implements DataDao {
     }
 
     @Override
-    public long addPoseshenie(Poseshenie ms) throws Exception {
+    public long[] addPoseshenie(Klient ms) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
 
-        Pasporta pasporta = ms.getSpisokLpmoKl().getPasportaId();
-        ms.getSpisokLpmoKl().setPasportaId(null);
-        session.save(ms.getSpisokLpmoKl());
+        Pasporta pasporta = ms.getPoseshenie().getSpisokLpmoKl().getPasportaId();
+        ms.getPoseshenie().getSpisokLpmoKl().setPasportaId(null);
+        session.save(ms.getPoseshenie().getSpisokLpmoKl());
         session.flush();
+        long kl = ms.getPoseshenie().getSpisokLpmoKl().getKl();
 
         if (pasporta != null && pasporta.getId() < 0) {
-            pasporta.setId(ms.getSpisokLpmoKl().getKl());
+            pasporta.setId(kl);
             session.save(pasporta);
 
-            ms.getSpisokLpmoKl().setPasportaId(pasporta);
-            session.update(ms.getSpisokLpmoKl());
+            ms.getPoseshenie().getSpisokLpmoKl().setPasportaId(pasporta);
+            session.update(ms.getPoseshenie().getSpisokLpmoKl());
         }
 
-        if (ms.getRabotaId() != null && ms.getRabotaId().getId() < 0) {
-            ms.getRabotaId().setId(ms.getSpisokLpmoKl().getKl());
-            session.save(ms.getRabotaId());
+        if (ms.getPoseshenie().getRabotaId() != null && ms.getPoseshenie().getRabotaId().getId() < 0) {
+            ms.getPoseshenie().getRabotaId().setId(kl);
+            session.save(ms.getPoseshenie().getRabotaId());
         }
 
-        Oplata oplata = ms.getOplata();
-        ms.setOplata(null);
-        session.save(ms);
+        if (ms.getAdres() != null) {
+            ms.getAdres().setId(kl);
+            session.save(ms.getAdres());
+        }
+
+        if (ms.getObshhee() != null) {
+            ms.getObshhee().setId(kl);
+            session.save(ms.getObshhee());
+        }
+
+        Oplata oplata = ms.getPoseshenie().getOplata();
+        ms.getPoseshenie().setOplata(null);
+        session.save(ms.getPoseshenie());
 
         if (oplata != null && oplata.getId() < 0) {
-            oplata.setId(ms.getId());
+            oplata.setId(ms.getPoseshenie().getId());
             session.save(oplata);
         }
 
-        ms.setOplata(oplata);
-        session.update(ms);
+        ms.getPoseshenie().setOplata(oplata);
+        session.update(ms.getPoseshenie());
 
         tx.commit();
         session.close();
-        return ms.getId();
+        return new long[] {ms.getPoseshenie().getId(), ms.getPoseshenie().getSpisokLpmoKl().getKl()};
     }
 
     @Override

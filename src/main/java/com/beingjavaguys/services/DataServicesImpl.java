@@ -109,7 +109,7 @@ public class DataServicesImpl implements DataServices {
     }
 
     @Override
-    public long addPoseshenie(Poseshenie ms) throws Exception {
+    public long[] addPoseshenie(Klient ms) throws Exception {
         return dataDao.addPoseshenie(ms);
     }
 

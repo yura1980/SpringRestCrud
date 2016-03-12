@@ -194,6 +194,12 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, ite
     $scope.selected = {item: $scope.items}; //[0]                     //изменения
     $scope.toppanel = true;
 
+    $scope.adres = {
+        id: -1, tip: 1, nomerDoma: null, korpus: null, nomerKvartiry: null, adres: null, sprGorodId: null,
+        sprNaselPunktId: null, sprOblastId: null, sprRaionId: null, sprUliciId: null
+    };
+    $scope.obshhee = {id: -1, telefon: null, nomerPoljusa: null, telefon2: null, snils: null, medOrg: null};
+
     $scope.showHideFIO = function (val) {
         $scope.toppanel = val;
     };
@@ -201,10 +207,12 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, ite
     $scope.loadObj = function (val) {
         Restangular.one(val, $scope.items.spisokLpmoKl.kl).get()
             .then(function (response) {
-                if (val === 'adr') {
-                    $scope.adres = response;
-                } else if (val === 'obsh') {
-                    $scope.obshhee = response;
+                if (response !== undefined) {
+                    if (val === 'adr') {
+                        $scope.adres = response;
+                    } else if (val === 'obsh') {
+                        $scope.obshhee = response;
+                    }
                 }
             });
         //$http.get($scope.urlst + 'adr/' + $scope.items.spisokLpmoKl.kl).success(function (response) {
@@ -281,20 +289,35 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, ite
     };
 
     $scope.save = function () {
-        if(!$scope.formKl.osnForm.$dirty || !$scope.formKl.osnForm.$valid){
+        if (!$scope.formKl.osnForm.$dirty || !$scope.formKl.osnForm.$valid) {
             items.oplata = null;
         }
-        if(!$scope.formKl.paspForm.$dirty || !$scope.formKl.paspForm.$valid){
+        if (!$scope.formKl.paspForm.$dirty || !$scope.formKl.paspForm.$valid) {
             items.spisokLpmoKl.pasportaId = null;
         }
-        if(!$scope.formKl.rabForm.$dirty || !$scope.formKl.rabForm.$valid){
+        if (!$scope.formKl.rabForm.$dirty || !$scope.formKl.rabForm.$valid) {
             items.rabotaId = null;
         }
-        Restangular.all('createPos').post($scope.items).then(function (response) {
-            $scope.items.id = response;
-            //$uibModalInstance.dismiss('cancel');
+        if (!$scope.formKl.adrForm.$dirty || !$scope.formKl.adrForm.$valid) {
+            $scope.adres = null;//.id = $scope.items.spisokLpmoKl.kl;//Restangular.all('createAdr').post($scope.adres).then(function (response) {  });
+        }
+        if (!$scope.formKl.obshForm.$dirty || !$scope.formKl.obshForm.$valid) {
+            $scope.obshhee = null;//.id = $scope.items.spisokLpmoKl.kl;//Restangular.all('createObsh').post($scope.obshhee).then(function (response) { });
+        }
+
+        var Klient = {
+            poseshenie: $scope.items,
+            adres: $scope.adres,
+            obshhee: $scope.obshhee
+        };
+
+        Restangular.all('createPos').post(Klient).then(function (response) {//$scope.items
+            var ids = response;
+            $scope.items.id = ids[0];
+            $scope.items.spisokLpmoKl.kl = ids[1];
+
+            $uibModalInstance.close($scope.selected.item);
         });
-        $uibModalInstance.close($scope.selected.item);
 
         //alert(JSON.stringify($scope.items));
     };
