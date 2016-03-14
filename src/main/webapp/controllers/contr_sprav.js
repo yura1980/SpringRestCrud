@@ -1,9 +1,9 @@
 /**
  * Created by yuri on 03.03.16.
  */
-routerApp.controller('CtrlSprav', function ($scope, $log, $filter, $http) {//, $state, theService
+routerApp.controller('CtrlSprav', function ($scope, $filter, Restangular) {//,$log, $state, theService
     //массив json объектов задач
-    $scope.urlst = window.location.pathname + "api/mess/";
+    //$scope.urlst = window.location.pathname + "api/mess/";
 
     //$scope.someThing = theService.thing;                            //праметры из другого контроллера
     $scope.sort = {sortingOrder: 'id', reverse: false};             //праметры сортировки
@@ -57,8 +57,9 @@ routerApp.controller('CtrlSprav', function ($scope, $log, $filter, $http) {//, $
 
     var _selected;
     $scope.selected = "fam";
-    $scope.edit=[false];
-    $scope.editVal = [null];
+    //$scope.edit=[false];
+    //$scope.editVal = [null];
+    //$scope.editId = [null];
     $scope.spravList = [
         //{spr: "poliklinika", name: "", act: false},
         {spr: "nazvPodrazdelenija", name: "Место работы", act: false},
@@ -94,24 +95,48 @@ routerApp.controller('CtrlSprav', function ($scope, $log, $filter, $http) {//, $
         //{spr: "SprZkRek", name: "", act: false}
     ];
 
-    $scope.clEdit = function (val,ind) {
+    $scope.clEdit = function (val, ind, id) {
+        $scope.edit = [false];
+        $scope.editVal = [null];
+        $scope.editId = [null];
+
         $scope.edit[ind] = true;
         $scope.editVal[ind] = val;
-    }
-    $scope.getLocation = function (val) {
-        return $http.get($scope.urlst + 'fam/' + val, { //params: { fam: val }//{ fam: val, sensor: false }
-        }).then(function (response) {
-            return response.data;//.results.map(function (item) { return item;/*.formatted_address;*/  });
-        });
+        $scope.editId[ind] = id;
     };
+
+    //$scope.getLocation = function (val) {
+    //    return $http.get($scope.urlst + 'fam/' + val, { //params: { fam: val }//{ fam: val, sensor: false }
+    //    }).then(function (response) {
+    //        return response.data;//.results.map(function (item) { return item;/*.formatted_address;*/  });
+    //    });
+    //};
 
     //массив json объектов listJurnal
     $scope.getJurnal = function () {
-        $http.get($scope.urlst + 'fam/' + $scope.selected + "=").success(function (response) {
+        Restangular.all('fam/' + $scope.selected + "=").getList().then(function (response) {
             $scope.items = response;
             $scope.search();
             $scope.totalItems = $scope.items.length;
         });
+        //$http.get($scope.urlst + 'fam/' + $scope.selected + "=").success(function (response) {
+        //    $scope.items = response;
+        //    $scope.search();
+        //    $scope.totalItems = $scope.items.length;
+        //});
+    };
+
+    $scope.save = function (ind) {
+        Restangular.all('crspr/').post($scope.selected + "=" + $scope.editVal[ind] + "=" + $scope.editId[ind]).then(function (response) {
+            //Restangular.all('crspr/' + $scope.par + "=" + $scope.model).getList().then(function(response) {
+            for (i = 0; i < $scope.itemsPerPage; i++) {
+                if ($scope.pagedItems[$scope.currentPage - 1][i].id === $scope.editId[ind]) {
+                    $scope.pagedItems[$scope.currentPage - 1][i][$scope.selected] = $scope.editVal[ind];
+                }
+            }
+
+        });
+        $scope.edit[ind] = false;
     };
 
     //инициализация
@@ -126,14 +151,14 @@ routerApp.controller('CtrlSprav', function ($scope, $log, $filter, $http) {//, $
     };
 
     //Изменение статуса
-    $scope.rate = 7;
-    $scope.max = 10;
-    $scope.isReadonly = false;
-
-    $scope.hoveringOver = function (value) {
-        $scope.overStar = value;
-        $scope.percent = 100 * (value / $scope.max);
-    };
+    //$scope.rate = 7;
+    //$scope.max = 10;
+    //$scope.isReadonly = false;
+    //
+    //$scope.hoveringOver = function (value) {
+    //    $scope.overStar = value;
+    //    $scope.percent = 100 * (value / $scope.max);
+    //};
 
     //// открытие диалогового окна для редактирования задачи
     //$scope.open = function (cl, size) {

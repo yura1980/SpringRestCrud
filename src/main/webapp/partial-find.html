@@ -3,7 +3,7 @@
 <div class="panel panel-default" ng-controller="CtrlFind">
     <div class="panel-heading text-left">Панель поиска: <span
             class="text-danger">text-danger </span><br>
-        <pre>Model: {{sel}}</pre>
+        <!--<pre>Model: {{sel}}</pre>-->
     </div>
     <div class="panel-body">
 
@@ -108,10 +108,10 @@
             <tbody>
             <tr ng-repeat="item in pagedItems[(currentPage - 1)]| orderBy:sort.sortingOrder:sort.reverse  | filter:findStr "
                 ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index)">
-                <td>{{item.sprFamId.fam}} {{item.sprNameId.name}} {{item.sprOtchId.otch}}</td>
-                <td>{{item.datasRozhd | date:'dd.MM.yyyy'}}</td>
-                <td>{{item.pol ? 'Жен':'Муж'}}</td>
-                <td>{{item.pasportaId.pasport}}</td>
+                <td ng-bind="item.sprFamId.fam+' '+item.sprNameId.name+' '+item.sprOtchId.otch"></td>
+                <td ng-bind="item.datasRozhd | date:'dd.MM.yyyy'"></td>
+                <td ng-bind="item.pol ? 'Жен':'Муж'"></td>
+                <td ng-bind="item.pasportaId.pasport"></td>
                 <!--<td>{{item.rabotaId.sprProfesijaId.professija}}</td>-->
                 <!--<td>{{item.dataPos | date:'dd.MM.yyyy'}}</td>-->
             </tr>

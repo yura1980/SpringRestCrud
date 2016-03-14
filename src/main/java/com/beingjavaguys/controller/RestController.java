@@ -145,8 +145,13 @@ public class RestController {
     long addEntitySpr(@RequestBody String ms) {
         try {
             String[] par = ms.split("=");
+            Integer id = -1;
+            if(par.length>2){
+                id = Integer.parseInt(par[2]);
+            }
+
             if (par[0].equals("fam")) {
-                return dataServices.addEntitySpr(new SprFam(par[1]));
+                return dataServices.addEntitySpr(new SprFam(id, par[1]));
             } else if (par[0].equals("name")) {
                 return dataServices.addEntitySpr(new SprName(par[1]));
             } else if (par[0].equals("otch")) {

@@ -38,7 +38,7 @@ routerApp.directive('autoc', function () {
             placeh: "@",
             model: "="
         },
-        template: '<label>{{placeh}}:<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i></label>' +
+        template: '<label>{{placeh}}<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i></label>' +
         '<input type="text" ng-model="model" placeholder="{{placeh}}" uib-typeahead="item as item[par] for item in getLocation($viewValue)"' +
         'typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">' +
         '<div ng-show="noResults"><i class="glyphicon glyphicon-remove"></i> Запись отсутсвует.' +
@@ -59,7 +59,7 @@ routerApp.directive('autoc', function () {
                     data: $scope.par + "=" + $scope.model
                 }).then(function (response) {  // success
                     //var jsontext = '{"id":"'+response.data+'","'+ $scope.par +'":"'+$scope.model+'"}';
-                    $scope.model = JSON.parse('{"id":"'+response.data+'","'+ $scope.par +'":"'+$scope.model+'"}');
+                    $scope.model = JSON.parse('{"id":"' + response.data + '","' + $scope.par + '":"' + $scope.model + '"}');
                     //var tmp = $scope.model;
                     //$scope.model = {id: response.data};
                     //$scope.model[$scope.par] = tmp;
@@ -83,26 +83,100 @@ routerApp.directive('dateb', function () {
         },
         template: '<label>{{placeh}}:</label>' +
         '<p class="input-group">' +
-        '<input type="text" size="10" class="form-control" uib-datepicker-popup="{{format}}" placeholder="{{placeh}}"' +
-        'ng-model="model" is-open="status.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>' +
+        '<input type="text" size="10" class="form-control" uib-datepicker-popup="{{dateParam.format}}" placeholder="{{placeh}}"' +
+        'ng-model="model" is-open="dateParam.status.opened" datepicker-options="dateParam.dateOptions" ng-required="true" close-text="Close"/>' +
         '<span class="input-group-btn">' +
-        '<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>' +
+        '<button type="button" class="btn btn-default" ng-click="dateParam.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>' +
         '</span></p>',
         controller: function ($scope) {
-            $scope.open = function ($event) {
-                $scope.status.opened = true;
-            };
+            //$scope.open = function ($event) {
+            //    $scope.dateParam.status.opened = true;
+            //};
             //объект статуса
-            $scope.status = {
-                opened: false
+            $scope.dateParam = {
+                status: {opened: false},
+                dateOptions: {
+                    formatYear: 'yyyy',                   //формат года
+                    startingDay: 1                      //начало месяца
+                },
+                format: 'dd.MM.yyyy',
+                open: function ($event) {
+                    $scope.dateParam.status.opened = true;
+                }
             };
 
-            $scope.dateOptions = {
-                formatYear: 'yyyy',                   //формат года
-                startingDay: 1                      //начало месяца
-            };
+            //$scope.dateOptions = {
+            //    formatYear: 'yyyy',                   //формат года
+            //    startingDay: 1                      //начало месяца
+            //};
             //формат даты виджета
-            $scope.format = 'dd.MM.yyyy';
+            //$scope.format = 'dd.MM.yyyy';
+        }
+    }
+
+});
+
+routerApp.directive('multis', function () {
+    return {
+        restrict: 'E',
+        scope: {
+            par: "@",
+            placeh: "@",
+            model: "="
+        },
+        template: '<label>Первый:</label>' +
+        '<div class="bordr4">' +
+        '<label class="btn-primary bordr5" ng-repeat="item in multisel.pr1"  uib-popover="{{item.info}}" popover-trigger="mouseenter" popover-title="Наименование" >' +
+        '{{item.fam}}<span ng-click="detlPr(item,1)" class="glyphicon glyphicon-remove-circle ml10 cur"></span>' +
+        '</label>' +
+        '</div>' +
+        '<label>Второй:</label>' +
+        '<div class="bordr4">' +
+        '<label class="btn-primary bordr5" ng-repeat="item in multisel.pr2" uib-popover="{{item.info}}" popover-trigger="mouseenter" popover-title="Наименование">' +
+        '{{item.fam}}<span ng-click="detlPr(item,2)" class="glyphicon glyphicon-remove-circle ml10 cur"></span>' +
+        '</label>' +
+        '</div>' +
+        '<div class="form-inline text-left pt10">' +
+        '<input type="text" ng-model="model" placeholder="{{placeh}}" uib-typeahead="item as item[par] for item in getLocation($viewValue)"' +
+        'typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control" typeahead-on-select="addPr()">' +
+        '<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>' +
+        '<div ng-show="noResults"><i class="glyphicon glyphicon-remove"></i>Запись отсутсвует.</div>' +
+        '</div>',
+        controller: function ($scope, $http, CONST) {
+            $scope.addPr = function () {
+                if ($scope.model.id < 10) {
+                    $scope.multisel.pr1.push($scope.model);
+                } else {
+                    $scope.multisel.pr2.push($scope.model);
+                }
+                $scope.model = null;
+            };
+            $scope.detlPr = function (it, ind) {
+                var prop = 'pr' + ind;
+                $scope.multisel[prop].splice($scope.multisel[prop].indexOf(it), 1);
+                if ($scope.multisel[prop].length === 0) {
+                    $scope.multisel[prop] = [{id: -1, fam: "пусто"}];
+                }
+
+            };
+            $scope.getLocation = function (val) {
+                return $http.get(CONST.curr_url + 'fam/' + $scope.par + "=" + val, {}).then(function (response) {
+                    return response.data;
+                });
+            };
+            $scope.multisel = {
+                pr1: [{
+                    id: 1,
+                    fam: 'vas',
+                    info: "Artifact SpringRestCrud:war: Artifact is being deployed, please wait..."
+                },
+                    {id: 2, fam: 'pro', info: "Artifact SpringRestCrud"}],
+                pr2: [{
+                    id: 3,
+                    fam: 'ppp',
+                    info: "Artifact SpringRestCrud:war: Artifact is."
+                }]
+            };
         }
     }
 

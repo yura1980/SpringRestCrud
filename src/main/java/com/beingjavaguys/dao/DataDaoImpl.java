@@ -1,14 +1,12 @@
 package com.beingjavaguys.dao;
 
-import java.util.List;
-
 import com.beingjavaguys.model.*;
 import org.hibernate.*;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.type.StringType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 public class DataDaoImpl implements DataDao {
 
@@ -232,7 +230,11 @@ public class DataDaoImpl implements DataDao {
     public long addEntitySpr(Spr ms) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
-        session.save(ms);
+        if (ms.getId()!=null && ms.getId() > 0) {
+            session.update(ms);
+        } else {
+            session.save(ms);
+        }
         tx.commit();
         session.close();
         return ms.getId();
@@ -346,14 +348,18 @@ public class DataDaoImpl implements DataDao {
 
         tx.commit();
         session.close();
-        return new long[] {ms.getPoseshenie().getId(), ms.getPoseshenie().getSpisokLpmoKl().getKl()};
+        return new long[]{ms.getPoseshenie().getId(), ms.getPoseshenie().getSpisokLpmoKl().getKl()};
     }
 
     @Override
     public long addJurnal(Jurnal ms) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
-        session.save(ms);
+        if (ms.getRn() < 0) {
+            session.save(ms);
+        } else {
+            session.update(ms);
+        }
         tx.commit();
         session.close();
         return ms.getRn();

@@ -13,10 +13,26 @@ tbody td {
     text-align: left;
 }
 
+.cur{
+    cursor: pointer !important;
+}
+
 .selected {
     background-color: darkblue !important;
     color: white;
     /*font-weight:bold;*/
+}
+
+input.ng-dirty, textarea.ng-dirty {
+    background-color: lightyellow;
+}
+
+.p15{
+    padding: 15px;
+}
+
+.pt10{
+    padding-top: 10px;
 }
 
 .mb10 {
@@ -33,4 +49,11 @@ tbody td {
 
 .ml10 {
     margin-left: 10px;
+}
+
+.bordr4{
+    border: 1px solid #adadad; border-radius: 4px;
+}
+.bordr5{
+    border: 1px solid #adadad; border-radius: 5px; padding: 5px;
 }

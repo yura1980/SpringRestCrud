@@ -128,9 +128,9 @@
             </div>
             <div class="row">
                 <!--<div class="form-group">-->
-                <div class="tab-form-demo" style="padding: 15px">
+                <div class="tab-form-demo p15" ng-if="items.id>0 || formKl.$dirty">
                     <uib-tabset justified="true">
-                        <uib-tab heading="Основное" select="showHideFIO(true)">
+                        <uib-tab heading="Основное{{formKl.osnForm.$dirty?'*':''}}" select="showHideFIO(true)">
                             <ng-form name="osnForm" novalidate>
                                 <div class="form-group">
                                     <div class="row">
@@ -161,7 +161,15 @@
                                 </div>
                             </ng-form>
                         </uib-tab>
-                        <uib-tab heading="Паспорт" select="showHideFIO(false)">
+                        <uib-tab heading="Мульти{{formKl.prfrForm.$dirty?'*':''}}" select="showHideFIO(false)">
+                            <ng-form name="prfrForm" novalidate>
+                                <div class="form-group">
+                                    <multis par="fam" placeh="ttt" model="test"/>
+                                </div>
+                            </ng-form>
+                        </uib-tab>
+
+                        <uib-tab heading="Паспорт{{formKl.paspForm.$dirty?'*':''}}" select="showHideFIO(false)">
                             <ng-form name="paspForm" novalidate>
 
                                 <div class="form-group">
@@ -240,59 +248,14 @@
 
                             </ng-form>
                         </uib-tab>
-                        <uib-tab heading="Адрес" select="loadObj('adr')">
+                        <uib-tab heading="Адрес{{formKl.adrForm.$dirty?'*':''}}" select="loadObj('adr')">
                             <ng-form name="adrForm" novalidate>
                                 <div class="form-group">
                                     <autoc par="oblast" placeh="Область" model="adres.sprOblastId"/>
-                                    <!--<label>Область:<i ng-show="loadingLocations[6]" class="glyphicon glyphicon-refresh"></i></label>-->
-                                    <!--<input type="text" ng-model="adres.sprOblastId" placeholder="Область"-->
-                                    <!--uib-typeahead="item as item.oblast for item in getLocation('oblast=' + $viewValue)"-->
-                                    <!--typeahead-loading="loadingLocations[6]" typeahead-no-results="noResults[6]"-->
-                                    <!--class="form-control">-->
-                                    <!--<div ng-show="noResults[6]"><i class="glyphicon glyphicon-remove"></i> Запись-->
-                                    <!--отсутсвует. <a-->
-                                    <!--ng-click="save(adres.sprOblastId, 'oblast',6)">Добавить</a></div>-->
-
                                     <autoc par="gorod" placeh="Город" model="adres.sprGorodId"/>
-                                    <!--<label>Город:<i ng-show="loadingLocations[7]"-->
-                                    <!--class="glyphicon glyphicon-refresh"></i></label>-->
-                                    <!--<input type="text" ng-model="adres.sprGorodId" placeholder="Город"-->
-                                    <!--uib-typeahead="item as item.gorod for item in getLocation('gorod=' + $viewValue)"-->
-                                    <!--typeahead-loading="loadingLocations[7]" typeahead-no-results="noResults[7]"-->
-                                    <!--class="form-control">-->
-                                    <!--<div ng-show="noResults[7]"><i class="glyphicon glyphicon-remove"></i> Запись-->
-                                    <!--отсутсвует. <a-->
-                                    <!--ng-click="save(adres.sprGorodId, 'gorod',7)">Добавить</a></div>-->
                                     <autoc par="raion" placeh="Район" model="adres.sprRaionId"/>
-                                    <!--<label>Район:<i ng-show="loadingLocations[8]"-->
-                                    <!--class="glyphicon glyphicon-refresh"></i></label>-->
-                                    <!--<input type="text" ng-model="adres.sprRaionId" placeholder="Район"-->
-                                    <!--uib-typeahead="item as item.raion for item in getLocation('raion=' + $viewValue)"-->
-                                    <!--typeahead-loading="loadingLocations[8]" typeahead-no-results="noResults[8]"-->
-                                    <!--class="form-control">-->
-                                    <!--<div ng-show="noResults[8]"><i class="glyphicon glyphicon-remove"></i> Запись-->
-                                    <!--отсутсвует. <a-->
-                                    <!--ng-click="save(adres.sprRaionId, 'raion',8)">Добавить</a></div>-->
                                     <autoc par="naselPunkt" placeh="Населенный пункт" model="adres.sprNaselPunktId"/>
-                                    <!--<label>Населенный пункт:<i ng-show="loadingLocations[9]"-->
-                                    <!--class="glyphicon glyphicon-refresh"></i></label>-->
-                                    <!--<input type="text" ng-model="adres.sprNaselPunktId" placeholder="Населенный пункт"-->
-                                    <!--uib-typeahead="item as item.naselPunkt for item in getLocation('naselPunkt=' + $viewValue)"-->
-                                    <!--typeahead-loading="loadingLocations[9]" typeahead-no-results="noResults[9]"-->
-                                    <!--class="form-control">-->
-                                    <!--<div ng-show="noResults[9]"><i class="glyphicon glyphicon-remove"></i> Запись-->
-                                    <!--отсутсвует. <a-->
-                                    <!--ng-click="save(adres.sprNaselPunktId, 'naselPunkt',9)">Добавить</a></div>-->
                                     <autoc par="ulici" placeh="Улица" model="adres.sprUliciId"/>
-                                    <!--<label>Улица:<i ng-show="loadingLocations[10]" class="glyphicon glyphicon-refresh"></i></label>-->
-                                    <!--<input type="text" ng-model="adres.sprUliciId" placeholder="Улица"-->
-                                    <!--uib-typeahead="item as item.ulici for item in getLocation('ulici=' + $viewValue)"-->
-                                    <!--typeahead-loading="loadingLocations[10]" typeahead-no-results="noResults[10]"-->
-                                    <!--class="form-control">-->
-                                    <!--<div ng-show="noResults[10]"><i class="glyphicon glyphicon-remove"></i> Запись-->
-                                    <!--отсутсвует. <a-->
-                                    <!--ng-click="save(adres.sprUliciId, 'ulici',10)">Добавить</a></div>-->
-
                                     <div class="form-inline" style="margin-top: 10px;">
                                         <div class="form-group">
                                             <label>Дом: </label>
@@ -311,10 +274,11 @@
                                     <label>Полный адрес:</label>
                                 <textarea class="form-control" id="description" ng-model="adres.adres" rows="3"
                                           cols="20"></textarea>
+                                    <input class="btn btn-default" ng-click="bildAdres()" value="Собрать">
                                 </div>
                             </ng-form>
                         </uib-tab>
-                        <uib-tab heading="Работа" select="showHideFIO(false)">
+                        <uib-tab heading="Работа{{formKl.rabForm.$dirty?'*':''}}" select="showHideFIO(false)">
                             <ng-form name="rabForm" novalidate>
                                 <div class="form-group">
                                     <autoc par="nameOrg" placeh="Организация" model="items.rabotaId.sprOrgId"/>
@@ -361,7 +325,7 @@
                                 </div>
                             </ng-form>
                         </uib-tab>
-                        <uib-tab heading="Общее" select="loadObj('obsh')">
+                        <uib-tab heading="Общее{{formKl.obshForm.$dirty?'*':''}}" select="loadObj('obsh')">
                             <ng-form name="obshForm" novalidate>
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -408,7 +372,9 @@
         <!--</div>-->
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" ng-click="save()">Сохранить</button>
+        <button type="submit" ng-disabled="!formKl.$dirty && !formKl.$invalid"
+                class="btn btn-primary" ng-click="save()">Сохранить
+        </button>
         <button type="button" class="btn btn-default" ng-click="evnt('cancel')">Закрыть</button>
     </div>
 </form>

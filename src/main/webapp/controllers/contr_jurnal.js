@@ -5,9 +5,9 @@
  Created on : 28.10.2015, 9:33:58
  Author     : Vasyanin Yuri
  */
-routerApp.controller('CtrlTask', function ($scope, $log, $filter, $uibModal, $interval, $http, $state, CONST) {
+routerApp.controller('CtrlTask', function ($scope, $log, $filter, $uibModal, Restangular) {//$interval, $http, $state, CONST
     //массив json объектов задач
-    $scope.urlst = window.location.pathname + "api/mess/";
+    //$scope.urlst = window.location.pathname + "api/mess/";
 
     //theService.thing.visibleNav=true;
     //$scope.someThing = theService.thing;                            //праметры из другого контроллера
@@ -64,11 +64,16 @@ routerApp.controller('CtrlTask', function ($scope, $log, $filter, $uibModal, $in
 
     //массив json объектов listJurnal
     $scope.getJurnal = function () {
-        $http.get(CONST.curr_url + 'listJurnal').success(function (response) {
-            $scope.items = response;
-            $scope.search();
-            $scope.totalItems = $scope.items.length;
-        });
+        Restangular.all('listJurnal').getList().then(function(response) {
+                $scope.items = response;
+                $scope.search();
+                $scope.totalItems = $scope.items.length;
+            });
+        //$http.get(CONST.curr_url + 'listJurnal').success(function (response) {
+        //    $scope.items = response;
+        //    $scope.search();
+        //    $scope.totalItems = $scope.items.length;
+        //});
     };
 
     //инициализация
@@ -87,7 +92,7 @@ routerApp.controller('CtrlTask', function ($scope, $log, $filter, $uibModal, $in
         //если постой объект, создадим новую задачу
         if (cl === null) {
             cl = {
-                rn: $scope.items.length + 1,
+                rn: -1,//$scope.items.length + 1,
                 datasReg: new Date(),
                 obrabotkaDok: false,
                 zaklAkt: null,
@@ -113,17 +118,17 @@ routerApp.controller('CtrlTask', function ($scope, $log, $filter, $uibModal, $in
     };
 
     //посещения
-    $scope.getPoseshenie = function () {
-        $http.get(CONST.curr_url + 'listPoseshenie').success(function (response) {
-            $scope.poseshenie = response;
-            $log.info($scope.poseshenie);
-        });
-    };
-
-    $scope.openSp = function () {
-        $state.transitionTo('spisok');
-        //"spisok"
-    }
+    //$scope.getPoseshenie = function () {
+    //    $http.get(CONST.curr_url + 'listPoseshenie').success(function (response) {
+    //        $scope.poseshenie = response;
+    //        $log.info($scope.poseshenie);
+    //    });
+    //};
+    //
+    //$scope.openSp = function () {
+    //    $state.transitionTo('spisok');
+    //    //"spisok"
+    //}
 
     ////прогресс
     //$scope.onProgrComplete = function (){
@@ -133,14 +138,14 @@ routerApp.controller('CtrlTask', function ($scope, $log, $filter, $uibModal, $in
     //$scope.onProgrComplete();
 
     //Изменение статуса
-    $scope.rate = 7;
-    $scope.max = 10;
-    $scope.isReadonly = false;
-
-    $scope.hoveringOver = function (value) {
-        $scope.overStar = value;
-        $scope.percent = 100 * (value / $scope.max);
-    };
+    //$scope.rate = 7;
+    //$scope.max = 10;
+    //$scope.isReadonly = false;
+    //
+    //$scope.hoveringOver = function (value) {
+    //    $scope.overStar = value;
+    //    $scope.percent = 100 * (value / $scope.max);
+    //};
 });
 
 //контроллер созданного диалогового окна
@@ -161,9 +166,8 @@ routerApp.controller('ModalInstCtrl', function ($scope, $uibModalInstance, items
     $scope.save = function () {
         Restangular.all('createJurn').post($scope.items).then(function(response) {
             $scope.items.rn = response;
-        });;
-
-        $uibModalInstance.close($scope.selected.item);
+            $uibModalInstance.close($scope.selected.item);
+        });
     }
 
 });

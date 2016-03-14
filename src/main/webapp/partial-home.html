@@ -19,7 +19,7 @@
         <hr/>
 
         <!-- подробный список/таблица  -->
-        <table class="table table-striped table-condensed table-hover">
+        <table class="table table-striped table-condensed table-hover" ng-cloak>
             <thead>
             <tr>
                 <th custom-sort order="'rn'" sort="sort">Рег№&nbsp;</th>
@@ -43,13 +43,13 @@
             <tbody>
             <tr ng-repeat="item in pagedItems[(currentPage - 1)]| orderBy:sort.sortingOrder:sort.reverse  | filter:findStr "
                 ng-click="open(item)">
-                <td>{{item.rn}}</td>
-                <td>{{item.datasReg | date:'dd.MM.yyyy'}}</td>
-                <td>{{item.idVidPmo}}</td>
-                <td>{{item.sprOrgId.nameOrg}}</td>
-                <td>{{item.sprPoliklinikiId.poliklinika}}</td>
-                <td>{{item.obrabotkaDok ? 'Да':'Нет'}}</td>
-                <td>{{item.zaklAkt | date:'dd.MM.yyyy'}}</td>
+                <td ng-bind="item.rn"></td>
+                <td ng-bind="item.datasReg | date:'dd.MM.yyyy'"></td>
+                <td ng-bind="item.idVidPmo"></td>
+                <td ng-bind="item.sprOrgId.nameOrg"></td>
+                <td ng-bind="item.sprPoliklinikiId.poliklinika"></td>
+                <td ng-bind="item.obrabotkaDok ? 'Да':'Нет'"></td>
+                <td ng-bind="item.zaklAkt | date:'dd.MM.yyyy'"></td>
             </tr>
             </tbody>
         </table>

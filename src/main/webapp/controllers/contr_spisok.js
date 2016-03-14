@@ -221,6 +221,12 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, ite
         $scope.toppanel = false;
     };
 
+    $scope.bildAdres = function () {
+        $scope.adres.adres = $scope.adres.sprOblastId.oblast + ', г.' + $scope.adres.sprGorodId.gorod + ', ' + $scope.adres.sprRaionId.raion + ' р-н, ' +
+            $scope.adres.sprNaselPunktId.naselPunkt + ', ул.' +$scope.adres.sprUliciId.ulici + ', д.' + $scope.adres.nomerDoma + ', корп.' +
+            $scope.adres.korpus + ', кв.' + $scope.adres.nomerKvartiry;
+    };
+
     //$scope.loadObshhee = function () {
     //    //$http.get($scope.urlst + 'obsh/' + $scope.items.spisokLpmoKl.kl).success(function (response) {
     //    //    $scope.obshhee = response;

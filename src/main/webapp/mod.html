@@ -10,7 +10,7 @@
             <div class="col-md-3">
                 <div class="padded-row">
                     <label for="prior">Рег.номер:</label>
-                    <input type="number" class="form-control" ng-model="items.rn" id="prior">
+                    <input type="number" class="form-control" ng-model="items.rn" id="prior" readonly>
                 </div>
             </div>
             <div class="col-md-4">
@@ -96,7 +96,7 @@
     <div class="input-group" style="float: right">
         <button type="button" class="btn btn-default" ng-click="evnt('cancel')">Закрыть</button>
         <span class="input-group-btn">
-            <button type="button" class="btn btn-primary" ng-click="save()">Сохранить</button>
+            <button type="button" class="btn btn-primary" ng-click="save()">{{items.rn<0?'Добавить':'Обновить'}}</button>
         </span>
     </div>
 </div>
