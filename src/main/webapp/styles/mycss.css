@@ -47,8 +47,24 @@ input.ng-dirty, textarea.ng-dirty {
     margin-top: 10px;
 }
 
+.mtb5 {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
 .ml10 {
     margin-left: 10px;
+}
+
+.bnone {
+    border-color: inherit !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline:none !important;
+    border:none !important;
+}
+.bnone.ng-dirty {
+    background-color: inherit;
 }
 
 .bordr4{

@@ -164,7 +164,7 @@
                         <uib-tab heading="Мульти{{formKl.prfrForm.$dirty?'*':''}}" select="showHideFIO(false)">
                             <ng-form name="prfrForm" novalidate>
                                 <div class="form-group">
-                                    <multis par="fam" placeh="ttt" model="test"/>
+                                    <multis par="fam" placeh="Test:" stylecss="item.pr===1?'btn-primary':'btn-success'" multisel="multi"/>
                                 </div>
                             </ng-form>
                         </uib-tab>
@@ -271,10 +271,9 @@
                                                    ng-model="adres.nomerKvartiry">
                                         </div>
                                     </div>
-                                    <label>Полный адрес:</label>
+                                    <label>Полный адрес: <a class="cur" ng-click="bildAdres()">Собрать</a></label>
                                 <textarea class="form-control" id="description" ng-model="adres.adres" rows="3"
                                           cols="20"></textarea>
-                                    <input class="btn btn-default" ng-click="bildAdres()" value="Собрать">
                                 </div>
                             </ng-form>
                         </uib-tab>

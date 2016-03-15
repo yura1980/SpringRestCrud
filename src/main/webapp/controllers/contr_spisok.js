@@ -1,9 +1,9 @@
 /**
  * Created by yuri on 17.02.16.
  */
-routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, $interval, $http) {//, $state, theService
+routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, Restangular) {//$interval, $http, $state, theService
     //массив json объектов задач
-    $scope.urlst = window.location.pathname + "api/mess/";
+    //$scope.urlst = window.location.pathname + "api/mess/";
 
     //$scope.someThing = theService.thing;                            //праметры из другого контроллера
     $scope.sort = {sortingOrder: 'id', reverse: false};             //праметры сортировки
@@ -57,11 +57,16 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, $inte
 
     //массив json объектов listJurnal
     $scope.getJurnal = function () {
-        $http.get($scope.urlst + 'listPoseshenie').success(function (response) {
+        Restangular.all('listPoseshenie').getList().then(function (response) {
             $scope.items = response;
             $scope.search();
             $scope.totalItems = $scope.items.length;
         });
+        //$http.get($scope.urlst + 'listPoseshenie').success(function (response) {
+        //    $scope.items = response;
+        //    $scope.search();
+        //    $scope.totalItems = $scope.items.length;
+        //});
     };
 
     //инициализация
@@ -226,6 +231,11 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, ite
             $scope.adres.sprNaselPunktId.naselPunkt + ', ул.' +$scope.adres.sprUliciId.ulici + ', д.' + $scope.adres.nomerDoma + ', корп.' +
             $scope.adres.korpus + ', кв.' + $scope.adres.nomerKvartiry;
     };
+
+    $scope.multi =
+        [{ pr: 1, id: 1, fam: 'раз', info: "Artifact SpringRestCrud:war: Artifact is being deployed, please wait..." },
+            {pr: 1, id: 2, fam: 'два', info: "Artifact SpringRestCrud"},
+            { pr: 2, id: 3, fam: 'три', info: "Artifact SpringRestCrud:war: Artifact is." }];
 
     //$scope.loadObshhee = function () {
     //    //$http.get($scope.urlst + 'obsh/' + $scope.items.spisokLpmoKl.kl).success(function (response) {

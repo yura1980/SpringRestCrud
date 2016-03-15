@@ -38,9 +38,10 @@ routerApp.directive('autoc', function () {
             placeh: "@",
             model: "="
         },
-        template: '<label>{{placeh}}<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i></label>' +
+        template: //'<label>{{placeh}}<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i></label>' +
         '<input type="text" ng-model="model" placeholder="{{placeh}}" uib-typeahead="item as item[par] for item in getLocation($viewValue)"' +
-        'typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">' +
+        'typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control mtb5" title="{{placeh}}">' +
+        '<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>'+
         '<div ng-show="noResults"><i class="glyphicon glyphicon-remove"></i> Запись отсутсвует.' +
         '<button type="button" class="btn btn-link" ng-click="save()" >Добавить</button>' +
         '</div>',
@@ -120,63 +121,65 @@ routerApp.directive('multis', function () {
     return {
         restrict: 'E',
         scope: {
+            stylecss: "@",
             par: "@",
             placeh: "@",
-            model: "="
+            multisel: "="
         },
-        template: '<label>Первый:</label>' +
+        template: '<label>{{placeh}}</label>' +
         '<div class="bordr4">' +
-        '<label class="btn-primary bordr5" ng-repeat="item in multisel.pr1"  uib-popover="{{item.info}}" popover-trigger="mouseenter" popover-title="Наименование" >' +
-        '{{item.fam}}<span ng-click="detlPr(item,1)" class="glyphicon glyphicon-remove-circle ml10 cur"></span>' +
+        '<label class="bordr5" ng-class="{{stylecss}}" ng-click="change(item)" ng-repeat="item in multisel"  uib-popover="{{item.info}}" popover-trigger="mouseenter" popover-title="Наименование" >' +
+        '{{item.fam}}<span ng-click="detlPr(item)" class="glyphicon glyphicon-remove-circle ml10 cur"></span>' +
         '</label>' +
-        '</div>' +
-        '<label>Второй:</label>' +
-        '<div class="bordr4">' +
-        '<label class="btn-primary bordr5" ng-repeat="item in multisel.pr2" uib-popover="{{item.info}}" popover-trigger="mouseenter" popover-title="Наименование">' +
-        '{{item.fam}}<span ng-click="detlPr(item,2)" class="glyphicon glyphicon-remove-circle ml10 cur"></span>' +
-        '</label>' +
-        '</div>' +
-        '<div class="form-inline text-left pt10">' +
-        '<input type="text" ng-model="model" placeholder="{{placeh}}" uib-typeahead="item as item[par] for item in getLocation($viewValue)"' +
-        'typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control" typeahead-on-select="addPr()">' +
+        '<input type="text" ng-model="model" placeholder="Добавить" uib-typeahead="item as item[par] for item in getLocation($viewValue)"' +
+        'typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="bnone ml10" typeahead-on-select="addPr()">' +
         '<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>' +
-        '<div ng-show="noResults"><i class="glyphicon glyphicon-remove"></i>Запись отсутсвует.</div>' +
-        '</div>',
-        controller: function ($scope, $http, CONST) {
+        '<span ng-show="noResults"><i class="glyphicon glyphicon-remove"></i>Запись отсутсвует.</span>' +
+        '</div>' /*+
+         '<label>Второй:</label>' +
+         '<div class="bordr4">' +
+         '<label class="btn-primary bordr5" ng-repeat="item in multisel.pr2" uib-popover="{{item.info}}" popover-trigger="mouseenter" popover-title="Наименование">' +
+         '{{item.fam}}<span ng-click="detlPr(item,2)" class="glyphicon glyphicon-remove-circle ml10 cur"></span>' +
+         '</label>' +
+         '</div>' +
+         '<div class="form-inline text-left pt10">' +
+
+         '</div>'*/,
+        controller: function ($scope, Restangular) {
             $scope.addPr = function () {
-                if ($scope.model.id < 10) {
-                    $scope.multisel.pr1.push($scope.model);
+                if ($scope.multisel.length === 1 && $scope.multisel[0].id === -1) {
+                    $scope.multisel = [$scope.model];
                 } else {
-                    $scope.multisel.pr2.push($scope.model);
+                    $scope.multisel.push($scope.model);
                 }
                 $scope.model = null;
             };
-            $scope.detlPr = function (it, ind) {
-                var prop = 'pr' + ind;
-                $scope.multisel[prop].splice($scope.multisel[prop].indexOf(it), 1);
-                if ($scope.multisel[prop].length === 0) {
-                    $scope.multisel[prop] = [{id: -1, fam: "пусто"}];
+            $scope.detlPr = function (it) {
+                $scope.multisel.splice($scope.multisel.indexOf(it), 1);
+                if ($scope.multisel.length === 0) {
+                    $scope.multisel = [{id: -1, fam: "пусто"}];
                 }
 
             };
+            $scope.change = function (it) {
+                if ($scope.multisel[0].pr === undefined) {
+                    return;
+                }
+                var i = $scope.multisel.indexOf(it);
+                $scope.multisel[i].pr = ($scope.multisel[i].pr === 1 ? 2 : 1);
+            };
             $scope.getLocation = function (val) {
-                return $http.get(CONST.curr_url + 'fam/' + $scope.par + "=" + val, {}).then(function (response) {
-                    return response.data;
+                return Restangular.all('fam/' + $scope.par + "=" + val).getList().then(function (response) {
+                    return response;
                 });
+                //return $http.get(CONST.curr_url + 'fam/' + $scope.par + "=" + val, {}).then(function (response) {
+                //    return response.data;
+                //});
             };
-            $scope.multisel = {
-                pr1: [{
-                    id: 1,
-                    fam: 'vas',
-                    info: "Artifact SpringRestCrud:war: Artifact is being deployed, please wait..."
-                },
-                    {id: 2, fam: 'pro', info: "Artifact SpringRestCrud"}],
-                pr2: [{
-                    id: 3,
-                    fam: 'ppp',
-                    info: "Artifact SpringRestCrud:war: Artifact is."
-                }]
-            };
+            //$scope.multisel =
+            //    [{ pr: 1, id: 1, fam: 'vas', info: "Artifact SpringRestCrud:war: Artifact is being deployed, please wait..." },
+            //    {pr: 1, id: 2, fam: 'pro', info: "Artifact SpringRestCrud"},
+            //    { pr: 2, id: 3, fam: 'ppp', info: "Artifact SpringRestCrud:war: Artifact is." }];
         }
     }
 
