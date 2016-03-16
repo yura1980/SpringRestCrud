@@ -1,17 +1,21 @@
 /**
  * Created by yuri on 15.02.16.
  */
-routerApp.controller('CtrlAutor', function ($scope, $state, Restangular) {//, $http, theService
+routerApp.controller('CtrlAutor', function ($scope, $state, Restangular) {//, AuthService, $http, theService
 
     //$scope.isAutorized = false;
     //theService.thing.visibleNav = false;                                //скрыть панели
     //$scope.urlst = window.location.pathname + "api/mess/";
 
-
+    //$scope.login = function (login, password) {
+    //    AuthService.loginByCredentials(login, password).catch(function () {
+    //        //выводим ошибку авторизации
+    //    });
+    //};
 
     //массив json объектов пользователей
     Restangular.all('listPass').getList()  // GET: /users
-        .then(function(response) {
+        .then(function (response) {
             $scope.users = response;
             $scope.usr = $scope.users[0].id;
         });
@@ -19,7 +23,7 @@ routerApp.controller('CtrlAutor', function ($scope, $state, Restangular) {//, $h
     //функция проверки Аутентификации пользователя
     $scope.checkLogin = function () {
         Restangular.one('login', $scope.usr + "=" + $scope.psw).get()
-            .then(function(response) {
+            .then(function (response) {
                 $state.transitionTo(response);
             });
         //$scope.users.forEach(function (it) {
