@@ -323,6 +323,19 @@ public class RestController {
         return spisokLpmoList;
     }
 
+    @RequestMapping(value = "listProfVrednosti/{id}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<ProfVrednosti> getProfVrednostiList(@PathVariable("id") long id) {
+        List<ProfVrednosti> spisokLpmoList = null;
+        try {
+            spisokLpmoList = dataServices.getProfVrednostiList(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return spisokLpmoList;
+    }
+
     //все справочники
     @RequestMapping(value = "fam/{val}", method = RequestMethod.GET)
     public

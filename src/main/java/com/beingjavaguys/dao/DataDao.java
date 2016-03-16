@@ -51,6 +51,7 @@ public interface DataDao {
     long addOplata(Oplata ms) throws Exception;
 
     List<SpisokLpmo> getSpisokLpmoList() throws Exception;
+    List<ProfVrednosti> getProfVrednostiList(long id) throws Exception;
 
     List<SpisokLpmo> getSpisokLpmoFindList(SpisokLpmo sp, Obshhee obshhee) throws Exception;
 }

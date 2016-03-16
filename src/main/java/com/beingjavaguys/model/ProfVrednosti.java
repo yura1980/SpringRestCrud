@@ -22,7 +22,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
- *
  * @author yuri
  */
 @Entity
@@ -36,13 +35,19 @@ public class ProfVrednosti implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "idpril")
-    private int idpril;
-    @JoinColumn(name = "poseshenie_id", referencedColumnName = "id")
+    //    @Basic(optional = false)
+//    @NotNull
+//    @Column(name = "idpril")
+//    private int idpril;
+    @JoinColumn(name = "idpril", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Poseshenie poseshenieId;
+    private ProfvrednostPrilozh idpril;
+    //    @JoinColumn(name = "poseshenie_id", referencedColumnName = "id")
+//    @ManyToOne(optional = false)
+//    private Poseshenie poseshenieId;
+    @NotNull
+    @Column(name = "poseshenie_id")
+    private long poseshenieId;
 
     public ProfVrednosti() {
     }
@@ -51,7 +56,7 @@ public class ProfVrednosti implements Serializable {
         this.id = id;
     }
 
-    public ProfVrednosti(Integer id, int idpril) {
+    public ProfVrednosti(Integer id, ProfvrednostPrilozh idpril) {
         this.id = id;
         this.idpril = idpril;
     }
@@ -64,19 +69,19 @@ public class ProfVrednosti implements Serializable {
         this.id = id;
     }
 
-    public int getIdpril() {
+    public ProfvrednostPrilozh getIdpril() {
         return idpril;
     }
 
-    public void setIdpril(int idpril) {
+    public void setIdpril(ProfvrednostPrilozh idpril) {
         this.idpril = idpril;
     }
 
-    public Poseshenie getPoseshenieId() {
+    public long getPoseshenieId() {
         return poseshenieId;
     }
 
-    public void setPoseshenieId(Poseshenie poseshenieId) {
+    public void setPoseshenieId(long poseshenieId) {
         this.poseshenieId = poseshenieId;
     }
 
@@ -102,7 +107,7 @@ public class ProfVrednosti implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.genentyity2.ProfVrednosti[ id=" + id + " ]";
+        return "ProfVrednosti[ id=" + id + " ]";
     }
-    
+
 }

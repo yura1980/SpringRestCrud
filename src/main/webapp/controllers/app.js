@@ -154,13 +154,14 @@ routerApp.directive('multis', function () {
         scope: {
             stylecss: "@",
             par: "@",
+            parpp: "@",
             placeh: "@",
             multisel: "="
         },
         template: '<label>{{placeh}}</label>' +
         '<div class="bordr4">' +
-        '<label class="bordr5" ng-class="{{stylecss}}" ng-click="change(item)" ng-repeat="item in multisel"  uib-popover="{{item.info}}" popover-trigger="mouseenter" popover-title="Наименование" >' +
-        '{{item.fam}}<span ng-click="detlPr(item)" class="glyphicon glyphicon-remove-circle ml10 cur"></span>' +
+        '<label class="bordr5" ng-class="{{stylecss}}" ng-click="change(item)" ng-repeat="item in multisel"  uib-popover="{{item[parpp]}}" popover-trigger="mouseenter" popover-title="Наименование" >' +
+        '{{item[par]}}<span ng-click="detlPr(item)" class="glyphicon glyphicon-remove-circle ml10 cur"></span>' +
         '</label>' +
         '<input type="text" ng-model="model" placeholder="Добавить" uib-typeahead="item as item[par] for item in getLocation($viewValue)"' +
         'typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="bnone ml10" typeahead-on-select="addPr()">' +
@@ -188,7 +189,7 @@ routerApp.directive('multis', function () {
             $scope.detlPr = function (it) {
                 $scope.multisel.splice($scope.multisel.indexOf(it), 1);
                 if ($scope.multisel.length === 0) {
-                    $scope.multisel = [{id: -1, fam: "пусто"}];
+                    $scope.multisel = [{id: -1, nomer: "пусто"}];
                 }
 
             };

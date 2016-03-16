@@ -132,4 +132,9 @@ public class DataServicesImpl implements DataServices {
     public List<SpisokLpmo> getSpisokLpmoFindList(SpisokLpmo sp, Obshhee obshhee) throws Exception {
         return dataDao.getSpisokLpmoFindList(sp, obshhee);
     }
+
+    @Override
+    public List<ProfVrednosti> getProfVrednostiList(long id) throws Exception{
+        return dataDao.getProfVrednostiList(id);
+    }
 }

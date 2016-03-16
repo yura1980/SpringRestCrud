@@ -25,14 +25,14 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "profvrednost_prilozh")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class ProfvrednostPrilozh implements Serializable {
+public class ProfvrednostPrilozh  extends Spr {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "id")
-    private Integer id;
+//    @Id
+//    @Basic(optional = false)
+//    @NotNull
+//    @Column(name = "id")
+//    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
@@ -69,22 +69,22 @@ public class ProfvrednostPrilozh implements Serializable {
     public ProfvrednostPrilozh() {
     }
 
-    public ProfvrednostPrilozh(Integer id) {
-        this.id = id;
-    }
-
-    public ProfvrednostPrilozh(Integer id, String nomer) {
-        this.id = id;
-        this.nomer = nomer;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+//    public ProfvrednostPrilozh(Integer id) {
+//        this.id = id;
+//    }
+//
+//    public ProfvrednostPrilozh(Integer id, String nomer) {
+//        this.id = id;
+//        this.nomer = nomer;
+//    }
+//
+//    public Integer getId() {
+//        return id;
+//    }
+//
+//    public void setId(Integer id) {
+//        this.id = id;
+//    }
 
     public String getNomer() {
         return nomer;
@@ -174,29 +174,29 @@ public class ProfvrednostPrilozh implements Serializable {
         this.pril = pril;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
+//    @Override
+//    public int hashCode() {
+//        int hash = 0;
+//        hash += (id != null ? id.hashCode() : 0);
+//        return hash;
+//    }
+//
+//    @Override
+//    public boolean equals(Object object) {
+//        // TODO: Warning - this method won't work in the case the id fields are not set
+//        if (!(object instanceof ProfvrednostPrilozh)) {
+//            return false;
+//        }
+//        ProfvrednostPrilozh other = (ProfvrednostPrilozh) object;
+//        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+//            return false;
+//        }
+//        return true;
+//    }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProfvrednostPrilozh)) {
-            return false;
-        }
-        ProfvrednostPrilozh other = (ProfvrednostPrilozh) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.mycompany.genentyity2.ProfvrednostPrilozh[ id=" + id + " ]";
-    }
+//    @Override
+//    public String toString() {
+//        return "ProfvrednostPrilozh[ id=" + id + " ]";
+//    }
     
 }

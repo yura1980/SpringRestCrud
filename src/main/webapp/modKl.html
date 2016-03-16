@@ -161,10 +161,10 @@
                                 </div>
                             </ng-form>
                         </uib-tab>
-                        <uib-tab heading="Мульти{{formKl.prfrForm.$dirty?'*':''}}" select="showHideFIO(false)">
+                        <uib-tab heading="Мульти{{formKl.prfrForm.$dirty?'*':''}}" select="loadPrv()">
                             <ng-form name="prfrForm" novalidate>
                                 <div class="form-group">
-                                    <multis par="fam" placeh="Test:" stylecss="item.pr===1?'btn-primary':'btn-success'" multisel="multi"/>
+                                    <multis par="nomer" parpp="naimenovanieFaktorov" placeh="Test:" stylecss="item.pril===1?'btn-primary':'btn-success'" multisel="multi"/>
                                 </div>
                             </ng-form>
                         </uib-tab>

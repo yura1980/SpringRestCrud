@@ -48,4 +48,6 @@ public interface DataServices {
     List<SpisokLpmo> getSpisokLpmoFindList(SpisokLpmo sp, Obshhee obshhee) throws Exception;
 
     List<SpisokLpmo> getSpisokLpmoList() throws Exception;
+
+    List<ProfVrednosti> getProfVrednostiList(long id) throws Exception;
 }

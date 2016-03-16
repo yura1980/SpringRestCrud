@@ -3,6 +3,7 @@ package com.beingjavaguys.dao;
 import com.beingjavaguys.model.*;
 import org.hibernate.*;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -138,6 +139,20 @@ public class DataDaoImpl implements DataDao {
 
     @SuppressWarnings("unchecked")
     @Override
+    public List<ProfVrednosti> getProfVrednostiList(long id) throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        List<ProfVrednosti> spisokLpmoList = session.createCriteria(ProfVrednosti.class)
+                .add(Restrictions.eqOrIsNull("poseshenieId", id))
+                .addOrder(Order.asc("idpril.id"))
+                .list();
+        tx.commit();
+        session.close();
+        return spisokLpmoList;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
     public List<SpisokLpmo> getSpisokLpmoFindList(SpisokLpmo sp, Obshhee obshhee) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
@@ -208,6 +223,8 @@ public class DataDaoImpl implements DataDao {
             cl = SprNaselPunkt.class;
         } else if (par[0].equals("ulici")) {
             cl = SprUlici.class;
+        } else if (par[0].equals("nomer")) {
+            cl = ProfvrednostPrilozh.class;
         }
         if (par.length == 1) {
             sprFamList = session.createCriteria(cl).list();
@@ -230,7 +247,7 @@ public class DataDaoImpl implements DataDao {
     public long addEntitySpr(Spr ms) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
-        if (ms.getId()!=null && ms.getId() > 0) {
+        if (ms.getId() != null && ms.getId() > 0) {
             session.update(ms);
         } else {
             session.save(ms);
