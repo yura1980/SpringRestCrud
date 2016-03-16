@@ -71,7 +71,7 @@ routerApp.directive('autoc', function () {
         },
         template: //'<label>{{placeh}}<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i></label>' +
         '<input type="text" ng-model="model" placeholder="{{placeh}}" uib-typeahead="item as item[par] for item in getLocation($viewValue)"' +
-        'typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control mtb5" title="{{placeh}}">' +
+        'typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control mtb5" uib-tooltip="{{placeh}}" tooltip-placement="left">' +
         '<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>'+
         '<div ng-show="noResults"><i class="glyphicon glyphicon-remove"></i> Запись отсутсвует.' +
         '<button type="button" class="btn btn-link" ng-click="save()" >Добавить</button>' +
