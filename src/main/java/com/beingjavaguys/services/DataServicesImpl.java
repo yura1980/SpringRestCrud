@@ -109,13 +109,18 @@ public class DataServicesImpl implements DataServices {
     }
 
     @Override
-    public long addPoseshenie(Poseshenie ms) throws Exception {
+    public long[] addPoseshenie(Klient ms) throws Exception {
         return dataDao.addPoseshenie(ms);
     }
 
     @Override
     public long addJurnal(Jurnal ms) throws Exception {
         return dataDao.addJurnal(ms);
+    }
+
+    @Override
+    public long addOplata(Oplata ms) throws Exception {
+        return dataDao.addOplata(ms);
     }
 
     @Override

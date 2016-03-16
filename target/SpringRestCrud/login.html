@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<<<<<<< HEAD
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="panel panel-default" style="margin-left: 30%; width: 40%">
+    <div class="panel-heading">Введите пароль:</div>
+=======
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Messeg</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/mycss.css"/>
+
+    <!-- JS  -->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.js"></script>-->
+    <!--<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.1.2.js"></script>-->
+    <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>-->
+    <!--<script src="controllers/app.js"></script>-->
+    <!--<script src="controllers/contr.js"></script>-->
+    <script src="controllers/contr_login.js"></script>
+
+    <!-- image favicon  -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+</head>
+<!-- app нашего приложения -->
+<body ng-app="appLog">
+<div class="panel panel-default" style="margin-left: 30%; width: 40%"
+     ng-controller="CtrlAutor">
+    <div class="panel-heading">Введите</div>
+>>>>>>> mdAJS/master
+    <div class="panel-body">
+        <form role="form" ng-init="getUsers()">
+            <div class="form-group">
+                <label for="login">Имя пользователя:</label>
+                <select class="form-control" id="login" ng-model="usr"
+                        ng-options="it.id as it.pole1 for it in users">
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Пароль:</label>
+                <input type="password" class="form-control" id="pwd" ng-model="psw" required="true">
+            </div>
+<<<<<<< HEAD
+            <button class="btn btn-default" ng-click="checkLogin()">Вход</button>
+=======
+            <button  class="btn btn-default" ng-click="checkLogin()">Вход</button>
+>>>>>>> mdAJS/master
+        </form>
+    </div>
+</div>
+</body>
+</html>

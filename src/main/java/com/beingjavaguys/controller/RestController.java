@@ -105,33 +105,25 @@ public class RestController {
         }
     }
 
+    @RequestMapping(value = "/createOpl", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public
+    @ResponseBody
+    long addOplata(@RequestBody Oplata ms) {
+        try {
+            return dataServices.addOplata(ms);
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
     @RequestMapping(value = "/createPos", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public
     @ResponseBody
-    long addPoseshenie(@RequestBody Poseshenie ms) {
+    long[] addPoseshenie(@RequestBody Klient ms) {//Poseshenie
         try {
-//            Long id = -1L;
-            //Pasporta pasporta = ms.getSpisokLpmoKl().getPasportaId();
-            //ms.getSpisokLpmoKl().setPasportaId(null);
-//            Oplata oplata = ms.getOplata();
-//            ms.setOplata(null);
-
-//            if (ms.getSpisokLpmoKl().getKl() < 0) {
-//                id = dataServices.addSpisokLpmo(ms.getSpisokLpmoKl());
-//                if (id > 0) ms.getSpisokLpmoKl().setKl(id);
-//            }
-//            if (pasporta != null && pasporta.getId() < 0) {
-//                pasporta.setId(id);
-//                dataServices.addPasporta(pasporta);
-//                ms.getSpisokLpmoKl().setPasportaId(pasporta);
-//            }
-//            if (ms.getRabotaId() != null && ms.getRabotaId().getId() < 0) {
-//                ms.getRabotaId().setId(id);
-//                dataServices.addRabota(ms.getRabotaId());
-//            }
             return dataServices.addPoseshenie(ms);
         } catch (Exception e) {
-            return -1;
+            return new long[]{-1,-1};
         }
     }
     /////////////////
@@ -153,8 +145,13 @@ public class RestController {
     long addEntitySpr(@RequestBody String ms) {
         try {
             String[] par = ms.split("=");
+            Integer id = -1;
+            if(par.length>2){
+                id = Integer.parseInt(par[2]);
+            }
+
             if (par[0].equals("fam")) {
-                return dataServices.addEntitySpr(new SprFam(par[1]));
+                return dataServices.addEntitySpr(new SprFam(id, par[1]));
             } else if (par[0].equals("name")) {
                 return dataServices.addEntitySpr(new SprName(par[1]));
             } else if (par[0].equals("otch")) {

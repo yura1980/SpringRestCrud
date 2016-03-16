@@ -1,14 +1,12 @@
 package com.beingjavaguys.dao;
 
-import java.util.List;
-
 import com.beingjavaguys.model.*;
 import org.hibernate.*;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.type.StringType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 public class DataDaoImpl implements DataDao {
 
@@ -232,7 +230,11 @@ public class DataDaoImpl implements DataDao {
     public long addEntitySpr(Spr ms) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
-        session.save(ms);
+        if (ms.getId()!=null && ms.getId() > 0) {
+            session.update(ms);
+        } else {
+            session.save(ms);
+        }
         tx.commit();
         session.close();
         return ms.getId();
@@ -299,47 +301,78 @@ public class DataDaoImpl implements DataDao {
     }
 
     @Override
-    public long addPoseshenie(Poseshenie ms) throws Exception {
+    public long[] addPoseshenie(Klient ms) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
 
-        Pasporta pasporta = ms.getSpisokLpmoKl().getPasportaId();
-        ms.getSpisokLpmoKl().setPasportaId(null);
-        session.save(ms.getSpisokLpmoKl());
+        Pasporta pasporta = ms.getPoseshenie().getSpisokLpmoKl().getPasportaId();
+        ms.getPoseshenie().getSpisokLpmoKl().setPasportaId(null);
+        session.save(ms.getPoseshenie().getSpisokLpmoKl());
         session.flush();
+        long kl = ms.getPoseshenie().getSpisokLpmoKl().getKl();
 
         if (pasporta != null && pasporta.getId() < 0) {
-            pasporta.setId(ms.getSpisokLpmoKl().getKl());
+            pasporta.setId(kl);
             session.save(pasporta);
 
-            ms.getSpisokLpmoKl().setPasportaId(pasporta);
-            session.update(ms.getSpisokLpmoKl());
+            ms.getPoseshenie().getSpisokLpmoKl().setPasportaId(pasporta);
+            session.update(ms.getPoseshenie().getSpisokLpmoKl());
         }
 
-        if (ms.getRabotaId() != null && ms.getRabotaId().getId() < 0) {
-            ms.getRabotaId().setId(ms.getSpisokLpmoKl().getKl());
-            session.save(ms.getRabotaId());
+        if (ms.getPoseshenie().getRabotaId() != null && ms.getPoseshenie().getRabotaId().getId() < 0) {
+            ms.getPoseshenie().getRabotaId().setId(kl);
+            session.save(ms.getPoseshenie().getRabotaId());
         }
 
-        if (ms.getOplata() != null && ms.getOplata().getId() < 0) {
-            ms.getOplata().setId(ms.getSpisokLpmoKl().getKl());
-            session.save(ms.getOplata());
+        if (ms.getAdres() != null) {
+            ms.getAdres().setId(kl);
+            session.save(ms.getAdres());
         }
 
-        session.save(ms);
+        if (ms.getObshhee() != null) {
+            ms.getObshhee().setId(kl);
+            session.save(ms.getObshhee());
+        }
+
+        Oplata oplata = ms.getPoseshenie().getOplata();
+        ms.getPoseshenie().setOplata(null);
+        session.save(ms.getPoseshenie());
+
+        if (oplata != null && oplata.getId() < 0) {
+            oplata.setId(ms.getPoseshenie().getId());
+            session.save(oplata);
+        }
+
+        ms.getPoseshenie().setOplata(oplata);
+        session.update(ms.getPoseshenie());
+
         tx.commit();
         session.close();
-        return ms.getId();
+        return new long[]{ms.getPoseshenie().getId(), ms.getPoseshenie().getSpisokLpmoKl().getKl()};
     }
 
     @Override
     public long addJurnal(Jurnal ms) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
-        session.save(ms);
+        if (ms.getRn() < 0) {
+            session.save(ms);
+        } else {
+            session.update(ms);
+        }
         tx.commit();
         session.close();
         return ms.getRn();
+    }
+
+    @Override
+    public long addOplata(Oplata ms) throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        session.save(ms);
+        tx.commit();
+        session.close();
+        return ms.getId();
     }
 
     @Override

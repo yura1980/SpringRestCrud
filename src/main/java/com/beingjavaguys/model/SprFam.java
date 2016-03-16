@@ -53,8 +53,8 @@ public class SprFam extends Spr {
 //        this.id = id;
 //    }
 //
-    public SprFam(String fam) {
-//        this.id = id;
+    public SprFam(Integer id, String fam) {
+        super.setId(id);
         this.fam = fam;
     }
 //
