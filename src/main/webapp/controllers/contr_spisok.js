@@ -174,7 +174,7 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, Resta
 });
 
 //контроллер созданного диалогового окна
-routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, items, Restangular) {
+routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, items, Restangular, theService) {
 
     //$scope.urlst = window.location.pathname + "api/mess/";
 
@@ -246,8 +246,11 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, ite
             }
         );
         $scope.toppanel = false;
-    }
-    ;
+    };
+
+    $scope.dirt = function(){
+        $scope.formKl.prfrForm.$setDirty();
+    };
 
 //$scope.multi =[{id: -1, fam: "пусто"}];
 //[{ pr: 1, id: 1, fam: 'раз', info: "Artifact SpringRestCrud:war: Artifact is being deployed, please wait..." },
@@ -338,10 +341,16 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, ite
             $scope.obshhee = null;//.id = $scope.items.spisokLpmoKl.kl;//Restangular.all('createObsh').post($scope.obshhee).then(function (response) { });
         }
 
+        //$scope.mprv=[];
+        //$scope.multi.forEach(function (item) {
+        //    $scope.mprv.push(item.id);
+        //});
+
         var Klient = {
             poseshenie: $scope.items,
             adres: $scope.adres,
-            obshhee: $scope.obshhee
+            obshhee: $scope.obshhee,
+            prvr: theService.thing.multisel
         };
 
         Restangular.all('createPos').post(Klient).then(function (response) {//$scope.items

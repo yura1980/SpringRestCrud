@@ -174,7 +174,7 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, Resta
 });
 
 //контроллер созданного диалогового окна
-routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, items, Restangular) {
+routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, items, Restangular, theService) {
 
     //$scope.urlst = window.location.pathname + "api/mess/";
 
@@ -228,73 +228,93 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, ite
 
     $scope.bildAdres = function () {
         $scope.adres.adres = $scope.adres.sprOblastId.oblast + ', г.' + $scope.adres.sprGorodId.gorod + ', ' + $scope.adres.sprRaionId.raion + ' р-н, ' +
-            $scope.adres.sprNaselPunktId.naselPunkt + ', ул.' +$scope.adres.sprUliciId.ulici + ', д.' + $scope.adres.nomerDoma + ', корп.' +
+            $scope.adres.sprNaselPunktId.naselPunkt + ', ул.' + $scope.adres.sprUliciId.ulici + ', д.' + $scope.adres.nomerDoma + ', корп.' +
             $scope.adres.korpus + ', кв.' + $scope.adres.nomerKvartiry;
     };
 
-    $scope.multi =
-        [{ pr: 1, id: 1, fam: 'раз', info: "Artifact SpringRestCrud:war: Artifact is being deployed, please wait..." },
-            {pr: 1, id: 2, fam: 'два', info: "Artifact SpringRestCrud"},
-            { pr: 2, id: 3, fam: 'три', info: "Artifact SpringRestCrud:war: Artifact is." }];
+    $scope.loadPrv = function () {
+        Restangular.all('listProfVrednosti/' + $scope.items.id).getList().then(function (response) {
+                if (response.length === 0) {
+                    $scope.multi = [{id: -1, nomer: "пусто"}];
+                } else {
+                    //var mas = response;
+                    $scope.multi = [];
+                    response.forEach(function (item) {
+                        $scope.multi.push(item.idpril);
+                    });
+                }
+            }
+        );
+        $scope.toppanel = false;
+    };
 
-    //$scope.loadObshhee = function () {
-    //    //$http.get($scope.urlst + 'obsh/' + $scope.items.spisokLpmoKl.kl).success(function (response) {
-    //    //    $scope.obshhee = response;
-    //    //});
-    //    $scope.toppanel = false;
-    //};
+    $scope.dirt = function(){
+        $scope.formKl.prfrForm.$setDirty();
+    };
 
-    //Сохранить
-    //$scope.save = function (it, num, ind) {
-    //    $http({
-    //        url: $scope.urlst + 'crspr',
-    //        method: "POST",
-    //        type: "application/json",
-    //        data: num+"="+it
-    //    }).then(function (response) {  // success
-    //        if(num === 'fam') {
-    //           $scope.items.spisokLpmoKl.sprFamId = { id: response.data, fam: it };
-    //        } else if(num === 'name') {
-    //            $scope.items.spisokLpmoKl.sprNameId = { id: response.data, name: it };
-    //        }else if(num === 'otch') {
-    //            $scope.items.spisokLpmoKl.sprOtchId = { id: response.data, otch: it };
-    //        }else if(num === 'gragd') {
-    //            $scope.items.spisokLpmoKl.pasportaId.sprGragdanstvoId = { id: response.data, gragd: it };
-    //        }else if(num === 'kemVydan') {
-    //            $scope.items.spisokLpmoKl.pasportaId.sprPaspKemVydanId = { id: response.data, kemVydan: it };
-    //        }else if(num === 'oblast') {
-    //            $scope.adres.sprOblastId = { id: response.data, oblast: it };
-    //        }else if(num === 'gorod') {
-    //            $scope.adres.sprGorodId = { id: response.data, gorod: it };
-    //        }else if(num === 'raion') {
-    //            $scope.adres.sprRaionId = { id: response.data, raion: it };
-    //        }else if(num === 'ulici') {
-    //            $scope.adres.sprUliciId = { id: response.data, ulici: it };
-    //        }else if(num === 'naselPunkt') {
-    //            $scope.adres.sprNaselPunktId = { id: response.data, naselPunkt: it };
-    //        }else if(num === 'nameOrg') {
-    //            $scope.items.rabotaId.sprOrgId = { id: response.data, nameOrg: it };
-    //        }else if(num === 'nazvPodrazdelenija') {
-    //            $scope.items.rabotaId.sprMestoRabotyId = { id: response.data, nazvPodrazdelenija: it };
-    //        }else if(num === 'professija') {
-    //            $scope.items.rabotaId.sprProfesijaId = { id: response.data, professija: it };
-    //        }else if(num === 'nameOrg2') {
-    //            $scope.obshhee.medOrg = { id: response.data, nameOrg: it };
-    //        }
-    //        $scope.noResults[ind] = false;
-    //    }, function (response) { // optional  // failed
-    //        alert("Ошибка записи!" + response);
-    //    });
-    //};
+//$scope.multi =[{id: -1, fam: "пусто"}];
+//[{ pr: 1, id: 1, fam: 'раз', info: "Artifact SpringRestCrud:war: Artifact is being deployed, please wait..." },
+//    {pr: 1, id: 2, fam: 'два', info: "Artifact SpringRestCrud"},
+//    { pr: 2, id: 3, fam: 'три', info: "Artifact SpringRestCrud:war: Artifact is." }];
+
+//$scope.loadObshhee = function () {
+//    //$http.get($scope.urlst + 'obsh/' + $scope.items.spisokLpmoKl.kl).success(function (response) {
+//    //    $scope.obshhee = response;
+//    //});
+//    $scope.toppanel = false;
+//};
+
+//Сохранить
+//$scope.save = function (it, num, ind) {
+//    $http({
+//        url: $scope.urlst + 'crspr',
+//        method: "POST",
+//        type: "application/json",
+//        data: num+"="+it
+//    }).then(function (response) {  // success
+//        if(num === 'fam') {
+//           $scope.items.spisokLpmoKl.sprFamId = { id: response.data, fam: it };
+//        } else if(num === 'name') {
+//            $scope.items.spisokLpmoKl.sprNameId = { id: response.data, name: it };
+//        }else if(num === 'otch') {
+//            $scope.items.spisokLpmoKl.sprOtchId = { id: response.data, otch: it };
+//        }else if(num === 'gragd') {
+//            $scope.items.spisokLpmoKl.pasportaId.sprGragdanstvoId = { id: response.data, gragd: it };
+//        }else if(num === 'kemVydan') {
+//            $scope.items.spisokLpmoKl.pasportaId.sprPaspKemVydanId = { id: response.data, kemVydan: it };
+//        }else if(num === 'oblast') {
+//            $scope.adres.sprOblastId = { id: response.data, oblast: it };
+//        }else if(num === 'gorod') {
+//            $scope.adres.sprGorodId = { id: response.data, gorod: it };
+//        }else if(num === 'raion') {
+//            $scope.adres.sprRaionId = { id: response.data, raion: it };
+//        }else if(num === 'ulici') {
+//            $scope.adres.sprUliciId = { id: response.data, ulici: it };
+//        }else if(num === 'naselPunkt') {
+//            $scope.adres.sprNaselPunktId = { id: response.data, naselPunkt: it };
+//        }else if(num === 'nameOrg') {
+//            $scope.items.rabotaId.sprOrgId = { id: response.data, nameOrg: it };
+//        }else if(num === 'nazvPodrazdelenija') {
+//            $scope.items.rabotaId.sprMestoRabotyId = { id: response.data, nazvPodrazdelenija: it };
+//        }else if(num === 'professija') {
+//            $scope.items.rabotaId.sprProfesijaId = { id: response.data, professija: it };
+//        }else if(num === 'nameOrg2') {
+//            $scope.obshhee.medOrg = { id: response.data, nameOrg: it };
+//        }
+//        $scope.noResults[ind] = false;
+//    }, function (response) { // optional  // failed
+//        alert("Ошибка записи!" + response);
+//    });
+//};
 
 
-    //$scope.ok = function () {
-    //    $uibModalInstance.close($scope.selected.item);
-    //};
-    //
-    //$scope.cancel = function () {
-    //    $uibModalInstance.dismiss('cancel');
-    //};
+//$scope.ok = function () {
+//    $uibModalInstance.close($scope.selected.item);
+//};
+//
+//$scope.cancel = function () {
+//    $uibModalInstance.dismiss('cancel');
+//};
 
     $scope.evnt = function (val) {                                      //собылие закрытия и возврата результатов
         if (val === 'ok') {
@@ -321,10 +341,16 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, ite
             $scope.obshhee = null;//.id = $scope.items.spisokLpmoKl.kl;//Restangular.all('createObsh').post($scope.obshhee).then(function (response) { });
         }
 
+        //$scope.mprv=[];
+        //$scope.multi.forEach(function (item) {
+        //    $scope.mprv.push(item.id);
+        //});
+
         var Klient = {
             poseshenie: $scope.items,
             adres: $scope.adres,
-            obshhee: $scope.obshhee
+            obshhee: $scope.obshhee,
+            prvr: theService.thing.multisel
         };
 
         Restangular.all('createPos').post(Klient).then(function (response) {//$scope.items
@@ -338,4 +364,5 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, ite
         //alert(JSON.stringify($scope.items));
     };
 
-});
+})
+;

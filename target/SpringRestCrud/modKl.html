@@ -15,65 +15,12 @@
                             <div class="padded-row">
                                 <!--<div class="form-group">-->
                                 <autoc par="fam" placeh="Фамилия" model="items.spisokLpmoKl.sprFamId"/>
-                                <!--<label for="fam">Фамилия:<i ng-show="loadingLocations[1]"-->
-                                <!--class="glyphicon glyphicon-refresh"></i></label>-->
-                                <!--<input type="text" ng-model="items.spisokLpmoKl.sprFamId" placeholder="Фамилия"-->
-                                <!--uib-typeahead="item as item.fam for item in getLocation('fam=' + $viewValue)"-->
-                                <!--typeahead-loading="loadingLocations[1]" typeahead-no-results="noResults[1]"-->
-                                <!--class="form-control" id="fam">-->
-                                <!--<div ng-show="noResults[1]"><i class="glyphicon glyphicon-remove"></i> Запись отсутсвует.-->
-                                <!--<button type="button" ng-click="save(items.spisokLpmoKl.sprFamId, 'fam',1)"-->
-                                <!--class="btn btn-link">Добавить-->
-                                <!--</button>-->
-                                <!--</div>-->
-
-                                <!--<input type="text" class="form-control" ng-model="items.spisokLpmoKl.sprFamId.fam" id="fam">-->
-                                <!--</div>-->
-                                <!--<div class="form-group">-->
                                 <autoc par="name" placeh="Имя" model="items.spisokLpmoKl.sprNameId"/>
-                                <!--<label for="nam">Имя:<i ng-show="loadingLocations[2]"-->
-                                <!--class="glyphicon glyphicon-refresh"></i></label>-->
-                                <!--<input type="text" ng-model="items.spisokLpmoKl.sprNameId" placeholder="Имя"-->
-                                <!--uib-typeahead="item as item.name for item in getLocation('name=' + $viewValue)"-->
-                                <!--typeahead-loading="loadingLocations[2]" typeahead-no-results="noResults[2]"-->
-                                <!--class="form-control" id="nam">-->
-                                <!--<div ng-show="noResults[2]"><i class="glyphicon glyphicon-remove"></i> Запись отсутсвует. <a-->
-                                <!--ng-click="save(items.spisokLpmoKl.sprNameId, 'name',2)">Добавить</a></div>-->
-
-                                <!--<input type="text" class="form-control" ng-model="items.spisokLpmoKl.sprNameId.name" id="nam">-->
-                                <!--</div>-->
-                                <!--<div class="form-group">-->
                                 <autoc par="otch" placeh="Отчество" model="items.spisokLpmoKl.sprOtchId"/>
-                                <!--<label for="otch">Отчество:<i ng-show="loadingLocations[3]"-->
-                                <!--class="glyphicon glyphicon-refresh"></i></label>-->
-                                <!--<input type="text" ng-model="items.spisokLpmoKl.sprOtchId" placeholder="Отчество"-->
-                                <!--uib-typeahead="item as item.otch for item in getLocation('otch=' + $viewValue)"-->
-                                <!--typeahead-loading="loadingLocations[3]" typeahead-no-results="noResults[3]"-->
-                                <!--class="form-control" id="otch">-->
-                                <!--<div ng-show="noResults[3]"><i class="glyphicon glyphicon-remove"></i> Запись отсутсвует. <a-->
-                                <!--ng-click="save(items.spisokLpmoKl.sprOtchId, 'otch',3)">Добавить</a></div>-->
-
-                                <!--<input type="text" class="form-control" ng-model="items.spisokLpmoKl.sprOtchId.otch" id="otch">-->
-                                <!--</div>-->
-
                             </div>
                         </div>
                         <div class="form-group col-md-5">
                             <div class="padded-row">
-                                <!--<div class="form-group">-->
-                                <!--<label>Дата рождения:</label>-->
-                                <!--<p class="input-group">-->
-                                <!--<input type="text" class="form-control" uib-datepicker-popup="{{format}}"-->
-                                <!--ng-model="items.spisokLpmoKl.datasRozhd" is-open="status.opened"-->
-                                <!--datepicker-options="dateOptions"-->
-                                <!--ng-required="true" close-text="Close"/>-->
-                                <!--<span class="input-group-btn">-->
-                                <!--<button type="button" class="btn btn-default" ng-click="open($event)"><i-->
-                                <!--class="glyphicon glyphicon-calendar"></i></button>-->
-                                <!--</span>-->
-                                <!--</p>-->
-                                <!--</div>-->
-                                <!--<div class="form-group">-->
                                 <label>Пол:</label>
                                 <div class="padded-row">
                                     <div class="btn-group">
@@ -161,10 +108,11 @@
                                 </div>
                             </ng-form>
                         </uib-tab>
-                        <uib-tab heading="Мульти{{formKl.prfrForm.$dirty?'*':''}}" select="showHideFIO(false)">
+                        <uib-tab heading="Мульти{{formKl.prfrForm.$dirty?'*':''}}" select="loadPrv()">
                             <ng-form name="prfrForm" novalidate>
                                 <div class="form-group">
-                                    <multis par="fam" placeh="Test:" stylecss="item.pr===1?'btn-primary':'btn-success'" multisel="multi"/>
+                                    <multis par="nomer" parpp="naimenovanieFaktorov" placeh="Test:" setdirty="dirt()"
+                                            stylecss="item.pril===1?'btn-primary':'btn-success'" multisel="multi"/>
                                 </div>
                             </ng-form>
                         </uib-tab>

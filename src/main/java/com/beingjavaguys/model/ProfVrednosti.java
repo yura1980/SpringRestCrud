@@ -56,8 +56,8 @@ public class ProfVrednosti implements Serializable {
         this.id = id;
     }
 
-    public ProfVrednosti(Integer id, ProfvrednostPrilozh idpril) {
-        this.id = id;
+    public ProfVrednosti(long poseshenieId, ProfvrednostPrilozh idpril) {
+        this.poseshenieId = poseshenieId;
         this.idpril = idpril;
     }
 

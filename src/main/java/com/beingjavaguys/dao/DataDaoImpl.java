@@ -225,6 +225,17 @@ public class DataDaoImpl implements DataDao {
             cl = SprUlici.class;
         } else if (par[0].equals("nomer")) {
             cl = ProfvrednostPrilozh.class;
+            Criteria cr = session.createCriteria(cl);
+            if (par[1].matches("\\d+(\\.\\d+)?")) {
+                cr.add(Restrictions.like(par[0], par[1] + "%"));// Restrictions.ilike(par[0], par[1], MatchMode.ANYWHERE),
+            } else {
+                cr.add(Restrictions.ilike("naimenovanieFaktorov", par[1], MatchMode.ANYWHERE));
+            }
+            sprFamList = cr.setMaxResults(15).list();
+
+            tx.commit();
+            session.close();
+            return sprFamList;
         }
         if (par.length == 1) {
             sprFamList = session.createCriteria(cl).list();
@@ -234,7 +245,7 @@ public class DataDaoImpl implements DataDao {
                     .add(Restrictions.or(
                             Restrictions.like(par[0], Character.toUpperCase(par[1].charAt(0)) + par[1].substring(1) + "%"),
                             Restrictions.ilike(par[0], par[1], MatchMode.ANYWHERE)))//"%"+ par[1] + "%"
-                    .setMaxResults(10)
+                    .setMaxResults(15)
                     .list();
         }
         //
@@ -362,6 +373,12 @@ public class DataDaoImpl implements DataDao {
 
         ms.getPoseshenie().setOplata(oplata);
         session.update(ms.getPoseshenie());
+
+        for (Integer l : ms.getPrvr()) {
+            ProfvrednostPrilozh p = new ProfvrednostPrilozh();
+            p.setId(l);
+            session.save(new ProfVrednosti(ms.getPoseshenie().getId(), p));
+        }
 
         tx.commit();
         session.close();

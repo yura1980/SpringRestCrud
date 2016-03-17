@@ -7,6 +7,7 @@ public class Klient {
     private Poseshenie poseshenie;
     private Adres adres;
     private Obshhee obshhee;
+    private Integer prvr[];
 
     public Klient() {
     }
@@ -33,5 +34,13 @@ public class Klient {
 
     public void setAdres(Adres adres) {
         this.adres = adres;
+    }
+
+    public Integer[] getPrvr() {
+        return prvr;
+    }
+
+    public void setPrvr(Integer[] prvr) {
+        this.prvr = prvr;
     }
 }

@@ -22,7 +22,8 @@ routerApp.factory('theService', function () {
         thing: {
             x: 1,                                   //номер вида списка- короткий=1, подробный=2,scrum=3
             visibleNav: false,                      //скрыть панель
-            idUser: 1                               //пользователь
+            idUser: 1,                              //пользователь
+            multisel: []
         }
     };
 });
@@ -156,14 +157,15 @@ routerApp.directive('multis', function () {
             par: "@",
             parpp: "@",
             placeh: "@",
-            multisel: "="
+            multisel: "=",
+            setdirty:"&"
         },
         template: '<label>{{placeh}}</label>' +
         '<div class="bordr4">' +
-        '<label class="bordr5" ng-class="{{stylecss}}" ng-click="change(item)" ng-repeat="item in multisel"  uib-popover="{{item[parpp]}}" popover-trigger="mouseenter" popover-title="Наименование" >' +
+        '<label class="bordr5" ng-class="{{stylecss}}" ng-click="change(item)" ng-repeat="item in multisel" uib-popover="{{item[parpp]}}" popover-trigger="mouseenter" popover-title="Наименование" >' +
         '{{item[par]}}<span ng-click="detlPr(item)" class="glyphicon glyphicon-remove-circle ml10 cur"></span>' +
         '</label>' +
-        '<input type="text" ng-model="model" placeholder="Добавить" uib-typeahead="item as item[par] for item in getLocation($viewValue)"' +
+        '<input type="text" ng-model="model" placeholder="Добавить" uib-typeahead="item as (item[par]+\' - \'+item[parpp]) for item in getLocation($viewValue)"' +
         'typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="bnone ml10" typeahead-on-select="addPr()">' +
         '<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>' +
         '<span ng-show="noResults"><i class="glyphicon glyphicon-remove"></i>Запись отсутсвует.</span>' +
@@ -177,21 +179,33 @@ routerApp.directive('multis', function () {
          '<div class="form-inline text-left pt10">' +
 
          '</div>'*/,
-        controller: function ($scope, Restangular) {
+        controller: function ($scope, Restangular,theService) {
             $scope.addPr = function () {
                 if ($scope.multisel.length === 1 && $scope.multisel[0].id === -1) {
                     $scope.multisel = [$scope.model];
+
                 } else {
                     $scope.multisel.push($scope.model);
                 }
+                $scope.setServ();
                 $scope.model = null;
             };
+
+            $scope.setServ = function () {
+                var mprv=[];
+                $scope.multisel.forEach(function (item) {
+                    mprv.push(item.id);
+                });
+                theService.thing.multisel=mprv;
+            };
+
             $scope.detlPr = function (it) {
                 $scope.multisel.splice($scope.multisel.indexOf(it), 1);
                 if ($scope.multisel.length === 0) {
                     $scope.multisel = [{id: -1, nomer: "пусто"}];
                 }
-
+                $scope.setServ();
+                $scope.setdirty();
             };
             $scope.change = function (it) {
                 if ($scope.multisel[0].pr === undefined) {
@@ -204,14 +218,7 @@ routerApp.directive('multis', function () {
                 return Restangular.all('fam/' + $scope.par + "=" + val).getList().then(function (response) {
                     return response;
                 });
-                //return $http.get(CONST.curr_url + 'fam/' + $scope.par + "=" + val, {}).then(function (response) {
-                //    return response.data;
-                //});
             };
-            //$scope.multisel =
-            //    [{ pr: 1, id: 1, fam: 'vas', info: "Artifact SpringRestCrud:war: Artifact is being deployed, please wait..." },
-            //    {pr: 1, id: 2, fam: 'pro', info: "Artifact SpringRestCrud"},
-            //    { pr: 2, id: 3, fam: 'ppp', info: "Artifact SpringRestCrud:war: Artifact is." }];
         }
     }
 

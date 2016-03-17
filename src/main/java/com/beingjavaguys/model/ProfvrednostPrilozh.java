@@ -69,8 +69,8 @@ public class ProfvrednostPrilozh  extends Spr {
     public ProfvrednostPrilozh() {
     }
 
-//    public ProfvrednostPrilozh(Integer id) {
-//        this.id = id;
+//    public ProfvrednostPrilozh(Long id) {
+//        super.setId(Integer.getInteger(id.toString()));
 //    }
 //
 //    public ProfvrednostPrilozh(Integer id, String nomer) {
