@@ -334,9 +334,16 @@ public class DataDaoImpl implements DataDao {
         tx = session.beginTransaction();
 
         Pasporta pasporta = ms.getPoseshenie().getSpisokLpmoKl().getPasportaId();
-        ms.getPoseshenie().getSpisokLpmoKl().setPasportaId(null);
-        session.save(ms.getPoseshenie().getSpisokLpmoKl());
-        session.flush();
+
+        if (ms.getPoseshenie().getSpisokLpmoKl().getKl() > 0) {
+            session.update(ms.getPoseshenie().getSpisokLpmoKl());
+        } else {
+            ms.getPoseshenie().getSpisokLpmoKl().setPasportaId(null);
+
+            session.save(ms.getPoseshenie().getSpisokLpmoKl());
+            session.flush();
+        }
+
         long kl = ms.getPoseshenie().getSpisokLpmoKl().getKl();
 
         if (pasporta != null && pasporta.getId() < 0) {
@@ -374,10 +381,12 @@ public class DataDaoImpl implements DataDao {
         ms.getPoseshenie().setOplata(oplata);
         session.update(ms.getPoseshenie());
 
-        for (Integer l : ms.getPrvr()) {
-            ProfvrednostPrilozh p = new ProfvrednostPrilozh();
-            p.setId(l);
-            session.save(new ProfVrednosti(ms.getPoseshenie().getId(), p));
+        if (ms.getPrvr()[0] > 0) {
+            for (Integer l : ms.getPrvr()) {
+                ProfvrednostPrilozh p = new ProfvrednostPrilozh();
+                p.setId(l);
+                session.save(new ProfVrednosti(ms.getPoseshenie().getId(), p));
+            }
         }
 
         tx.commit();
