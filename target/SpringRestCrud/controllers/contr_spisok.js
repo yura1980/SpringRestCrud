@@ -58,15 +58,10 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, Resta
     //массив json объектов listJurnal
     $scope.getJurnal = function () {
         Restangular.all('listPoseshenie').getList().then(function (response) {
-            $scope.items = response;
+            $scope.items = response.plain();
             $scope.search();
             $scope.totalItems = $scope.items.length;
         });
-        //$http.get($scope.urlst + 'listPoseshenie').success(function (response) {
-        //    $scope.items = response;
-        //    $scope.search();
-        //    $scope.totalItems = $scope.items.length;
-        //});
     };
 
     //инициализация
@@ -178,32 +173,32 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, ite
 
     //$scope.urlst = window.location.pathname + "api/mess/";
 
-    items.dataPos = new Date(items.dataPos);
-    items.spisokLpmoKl.datasRozhd = new Date(items.spisokLpmoKl.datasRozhd);
-    if (items.spisokLpmoKl.pasportaId === null) {
-        items.spisokLpmoKl.pasportaId = {
-            id: -1,
-            pasport: "",
-            datasVydachi: "",
-            migrant1: false,
-            sprGragdanstvoId: null,
-            sprPaspKemVydanId: null
-        }
-    } else {
-        items.spisokLpmoKl.pasportaId.datasVydachi = new Date(items.spisokLpmoKl.pasportaId.datasVydachi);
-    }
-    items.rabotaId.stazhObshh = new Date(items.rabotaId.stazhObshh);
-    items.rabotaId.stazhTekushh = new Date(items.rabotaId.stazhTekushh);
+    //items.dataPos = new Date(items.dataPos);
+    //items.spisokLpmoKl.datasRozhd = new Date(items.spisokLpmoKl.datasRozhd);
+    //if (items.spisokLpmoKl.pasportaId === null) {
+    //    items.spisokLpmoKl.pasportaId = {
+    //        id: -1,
+    //        pasport: "",
+    //        datasVydachi: "",
+    //        migrant1: false,
+    //        sprGragdanstvoId: null,
+    //        sprPaspKemVydanId: null
+    //    }
+    //} else {
+    //    items.spisokLpmoKl.pasportaId.datasVydachi = new Date(items.spisokLpmoKl.pasportaId.datasVydachi);
+    //}
+    //items.rabotaId.stazhObshh = new Date(items.rabotaId.stazhObshh);
+    //items.rabotaId.stazhTekushh = new Date(items.rabotaId.stazhTekushh);
 
     $scope.items = items;                                               //входные параметры
     $scope.selected = {item: $scope.items}; //[0]                     //изменения
     $scope.toppanel = true;
 
-    $scope.adres = {
-        id: -1, tip: 1, nomerDoma: null, korpus: null, nomerKvartiry: null, adres: null, sprGorodId: null,
-        sprNaselPunktId: null, sprOblastId: null, sprRaionId: null, sprUliciId: null
-    };
-    $scope.obshhee = {id: -1, telefon: null, nomerPoljusa: null, telefon2: null, snils: null, medOrg: null};
+    //$scope.adres = {
+    //    id: -1, tip: 1, nomerDoma: null, korpus: null, nomerKvartiry: null, adres: null, sprGorodId: null,
+    //    sprNaselPunktId: null, sprOblastId: null, sprRaionId: null, sprUliciId: null
+    //};
+    //$scope.obshhee = {id: -1, telefon: null, nomerPoljusa: null, telefon2: null, snils: null, medOrg: null};
 
     $scope.showHideFIO = function (val) {
         $scope.toppanel = val;
@@ -248,7 +243,7 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, ite
         $scope.toppanel = false;
     };
 
-    $scope.dirt = function(){
+    $scope.dirt = function () {
         $scope.formKl.prfrForm.$setDirty();
     };
 
@@ -325,32 +320,67 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, ite
     };
 
     $scope.save = function () {
-        if (!$scope.formKl.osnForm.$dirty || !$scope.formKl.osnForm.$valid) {
-            items.oplata = null;
-        }
-        if (!$scope.formKl.paspForm.$dirty || !$scope.formKl.paspForm.$valid) {
-            items.spisokLpmoKl.pasportaId = null;
-        }
-        if (!$scope.formKl.rabForm.$dirty || !$scope.formKl.rabForm.$valid) {
-            items.rabotaId = null;
-        }
-        if (!$scope.formKl.adrForm.$dirty || !$scope.formKl.adrForm.$valid) {
-            $scope.adres = null;//.id = $scope.items.spisokLpmoKl.kl;//Restangular.all('createAdr').post($scope.adres).then(function (response) {  });
-        }
-        if (!$scope.formKl.obshForm.$dirty || !$scope.formKl.obshForm.$valid) {
-            $scope.obshhee = null;//.id = $scope.items.spisokLpmoKl.kl;//Restangular.all('createObsh').post($scope.obshhee).then(function (response) { });
-        }
 
-        //$scope.mprv=[];
-        //$scope.multi.forEach(function (item) {
-        //    $scope.mprv.push(item.id);
-        //});
+        var change = {
+            fio: $scope.formKl.fioForm.$dirty,
+            oplata: $scope.formKl.osnForm.$dirty,
+            pasp: $scope.formKl.paspForm.$dirty,
+            rabota: $scope.formKl.rabForm.$dirty,
+            adres: $scope.formKl.adrForm.$dirty,
+            obshee: $scope.formKl.obshForm.$dirty,
+            profvr: $scope.formKl.prfrForm.$dirty
+        };
+
+        //var ids = {
+        //    pos: $scope.items.id,
+        //    fio: $scope.items.spisokLpmoKl.kl,
+        //    oplata: items.oplata.id,
+        //    pasp: items.spisokLpmoKl.pasportaId.id,
+        //    rabota: items.rabotaId.id,
+        //    adres: $scope.adres.id,
+        //    obshee: $scope.obshhee.id,
+        //    profvr: theService.thing.multisel
+        //};
+
+        //if (!$scope.formKl.osnForm.$dirty || !$scope.formKl.osnForm.$valid) {
+        //    items.oplata = null;
+        //}
+        //if (!$scope.formKl.paspForm.$dirty || !$scope.formKl.paspForm.$valid) {
+        //    items.spisokLpmoKl.pasportaId = null;
+        //}
+        //if (!$scope.formKl.rabForm.$dirty || !$scope.formKl.rabForm.$valid) {
+        //    items.rabotaId = null;
+        //}
+        //if (!$scope.formKl.adrForm.$dirty || !$scope.formKl.adrForm.$valid) {
+        //    $scope.adres = null;//.id = $scope.items.spisokLpmoKl.kl;//Restangular.all('createAdr').post($scope.adres).then(function (response) {  });
+        //}
+        //if (!$scope.formKl.obshForm.$dirty || !$scope.formKl.obshForm.$valid) {
+        //    $scope.obshhee = null;//.id = $scope.items.spisokLpmoKl.kl;//Restangular.all('createObsh').post($scope.obshhee).then(function (response) { });
+        //}
+
+        //var cl = {
+        //    id: items.id,
+        //    dataPos: items.dataPos,
+        //    utochn: items.utochn,
+        //    zakl: items.zakl,
+        //    dogovora: items.dogovora,
+        //    potok: items.potok,
+        //    oplata: change.oplata ? items.oplata : null,
+        //    rezultatMo: items.rezultatMo,
+        //    jurnalRn: items.jurnalRn,
+        //    spisokLpmoKl: items.spisokLpmoKl,
+        //    sprPrichNejavkiNaMoId: items.sprPrichNejavkiNaMoId,
+        //    prichinaId: items.prichinaId,
+        //    sprVidMoId: items.sprVidMoId,
+        //    rabotaId: change.rabota ? items.rabotaId : null
+        //};
 
         var Klient = {
-            poseshenie: $scope.items,
-            adres: $scope.adres,
-            obshhee: $scope.obshhee,
-            prvr: theService.thing.multisel
+            change: change,
+            poseshenie: items,
+            adres: change.adres ? $scope.adres : null,
+            obshhee: change.obshee ? $scope.obshhee : null,
+            prvr: change.profvr ? theService.thing.multisel : null
         };
 
         Restangular.all('createPos').post(Klient).then(function (response) {//$scope.items
@@ -364,5 +394,4 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, ite
         //alert(JSON.stringify($scope.items));
     };
 
-})
-;
+});

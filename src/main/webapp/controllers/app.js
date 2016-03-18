@@ -126,6 +126,11 @@ routerApp.directive('dateb', function () {
             //    $scope.dateParam.status.opened = true;
             //};
             //объект статуса
+
+            if($scope.model !== undefined){
+                $scope.model = new Date($scope.model);
+            }
+
             $scope.dateParam = {
                 status: {opened: false},
                 dateOptions: {
@@ -226,6 +231,22 @@ routerApp.directive('multis', function () {
 
 routerApp.config(function ($stateProvider, $urlRouterProvider, RestangularProvider) {
     RestangularProvider.setBaseUrl(window.location.pathname + "api/mess/");
+
+    // Now let's configure the response extractor for each request
+    //RestangularProvider.setResponseExtractor(function(response, operation, what, url) {
+    //    var newResponse;
+    //    // This is a get for a list
+    //    if (operation === "getList") {
+    //        // First the newResponse will be response.objects which is actually an array
+    //        newResponse = response.objects;
+    //        // Then we add to this array a special property containing the metadata for paging for example
+    //        newResponse.metadata = response.data.meta;
+    //    } else {
+    //        // If it's an element, then we just return the "regular" response as there's no object wrapping it
+    //        newResponse = response;
+    //    }
+    //    return newResponse;
+    //});
 
     $urlRouterProvider.otherwise('/home');          //страница по умолчанию
     $stateProvider

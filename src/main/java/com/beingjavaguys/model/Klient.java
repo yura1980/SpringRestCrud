@@ -4,6 +4,7 @@ package com.beingjavaguys.model;
  * Created by yura on 12.03.2016.
  */
 public class Klient {
+    private Change change;
     private Poseshenie poseshenie;
     private Adres adres;
     private Obshhee obshhee;
@@ -42,5 +43,13 @@ public class Klient {
 
     public void setPrvr(Integer[] prvr) {
         this.prvr = prvr;
+    }
+
+    public Change getChange() {
+        return change;
+    }
+
+    public void setChange(Change change) {
+        this.change = change;
     }
 }

@@ -14,9 +14,8 @@ routerApp.controller('CtrlAutor', function ($scope, $state, Restangular) {//, Au
     //};
 
     //массив json объектов пользователей
-    Restangular.all('listPass').getList()  // GET: /users
-        .then(function (response) {
-            $scope.users = response;
+    Restangular.all('listPass').getList().then(function (response) {
+            $scope.users = response.plain();
             $scope.usr = $scope.users[0].id;
         });
 
@@ -26,13 +25,6 @@ routerApp.controller('CtrlAutor', function ($scope, $state, Restangular) {//, Au
             .then(function (response) {
                 $state.transitionTo(response);
             });
-        //$scope.users.forEach(function (it) {
-        //    if ($scope.usr === it.id && $scope.psw === it.pole2) {
-        //        //theService.thing.visibleNav = true;                     //показать панели
-        //        //theService.thing.idUser = it.id;                    //id пользователя
-        //        //$state.transitionTo('home');                            //переместиться по адресу
-        //    }
-        //});
         //$http.get(CONST.curr_url + 'login/' + $scope.usr + "=" + $scope.psw)
         //    .success(function (response) {
         //        $state.transitionTo(response);

@@ -272,16 +272,20 @@ public class DataDaoImpl implements DataDao {
     public long addSpisokLpmo(SpisokLpmo ms) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
-        Pasporta pasporta = ms.getPasportaId();
-        ms.setPasportaId(null);
-        session.save(ms);
-        session.flush();
+        if (ms.getKl() > 0) {
+            session.update(ms);
+        } else {
+            Pasporta pasporta = ms.getPasportaId();
+            ms.setPasportaId(null);
+            session.save(ms);
+            session.flush();
 
-        pasporta.setId(ms.getKl());
-        session.save(pasporta);
+            pasporta.setId(ms.getKl());
+            session.save(pasporta);
 
-        ms.setPasportaId(pasporta);
-        session.update(ms);
+            ms.setPasportaId(pasporta);
+            session.update(ms);
+        }
 
         tx.commit();
         session.close();
