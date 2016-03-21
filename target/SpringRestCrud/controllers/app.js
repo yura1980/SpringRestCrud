@@ -122,11 +122,6 @@ routerApp.directive('dateb', function () {
         '<button type="button" class="btn btn-default" ng-click="dateParam.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>' +
         '</span></p>',
         controller: function ($scope) {
-            //$scope.open = function ($event) {
-            //    $scope.dateParam.status.opened = true;
-            //};
-            //объект статуса
-
             if($scope.model !== undefined){
                 $scope.model = new Date($scope.model);
             }
@@ -142,13 +137,6 @@ routerApp.directive('dateb', function () {
                     $scope.dateParam.status.opened = true;
                 }
             };
-
-            //$scope.dateOptions = {
-            //    formatYear: 'yyyy',                   //формат года
-            //    startingDay: 1                      //начало месяца
-            //};
-            //формат даты виджета
-            //$scope.format = 'dd.MM.yyyy';
         }
     }
 

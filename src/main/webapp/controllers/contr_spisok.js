@@ -85,6 +85,10 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, Resta
         $scope.percent = 100 * (value / $scope.max);
     };
 
+    //$scope.isNull = function (value, str) {
+    //    return value===undefined
+    //};
+
     // открытие диалогового окна для редактирования задачи
     $scope.open = function (cl, size) {
         //если постой объект, создадим новую задачу
@@ -96,7 +100,7 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, Resta
                 zakl: false,
                 dogovora: null,
                 potok: null,
-                oplata: {id: -1, oplata: true, cena: 0, skidka: 0, dispans: false, dataDispans: null},
+                oplata: null, //{id: -1, oplata: true, cena: 0, skidka: 0, dispans: false, dataDispans: null},
                 rezultatMo: null,
                 jurnalRn: 1, //{
                 //    "rn": 1,
@@ -114,26 +118,26 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, Resta
                     sprFamId: null,//{"id": 1, "fam": "Васянин"},
                     sprNameId: null,//{"id": 1, "name": "Юрий"},
                     sprOtchId: null,
-                    pasportaId: {
+                    pasportaId: null/*{
                         id: -1,
                         pasport: "",
                         datasVydachi: null,//"2011-11-11T00:00:00.000Z",
                         migrant1: false,
                         sprGragdanstvoId: null,//{"id": 1, "gragd": "Россия"},
                         sprPaspKemVydanId: null//{"id": 1, "kemVydan": "УВД Ульяновского района"}
-                    }
+                    }*/
                 },
                 sprPrichNejavkiNaMoId: null,
-                prichinaId: null,//{"id": 1, "prich": "МО"},
+                prichinaId: {"id": 1, "prich": "МО"},
                 sprVidMoId: {"id": 1, "vidMo": "Предв", "sokr": "Предв"},
-                rabotaId: {
+                rabotaId: null/*{
                     id: -1,
                     stazhObshh: null,//"1970-01-01T00:00:00.000Z",
                     stazhTekushh: null,//"1970-01-01T00:00:00.000Z",
                     sprMestoRabotyId: null,//{"id": 1, "nazvPodrazdelenija": "Основное"},
                     sprOrgId: null,//{"id": 1, "nameOrg": "физ.лица", "sprOrgDopInf": null, "cenyMoOrg": null},
                     sprProfesijaId: null//{"id": 1, "professija": "программист"}
-                }
+                }*/
             };
             $scope.items.push(cl);
             $scope.totalItems = $scope.items.length;
@@ -375,6 +379,25 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, ite
         //    rabotaId: change.rabota ? items.rabotaId : null
         //};
 
+        if (items.spisokLpmoKl.kl > 0) {
+            var kl = items.spisokLpmoKl.kl;
+            if (change.pasp && items.spisokLpmoKl.pasportaId.id < 0) {
+                items.spisokLpmoKl.pasportaId.id = kl;
+            }
+            if (change.oplata && items.oplata.id < 0) {
+                items.oplata.id = items.id;
+            }
+            if (change.rabota && items.rabotaId.id < 0) {
+                items.rabotaId.id = kl;
+            }
+            if (change.adres && $scope.adres.id < 0) {
+                $scope.adres.id = kl;
+            }
+            if (change.obshee && $scope.obshhee.id < 0) {
+                $scope.obshhee.id = kl;
+            }
+        }
+
         var Klient = {
             change: change,
             poseshenie: items,
@@ -388,7 +411,7 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, ite
             $scope.items.id = ids[0];
             $scope.items.spisokLpmoKl.kl = ids[1];
 
-            $uibModalInstance.close($scope.selected.item);
+            $uibModalInstance.close($scope.item);
         });
 
         //alert(JSON.stringify($scope.items));

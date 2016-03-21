@@ -337,61 +337,148 @@ public class DataDaoImpl implements DataDao {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
 
-        Pasporta pasporta = ms.getPoseshenie().getSpisokLpmoKl().getPasportaId();
+        long kl = -1;
 
         if (ms.getPoseshenie().getSpisokLpmoKl().getKl() > 0) {
             session.update(ms.getPoseshenie().getSpisokLpmoKl());
         } else {
-            ms.getPoseshenie().getSpisokLpmoKl().setPasportaId(null);
+            if (!ms.getChange().isPasp()) {
+                session.save(ms.getPoseshenie().getSpisokLpmoKl());
+                session.flush();
+            } else {
+                Pasporta pasporta = ms.getPoseshenie().getSpisokLpmoKl().getPasportaId();
+                ms.getPoseshenie().getSpisokLpmoKl().setPasportaId(null);
+                session.save(ms.getPoseshenie().getSpisokLpmoKl());
+                session.flush();
 
-            session.save(ms.getPoseshenie().getSpisokLpmoKl());
+                pasporta.setId(kl);
+                session.save(pasporta);
+
+                ms.getPoseshenie().getSpisokLpmoKl().setPasportaId(pasporta);
+                session.update(ms.getPoseshenie().getSpisokLpmoKl());
+            }
+        }
+        kl = ms.getPoseshenie().getSpisokLpmoKl().getKl();
+
+        Oplata oplata = ms.getPoseshenie().getOplata();
+        Rabota rabota = ms.getPoseshenie().getRabotaId();
+        if (ms.getPoseshenie().getId() < 0) {
+            ms.getPoseshenie().setOplata(null);
+            ms.getPoseshenie().setRabotaId(null);
+            session.save(ms.getPoseshenie());
             session.flush();
         }
 
-        long kl = ms.getPoseshenie().getSpisokLpmoKl().getKl();
-
-        if (pasporta != null && pasporta.getId() < 0) {
-            pasporta.setId(kl);
-            session.save(pasporta);
-
-            ms.getPoseshenie().getSpisokLpmoKl().setPasportaId(pasporta);
-            session.update(ms.getPoseshenie().getSpisokLpmoKl());
+        if (ms.getChange().isRabota()) {
+            if (rabota.getId() > 0) {
+                session.update(rabota);
+            } else {
+                rabota.setId(kl);
+                session.save(rabota);
+            }
+            ms.getPoseshenie().setRabotaId(rabota);
         }
 
-        if (ms.getPoseshenie().getRabotaId() != null && ms.getPoseshenie().getRabotaId().getId() < 0) {
-            ms.getPoseshenie().getRabotaId().setId(kl);
-            session.save(ms.getPoseshenie().getRabotaId());
-        }
-
-        if (ms.getAdres() != null) {
-            ms.getAdres().setId(kl);
-            session.save(ms.getAdres());
-        }
-
-        if (ms.getObshhee() != null) {
-            ms.getObshhee().setId(kl);
-            session.save(ms.getObshhee());
-        }
-
-        Oplata oplata = ms.getPoseshenie().getOplata();
-        ms.getPoseshenie().setOplata(null);
-        session.save(ms.getPoseshenie());
-
-        if (oplata != null && oplata.getId() < 0) {
-            oplata.setId(ms.getPoseshenie().getId());
-            session.save(oplata);
-        }
-
-        ms.getPoseshenie().setOplata(oplata);
-        session.update(ms.getPoseshenie());
-
-        if (ms.getPrvr()[0] > 0) {
-            for (Integer l : ms.getPrvr()) {
-                ProfvrednostPrilozh p = new ProfvrednostPrilozh();
-                p.setId(l);
-                session.save(new ProfVrednosti(ms.getPoseshenie().getId(), p));
+        if (ms.getChange().isAdres()) {
+            if (ms.getAdres().getId() > 0) {
+                session.update(ms.getAdres());
+            } else {
+                ms.getAdres().setId(kl);
+                session.save(ms.getAdres());
             }
         }
+
+        if (ms.getChange().isObshee()) {
+            if (ms.getObshhee().getId() > 0) {
+                session.update(ms.getObshhee());
+            } else {
+                ms.getObshhee().setId(kl);
+                session.save(ms.getObshhee());
+            }
+        }
+
+        if (ms.getChange().isOplata()) {
+            if (oplata.getId() > 0) {
+                session.update(oplata);
+            } else {
+                oplata.setId(ms.getPoseshenie().getId());
+                session.save(oplata);
+            }
+            ms.getPoseshenie().setOplata(oplata);
+        }
+
+        if (ms.getChange().isProfvr()) {
+            session.delete(new ProfVrednosti(ms.getPoseshenie().getId()));
+
+            if (ms.getPrvr()[0] > 0) {
+                for (Integer l : ms.getPrvr()) {
+                    ProfvrednostPrilozh p = new ProfvrednostPrilozh();
+                    p.setId(l);
+                    session.save(new ProfVrednosti(ms.getPoseshenie().getId(), p));
+                }
+            }
+        }
+
+        if (ms.getChange().isOplata() || ms.getChange().isFio() || ms.getChange().isPasp() || ms.getChange().isRabota()) {
+            session.update(ms.getPoseshenie());
+//            session.flush();
+        }
+
+//        Pasporta pasporta = ms.getPoseshenie().getSpisokLpmoKl().getPasportaId();
+//
+//        if (ms.getPoseshenie().getSpisokLpmoKl().getKl() > 0) {
+//            session.update(ms.getPoseshenie().getSpisokLpmoKl());
+//        } else {
+//            ms.getPoseshenie().getSpisokLpmoKl().setPasportaId(null);
+//
+//            session.save(ms.getPoseshenie().getSpisokLpmoKl());
+//            session.flush();
+//        }
+//
+//        long kl = ms.getPoseshenie().getSpisokLpmoKl().getKl();
+//
+//        if (pasporta != null && pasporta.getId() < 0) {
+//            pasporta.setId(kl);
+//            session.save(pasporta);
+//
+//            ms.getPoseshenie().getSpisokLpmoKl().setPasportaId(pasporta);
+//            session.update(ms.getPoseshenie().getSpisokLpmoKl());
+//        }
+//
+//        if (ms.getPoseshenie().getRabotaId() != null && ms.getPoseshenie().getRabotaId().getId() < 0) {
+//            ms.getPoseshenie().getRabotaId().setId(kl);
+//            session.save(ms.getPoseshenie().getRabotaId());
+//        }
+//
+//        if (ms.getAdres() != null) {
+//            ms.getAdres().setId(kl);
+//            session.save(ms.getAdres());
+//        }
+//
+//        if (ms.getObshhee() != null) {
+//            ms.getObshhee().setId(kl);
+//            session.save(ms.getObshhee());
+//        }
+//
+//        Oplata oplata = ms.getPoseshenie().getOplata();
+//        ms.getPoseshenie().setOplata(null);
+//        session.save(ms.getPoseshenie());
+//
+//        if (oplata != null && oplata.getId() < 0) {
+//            oplata.setId(ms.getPoseshenie().getId());
+//            session.save(oplata);
+//        }
+//
+//        ms.getPoseshenie().setOplata(oplata);
+//        session.update(ms.getPoseshenie());
+//
+//        if (ms.getPrvr()[0] > 0) {
+//            for (Integer l : ms.getPrvr()) {
+//                ProfvrednostPrilozh p = new ProfvrednostPrilozh();
+//                p.setId(l);
+//                session.save(new ProfVrednosti(ms.getPoseshenie().getId(), p));
+//            }
+//        }
 
         tx.commit();
         session.close();

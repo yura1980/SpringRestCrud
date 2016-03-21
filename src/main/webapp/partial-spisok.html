@@ -57,8 +57,8 @@
                 <td ng-bind="item.spisokLpmoKl.sprFamId.fam +' '+ item.spisokLpmoKl.sprNameId.name + ' ' + item.spisokLpmoKl.sprOtchId.otch"></td>
                 <td ng-bind="item.spisokLpmoKl.datasRozhd | date:'dd.MM.yyyy'"></td>
                 <td ng-bind="item.spisokLpmoKl.pol ? 'Жен':'Муж'"></td>
-                <td ng-bind="item.rabotaId.sprMestoRabotyId.nazvPodrazdelenija"></td>
-                <td ng-bind="item.rabotaId.sprProfesijaId.professija"></td>
+                <td ng-bind="item.rabotaId!=undefined?(item.rabotaId.sprMestoRabotyId.nazvPodrazdelenija):'-'"></td>
+                <td ng-bind="item.rabotaId!=undefined?(item.rabotaId.sprProfesijaId.professija):'-'"></td>
                 <td ng-bind="item.dataPos | date:'dd.MM.yyyy'"></td>
             </tr>
             </tbody>
