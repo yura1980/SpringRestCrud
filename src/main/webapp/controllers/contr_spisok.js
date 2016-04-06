@@ -147,7 +147,10 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, Resta
 
         //создадим новый экземпляр диалогового окна
         var modalInst = $uibModal.open({
-            templateUrl: 'modKl.html', controller: 'ModalInstCtrlKL', size: size,
+            templateUrl: 'modMOI.html',
+            controller: 'ModalInstCtrlMOI',
+            //templateUrl: 'modKl.html', controller: 'ModalInstCtrlKL'
+            size: 'lg', //size,
             resolve: {items: cl}
         });                                     //передадим объект cl
 
@@ -415,6 +418,69 @@ routerApp.controller('ModalInstCtrlKL', function ($scope, $uibModalInstance, ite
         });
 
         //alert(JSON.stringify($scope.items));
+    };
+
+});
+
+//контроллер созданного диалогового окна
+routerApp.controller('ModalInstCtrlMOI', function ($scope, $uibModalInstance, items, Restangular, theService) {
+
+    $scope.oneAtATime = true;
+    $scope.status = {
+        isFirstOpen: true,
+        isFirstDisabled: false
+    };
+
+    $scope.toggleOpen = function (val) {
+        $scope.toppanel = val;
+    };
+    $scope.items = items;                                               //входные параметры
+    $scope.selected = {item: $scope.items}; //[0]                     //изменения
+    $scope.toppanel = true;
+
+    $scope.showHideFIO = function (val) {
+        $scope.toppanel = val;
+    };
+
+    $scope.dirt = function () {
+        $scope.formKl.prfrForm.$setDirty();
+    };
+
+    $scope.evnt = function (val) {                                      //собылие закрытия и возврата результатов
+        if (val === 'ok') {
+            $uibModalInstance.close($scope.selected.item);
+        } else {
+            $uibModalInstance.dismiss('cancel');
+        }
+    };
+
+    $scope.loadPrv = function () {
+        Restangular.all('listProfVrednosti/' + $scope.items.id).getList().then(function (response) {
+                if (response.length === 0) {
+                    $scope.multi = [{id: -1, nomer: "пусто"}];
+                } else {
+                    //var mas = response;
+                    $scope.multi = [];
+                    response.forEach(function (item) {
+                        $scope.multi.push(item.idpril);
+                    });
+                }
+            }
+        );
+        //$scope.toppanel = false;
+    };
+    $scope.loadPrv();
+
+
+    $scope.save = function () {
+
+//       Restangular.all('createPos').post(Klient).then(function (response) {//$scope.items
+//            var ids = response;
+//            $scope.items.id = ids[0];
+//            $scope.items.spisokLpmoKl.kl = ids[1];
+//
+//            $uibModalInstance.close($scope.item);//
+//        });
     };
 
 });

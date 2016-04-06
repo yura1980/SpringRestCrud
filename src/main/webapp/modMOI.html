@@ -1,0 +1,89 @@
+<!-- редактирование задачи -->
+<form name="formMOI" novalidate>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" ng-click="evnt('cancel')">&times;</button>
+
+        <h5 class="modal-title">
+            ФИО: {{items.spisokLpmoKl.sprFamId.fam}} {{items.spisokLpmoKl.sprNameId.name}} {{items.spisokLpmoKl.sprOtchId.otch}}
+            <button type="button" class="btn btn-primary btn-sm">Шаблоны всем</button>
+        </h5>
+
+
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <!--<div role="form">-->
+            <!--<div class="row">-->
+            <!--<ng-form name="fioForm">-->
+            <!--<div class="form-group">-->
+            <div class="form-group col-md-6">
+                <!--<div class="padded-row">-->
+                <uib-accordion close-others="oneAtATime">
+                    <uib-accordion-group heading="Врачи" is-open="status.isFirstOpen" ng-click="toggleOpen(true)">
+                        This content is straight in the template.
+                    </uib-accordion-group>
+                    <uib-accordion-group heading="Исследования" ng-click="toggleOpen(false)">
+                        This content is straight in the template.
+                    </uib-accordion-group>
+                </uib-accordion>  
+                <div class="form-group" ng-if="toppanel">
+                    <multis par="nomer" parpp="naimenovanieFaktorov" placeh="3. Диагнозы врача:" setdirty="dirt()"
+                            stylecss="item.pril===1?'btn-primary':'btn-success'" multisel="multi"/>
+                </div>
+                <!--</div>-->
+            </div>
+            <div class="form-group col-md-6">
+                <!--<div class="padded-row">-->
+                <div class="row">
+                    <div class="col-md-6 mt15">
+                        <label>1. Общая информация:</label>
+                    </div>
+                    <div class="col-md-6">                        
+                        <autoc par="fam" placeh="Шаблон" model="items.ttt"></autoc>
+                    </div>
+                </div>
+                <!--<autoc par="fam" placeh="Шаблон общая информация" model="items.ttt"></autoc>-->
+                <textarea class="form-control" rows="3"></textarea>
+                <div class="form-group" ng-if="toppanel">
+                    <div class="row">
+                        <div class="col-md-6 mt15">
+                            <label>2. Рекомендации врача</label>
+                        </div>
+                        <div class="col-md-6">                        
+                            <autoc par="fam" placeh="Шаблон" model="items.ttt"></autoc>
+                        </div>
+                    </div>                    
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <dateb placeh="Дата" model="items.datasRozhd"></dateb> 
+                    </div>
+                    <div class="col-md-4">
+                        <label>Цена: </label>
+                        <input plecaholder="Цена" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--</div>-->
+    </div>
+    <div class="modal-footer">
+        <div class="form-group">
+            <div class="btn-group" style="float: left">
+                <label class="btn btn-default" ng-model="items.pol" uib-btn-radio="false">Да</label>
+                <label class="btn btn-default" ng-model="items.pol" uib-btn-radio="true">Нет</label>
+                <label class="btn btn-default" ng-model="items.pol" uib-btn-radio="null">Ограничено</label>
+            </div>
+            <button type="button" style="float: left; margin-left: 10px" class="btn btn-primary" ng-model="singleModel" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+                Оплате НЕ ПОДЛЕЖИТ
+            </button>
+            <button type="submit" ng-disabled="!formKl.$dirty && !formKl.$invalid"
+                    class="btn btn-primary" ng-click="save()">Сохранить
+            </button>
+            <button type="button" class="btn btn-default" ng-click="evnt('cancel')">Закрыть</button>
+        </div>
+    </div>
+</form>
