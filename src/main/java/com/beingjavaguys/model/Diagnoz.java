@@ -8,17 +8,7 @@ package com.beingjavaguys.model;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -42,9 +32,10 @@ public class Diagnoz implements Serializable {
     private int diagnoz;
     @Column(name = "vpervye")
     private Boolean vpervye;
-    @JoinColumn(name = "mo_i_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private MoI moIId;
+//    @JoinColumn(name = "mo_i_id", referencedColumnName = "id")
+//    @ManyToOne(optional = false)
+//    private MoI moIId;
+
 
     public Diagnoz() {
     }
@@ -82,13 +73,13 @@ public class Diagnoz implements Serializable {
         this.vpervye = vpervye;
     }
 
-    public MoI getMoIId() {
-        return moIId;
-    }
-
-    public void setMoIId(MoI moIId) {
-        this.moIId = moIId;
-    }
+//    public MoI getMoIId() {
+//        return moIId;
+//    }
+//
+//    public void setMoIId(MoI moIId) {
+//        this.moIId = moIId;
+//    }
 
     @Override
     public int hashCode() {
@@ -112,7 +103,7 @@ public class Diagnoz implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.genentyity2.Diagnoz[ id=" + id + " ]";
+        return "Diagnoz[ id=" + id + " ]";
     }
     
 }

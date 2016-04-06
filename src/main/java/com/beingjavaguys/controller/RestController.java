@@ -336,6 +336,19 @@ public class RestController {
         return spisokLpmoList;
     }
 
+    @RequestMapping(value = "listMoI/{id}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<MoI> getMoIList(@PathVariable("id") long id) {
+        List<MoI> spisokLpmoList = null;
+        try {
+            spisokLpmoList = dataServices.getMoIList(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return spisokLpmoList;
+    }
+
     //все справочники
     @RequestMapping(value = "fam/{val}", method = RequestMethod.GET)
     public

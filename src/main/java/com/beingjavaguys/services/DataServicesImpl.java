@@ -137,4 +137,9 @@ public class DataServicesImpl implements DataServices {
     public List<ProfVrednosti> getProfVrednostiList(long id) throws Exception{
         return dataDao.getProfVrednostiList(id);
     }
+
+    @Override
+    public List<MoI> getMoIList(long id) throws Exception{
+        return dataDao.getMoIList(id);
+    }
 }

@@ -57,9 +57,9 @@ public class DopInfoMoI implements Serializable {
     private Integer kol;
     @Column(name = "id_user")
     private Integer idUser;
-    @JoinColumn(name = "mo_i_id", referencedColumnName = "id", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private MoI moI;
+//    @JoinColumn(name = "mo_i_id", referencedColumnName = "id", insertable = false, updatable = false)
+//    @OneToOne(optional = false)
+//    private MoI moI;
 
     public DopInfoMoI() {
     }
@@ -137,13 +137,13 @@ public class DopInfoMoI implements Serializable {
         this.idUser = idUser;
     }
 
-    public MoI getMoI() {
-        return moI;
-    }
-
-    public void setMoI(MoI moI) {
-        this.moI = moI;
-    }
+//    public MoI getMoI() {
+//        return moI;
+//    }
+//
+//    public void setMoI(MoI moI) {
+//        this.moI = moI;
+//    }
 
     @Override
     public int hashCode() {
@@ -167,7 +167,7 @@ public class DopInfoMoI implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.genentyity2.DopInfoMoI[ moIId=" + moIId + " ]";
+        return "DopInfoMoI[ moIId=" + moIId + " ]";
     }
     
 }

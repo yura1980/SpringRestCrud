@@ -9,20 +9,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import java.io.Serializable;
 import java.util.Collection;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -40,10 +27,13 @@ public class MoI implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "vrachissl")
-    private int vrachissl;
+    @JoinColumn(name = "vrachissl", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private SprVrachIssl vrachissl;
+//    @Basic(optional = false)
+//    @NotNull
+//    @Column(name = "vrachissl")
+//    private int vrachissl;
     @Basic(optional = false)
     @NotNull
     @Column(name = "vrissl")
@@ -59,13 +49,19 @@ public class MoI implements Serializable {
     @NotNull
     @Column(name = "provedeno")
     private boolean provedeno;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "moIId")
-    private Collection<Diagnoz> diagnozCollection;
-    @JoinColumn(name = "poseshenie_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Poseshenie poseshenieId;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "moI")
-    private DopInfoMoI dopInfoMoI;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "moIId",fetch = FetchType.EAGER)
+//    private Collection<Diagnoz> diagnozCollection;
+//    @JoinColumn(name = "poseshenie_id", referencedColumnName = "id")
+//    @ManyToOne(optional = false)
+    @NotNull
+    @Column(name = "poseshenie_id")
+    private long poseshenieId;
+//    @OneToOne(cascade = CascadeType.ALL, mappedBy = "moI")
+//    private DopInfoMoI dopInfoMoI;
+
+    @JoinColumn(name = "dopinfoid", referencedColumnName = "mo_i_id")
+    @OneToOne
+    private DopInfoMoI dopinfoid;
 
     public MoI() {
     }
@@ -74,13 +70,13 @@ public class MoI implements Serializable {
         this.id = id;
     }
 
-    public MoI(Integer id, int vrachissl, boolean vrissl, boolean ppokaz, boolean provedeno) {
-        this.id = id;
-        this.vrachissl = vrachissl;
-        this.vrissl = vrissl;
-        this.ppokaz = ppokaz;
-        this.provedeno = provedeno;
-    }
+//    public MoI(Integer id, int vrachissl, boolean vrissl, boolean ppokaz, boolean provedeno) {
+//        this.id = id;
+//        this.vrachissl = vrachissl;
+//        this.vrissl = vrissl;
+//        this.ppokaz = ppokaz;
+//        this.provedeno = provedeno;
+//    }
 
     public Integer getId() {
         return id;
@@ -90,11 +86,20 @@ public class MoI implements Serializable {
         this.id = id;
     }
 
-    public int getVrachissl() {
+//    public int getVrachissl() {
+//        return vrachissl;
+//    }
+//
+//    public void setVrachissl(int vrachissl) {
+//        this.vrachissl = vrachissl;
+//    }
+
+
+    public SprVrachIssl getVrachissl() {
         return vrachissl;
     }
 
-    public void setVrachissl(int vrachissl) {
+    public void setVrachissl(SprVrachIssl vrachissl) {
         this.vrachissl = vrachissl;
     }
 
@@ -130,28 +135,37 @@ public class MoI implements Serializable {
         this.provedeno = provedeno;
     }
 
-    public Collection<Diagnoz> getDiagnozCollection() {
-        return diagnozCollection;
-    }
+//    public Collection<Diagnoz> getDiagnozCollection() {
+//        return diagnozCollection;
+//    }
+//
+//    public void setDiagnozCollection(Collection<Diagnoz> diagnozCollection) {
+//        this.diagnozCollection = diagnozCollection;
+//    }
 
-    public void setDiagnozCollection(Collection<Diagnoz> diagnozCollection) {
-        this.diagnozCollection = diagnozCollection;
-    }
-
-    public Poseshenie getPoseshenieId() {
+    public long getPoseshenieId() {
         return poseshenieId;
     }
 
-    public void setPoseshenieId(Poseshenie poseshenieId) {
+    public void setPoseshenieId(long poseshenieId) {
         this.poseshenieId = poseshenieId;
     }
 
-    public DopInfoMoI getDopInfoMoI() {
-        return dopInfoMoI;
+//    public DopInfoMoI getDopInfoMoI() {
+//        return dopInfoMoI;
+//    }
+//
+//    public void setDopInfoMoI(DopInfoMoI dopInfoMoI) {
+//        this.dopInfoMoI = dopInfoMoI;
+//    }
+
+
+    public DopInfoMoI getDopinfoid() {
+        return dopinfoid;
     }
 
-    public void setDopInfoMoI(DopInfoMoI dopInfoMoI) {
-        this.dopInfoMoI = dopInfoMoI;
+    public void setDopinfoid(DopInfoMoI dopinfoid) {
+        this.dopinfoid = dopinfoid;
     }
 
     @Override
@@ -176,7 +190,7 @@ public class MoI implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.genentyity2.MoI[ id=" + id + " ]";
+        return "MoI[ id=" + id + " ]";
     }
     
 }
