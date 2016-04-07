@@ -435,6 +435,8 @@ routerApp.controller('ModalInstCtrlMOI', function ($scope, $uibModalInstance, it
         });
     };
 
+    $scope.radioModel = '1';
+
     $scope.selVI = function (ind) {
         $scope.selected = {item: $scope.items[ind]};
         $scope.selected.item.dopinfoid ? ($scope.selected.item.dopinfoid.datas = new Date($scope.selected.item.dopinfoid.datas)) : "";

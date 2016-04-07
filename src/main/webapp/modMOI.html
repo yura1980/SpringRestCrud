@@ -2,8 +2,14 @@
 <form name="formMOI" novalidate>
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" ng-click="evnt('cancel')">&times;</button>
+
         <h5 class="modal-title">
-            <button type="button" class="btn btn-primary btn-sm">Шаблоны всем</button>
+            <div class="btn-group" data-toggle="toggleOpen(false)">
+                <label class="btn btn-success btn-sm" ng-model="radioModel" uib-btn-radio="'1'">Вр</label>
+                <label class="btn btn-success btn-sm" ng-model="radioModel" uib-btn-radio="'2'">Иссл</label>
+                <label class="btn btn-success btn-sm" ng-model="radioModel" uib-btn-radio="'3'">Все</label>
+                <label class="btn btn-success btn-sm" ng-model="radioModel" uib-btn-radio="'4'">Шаблоны всем</label>
+            </div>
             ФИО: {{fio}}
         </h5>
     </div>
@@ -15,20 +21,21 @@
             <!--<div class="form-group">-->
             <div class="form-group col-md-6">
                 <!--<div class="padded-row">-->
-                <uib-accordion close-others="oneAtATime">
-                    <uib-accordion-group heading="Врачи" is-open="status.isFirstOpen" ng-click="toggleOpen(true)">
+
+                <!--<uib-accordion close-others="oneAtATime">-->
+                    <!--<uib-accordion-group heading="Врачи" is-open="status.isFirstOpen" ng-click="toggleOpen(true)">-->
                         <div class="list-group">
                             <a class="list-group-item cur"
                                ng-class="{'active':$index == selectedRow}"
                                ng-click="selVI($index)" ng-repeat="item in items| filter:{vrissl:'true'}" ng-bind="item.vrachissl.nameP"></a>
                         </div>
-                    </uib-accordion-group>
-                    <uib-accordion-group heading="Исследования" ng-click="toggleOpen(false)">
-                        <a class="list-group-item cur"
-                           ng-class="{'active':$index == selectedRow}"
-                           ng-click="selVI($index)" ng-repeat="item in items| filter:{vrissl:'false'}" ng-bind="item.vrachissl.nameP"></a>
-                    </uib-accordion-group>
-                </uib-accordion>  
+                    <!--</uib-accordion-group>-->
+                    <!--<uib-accordion-group heading="Исследования" ng-click="toggleOpen(false)">-->
+                        <!--<a class="list-group-item cur"-->
+                           <!--ng-class="{'active':$index == selectedRow}"-->
+                           <!--ng-click="selVI($index)" ng-repeat="item in items| filter:{vrissl:'false'}" ng-bind="item.vrachissl.nameP"></a>-->
+                    <!--</uib-accordion-group>-->
+                <!--</uib-accordion>  -->
                 <div class="form-group" ng-if="toppanel">
                     <multis par="nomer" parpp="naimenovanieFaktorov" placeh="3. Диагнозы врача:" setdirty="dirt()"
                             stylecss="item.pril===1?'btn-primary':'btn-success'" multisel="multi"/>
