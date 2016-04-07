@@ -253,6 +253,8 @@ public class DataDaoImpl implements DataDao {
             cl = SprUlici.class;
         } else if (par[0].equals("nameP")) {
             cl = SprVrachIssl.class;
+        } else if (par[0].equals("shabl")) {
+            cl = ShablVrIssRek.class;
         } else if (par[0].equals("nomer")) {
             cl = ProfvrednostPrilozh.class;
             Criteria cr = session.createCriteria(cl);

@@ -34,6 +34,7 @@
         <table class="table table-striped table-condensed table-hover">
             <thead>
             <tr>
+                <th custom-sort order="'id'" sort="sort">Код&nbsp;</th>
                 <th custom-sort order="'spisokLpmoKlSprFamIdFam'" sort="sort">ФИО&nbsp;</th>
                 <th custom-sort order="'spisokLpmoKlDatasRozhd'" sort="sort">Дата&nbsp;</th>
                 <th custom-sort order="'spisokLpmoKlPol'" sort="sort">Пол&nbsp;</th>
@@ -54,6 +55,7 @@
             <tbody>
             <tr ng-repeat="item in pagedItems[(currentPage - 1)]| orderBy:sort.sortingOrder:sort.reverse  | filter:findStr "
                 ng-click="open(item)">
+                <td ng-bind="item.id"></td>
                 <td ng-bind="item.spisokLpmoKl.sprFamId.fam +' '+ item.spisokLpmoKl.sprNameId.name + ' ' + item.spisokLpmoKl.sprOtchId.otch"></td>
                 <td ng-bind="item.spisokLpmoKl.datasRozhd | date:'dd.MM.yyyy'"></td>
                 <td ng-bind="item.spisokLpmoKl.pol ? 'Жен':'Муж'"></td>

@@ -2,13 +2,10 @@
 <form name="formMOI" novalidate>
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" ng-click="evnt('cancel')">&times;</button>
-
         <h5 class="modal-title">
-            ФИО: {{items.spisokLpmoKl.sprFamId.fam}} {{items.spisokLpmoKl.sprNameId.name}} {{items.spisokLpmoKl.sprOtchId.otch}}
             <button type="button" class="btn btn-primary btn-sm">Шаблоны всем</button>
+            ФИО: {{fio}}
         </h5>
-
-
     </div>
     <div class="modal-body">
         <div class="row">
@@ -20,10 +17,16 @@
                 <!--<div class="padded-row">-->
                 <uib-accordion close-others="oneAtATime">
                     <uib-accordion-group heading="Врачи" is-open="status.isFirstOpen" ng-click="toggleOpen(true)">
-                        This content is straight in the template.
+                        <div class="list-group">
+                            <a class="list-group-item cur"
+                               ng-class="{'active':$index == selectedRow}"
+                               ng-click="selVI($index)" ng-repeat="item in items| filter:{vrissl:'true'}" ng-bind="item.vrachissl.nameP"></a>
+                        </div>
                     </uib-accordion-group>
                     <uib-accordion-group heading="Исследования" ng-click="toggleOpen(false)">
-                        This content is straight in the template.
+                        <a class="list-group-item cur"
+                           ng-class="{'active':$index == selectedRow}"
+                           ng-click="selVI($index)" ng-repeat="item in items| filter:{vrissl:'false'}" ng-bind="item.vrachissl.nameP"></a>
                     </uib-accordion-group>
                 </uib-accordion>  
                 <div class="form-group" ng-if="toppanel">
@@ -39,30 +42,30 @@
                         <label>1. Общая информация:</label>
                     </div>
                     <div class="col-md-6">                        
-                        <autoc par="nameP" placeh="Шаблон" model="items.ttt"></autoc>
+                        <autoc par="shabl" placeh="Шаблон" model="items.ttt"></autoc>
                     </div>
                 </div>
                 <!--<autoc par="fam" placeh="Шаблон общая информация" model="items.ttt"></autoc>-->
-                <textarea class="form-control" rows="3"></textarea>
+                <textarea class="form-control" ng-model="selected.item.dopinfoid.dopInfObshhaja" rows="3"></textarea>
                 <div class="form-group" ng-if="toppanel">
                     <div class="row">
                         <div class="col-md-6 mt15">
                             <label>2. Рекомендации врача</label>
                         </div>
                         <div class="col-md-6">                        
-                            <autoc par="nameP" placeh="Шаблон" model="items.ttt"></autoc>
+                            <autoc par="shabl" placeh="Шаблон" model="items.ttt2"></autoc>
                         </div>
                     </div>                    
-                    <textarea class="form-control" rows="3"></textarea>
+                    <textarea class="form-control" ng-model="selected.item.dopinfoid.dopInfSpec"  rows="3"></textarea>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6">
-                        <dateb placeh="Дата" model="items.datasRozhd"></dateb> 
+                        <dateb placeh="Дата" model="selected.item.dopinfoid.datas"></dateb>
                     </div>
                     <div class="col-md-4">
                         <label>Цена: </label>
-                        <input plecaholder="Цена" class="form-control">
+                        <input plecaholder="Цена" ng-model="selected.item.price" class="form-control">
                     </div>
                 </div>
             </div>
@@ -73,14 +76,14 @@
     <div class="modal-footer">
         <div class="form-group">
             <div class="btn-group" style="float: left">
-                <label class="btn btn-default" ng-model="items.pol" uib-btn-radio="false">Да</label>
-                <label class="btn btn-default" ng-model="items.pol" uib-btn-radio="true">Нет</label>
-                <label class="btn btn-default" ng-model="items.pol" uib-btn-radio="null">Ограничено</label>
+                <label class="btn btn-default" ng-model="selected.item.dopinfoid.prodTrudDejatelnost" uib-btn-radio="1">Да</label>
+                <label class="btn btn-default" ng-model="selected.item.dopinfoid.prodTrudDejatelnost" uib-btn-radio="2">Нет</label>
+                <label class="btn btn-default" ng-model="selected.item.dopinfoid.prodTrudDejatelnost" uib-btn-radio="3">Ограничено</label>
             </div>
-            <button type="button" style="float: left; margin-left: 10px" class="btn btn-primary" ng-model="singleModel" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+            <button type="button" style="float: left; margin-left: 10px" class="btn btn-primary" ng-model="selected.item.dopinfoid.oplataObsl" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
                 Оплате НЕ ПОДЛЕЖИТ
             </button>
-            <button type="submit" ng-disabled="!formKl.$dirty && !formKl.$invalid"
+            <button type="submit" ng-disabled="!formMOI.$dirty && !formMOI.$invalid"
                     class="btn btn-primary" ng-click="save()">Сохранить
             </button>
             <button type="button" class="btn btn-default" ng-click="evnt('cancel')">Закрыть</button>
