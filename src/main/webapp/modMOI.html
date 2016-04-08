@@ -4,13 +4,13 @@
         <button type="button" class="close" data-dismiss="modal" ng-click="evnt('cancel')">&times;</button>
 
         <h5 class="modal-title">
-            <div class="btn-group" data-toggle="toggleOpen(false)">
+            <div class="btn-group" ng-click="toggleOpen()">
                 <label class="btn btn-success btn-sm" ng-model="radioModel" uib-btn-radio="'1'">Вр</label>
                 <label class="btn btn-success btn-sm" ng-model="radioModel" uib-btn-radio="'2'">Иссл</label>
                 <label class="btn btn-success btn-sm" ng-model="radioModel" uib-btn-radio="'3'">Все</label>
                 <label class="btn btn-success btn-sm" ng-model="radioModel" uib-btn-radio="'4'">Шаблоны всем</label>
             </div>
-            ФИО: {{fio}}
+            <label class="ml10">ФИО: {{fio}}</label>
         </h5>
     </div>
     <div class="modal-body">

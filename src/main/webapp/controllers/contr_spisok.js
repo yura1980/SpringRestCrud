@@ -451,6 +451,9 @@ routerApp.controller('ModalInstCtrlMOI', function ($scope, $uibModalInstance, it
     };
 
     $scope.toggleOpen = function (val) {
+        if($scope.radioModel==="1"){
+            alert("!!!");
+        };
         $scope.toppanel = val;
     };
     $scope.fio = items.spisokLpmoKl.sprFamId.fam + " " +
