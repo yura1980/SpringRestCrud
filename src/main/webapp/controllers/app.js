@@ -217,6 +217,72 @@ routerApp.directive('multis', function () {
 
 });
 
+routerApp.directive('multis2', function () {
+    return {
+        restrict: 'E',
+        scope: {
+            stylecss: "@",
+            par: "@",
+            parpp: "@",
+            placeh: "@",
+            multisel: "=",
+            setdirty:"&"
+        },
+        template: '<label>{{placeh}}</label>' +
+        '<div class="bordr4">' +
+        '<label class="bordr5" ng-class="{{stylecss}}" ng-click="change(item)" ng-repeat="item in multisel" uib-popover="{{item[parpp]}}" popover-trigger="mouseenter" popover-title="Наименование" >' +
+        '{{item[par]}}<span ng-click="detlPr(item)" class="glyphicon glyphicon-remove-circle ml10 cur"></span>' +
+        '</label>' +
+        '<input type="text" ng-model="model" placeholder="Добавить" uib-typeahead="item as (item[par]+\' - \'+item[parpp]) for item in getLocation($viewValue)"' +
+        'typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="bnone ml10" typeahead-on-select="addPr()">' +
+        '<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>' +
+        '<span ng-show="noResults"><i class="glyphicon glyphicon-remove"></i>Запись отсутсвует.</span>' +
+        '</div>' ,
+        controller: function ($scope, Restangular,theService) {
+            $scope.addPr = function () {
+                if ($scope.multisel.length === 1 && $scope.multisel[0].id === -1) {
+                    $scope.multisel = [$scope.model];
+
+                } else {
+                    $scope.multisel.push($scope.model);
+                }
+                $scope.setServ();
+                $scope.model = null;
+            };
+
+            $scope.setServ = function () {
+                var mprv=[];
+                $scope.multisel.forEach(function (item) {
+                    mprv.push(item.id);
+                });
+                theService.thing.multisel=mprv;
+            };
+
+            $scope.detlPr = function (it) {
+                $scope.multisel.splice($scope.multisel.indexOf(it), 1);
+                if ($scope.multisel.length === 0) {
+                    $scope.multisel = [{id: -1, ndiag: "пусто"}];
+                }
+                $scope.setServ();
+                $scope.setdirty();
+            };
+            $scope.change = function (it) {
+                if ($scope.multisel[0].vpervye === undefined) {
+                    return;
+                }
+                var i = $scope.multisel.indexOf(it);
+                $scope.multisel[i].vpervye = !$scope.multisel[i].vpervye;// === true ? false : true);
+            };
+            $scope.getLocation = function (val) {
+                return Restangular.all('fam/' + $scope.par + "=" + val).getList().then(function (response) {
+                    return response.plain();
+                });
+            };
+        }
+    }
+
+});
+
 routerApp.config(function ($stateProvider, $urlRouterProvider, RestangularProvider) {
     RestangularProvider.setBaseUrl(window.location.pathname + "api/mess/");
 

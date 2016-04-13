@@ -1,3 +1,10 @@
+<script type="text/ng-template" id="myPopoverTemplate.html">
+    <!--<div>{{dynamicPopover.content}}</div>-->
+    <div class="form-inline">
+        <autoc par="shabl" placeh="Шаблон" model="items.ttt"></autoc>
+    </div>
+</script>
+
 <!-- редактирование задачи -->
 <form name="formMOI" novalidate>
     <div class="modal-header">
@@ -5,9 +12,9 @@
 
         <h5 class="modal-title">
             <div class="btn-group" ng-click="toggleOpen()">
-                <label class="btn btn-success btn-sm" ng-model="radioModel" uib-btn-radio="'1'">Вр</label>
-                <label class="btn btn-success btn-sm" ng-model="radioModel" uib-btn-radio="'2'">Иссл</label>
-                <label class="btn btn-success btn-sm" ng-model="radioModel" uib-btn-radio="'3'">Все</label>
+                <label class="btn btn-default btn-sm" ng-model="radioModel" uib-btn-radio="'1'">Вр</label>
+                <label class="btn btn-default btn-sm" ng-model="radioModel" uib-btn-radio="'2'">Иссл</label>
+                <label class="btn btn-default btn-sm" ng-model="radioModel" uib-btn-radio="'3'">Все</label>
                 <label class="btn btn-success btn-sm" ng-model="radioModel" uib-btn-radio="'4'">Шаблоны всем</label>
             </div>
             <label class="ml10">ФИО: {{fio}}</label>
@@ -19,55 +26,43 @@
             <!--<div class="row">-->
             <!--<ng-form name="fioForm">-->
             <!--<div class="form-group">-->
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <!--<div class="padded-row">-->
 
                 <!--<uib-accordion close-others="oneAtATime">-->
-                    <!--<uib-accordion-group heading="Врачи" is-open="status.isFirstOpen" ng-click="toggleOpen(true)">-->
-                        <div class="list-group">
-                            <a class="list-group-item cur"
-                               ng-class="{'active':$index == selectedRow}"
-                               ng-click="selVI($index)" ng-repeat="item in items| filter:{vrissl:'true'}" ng-bind="item.vrachissl.nameP"></a>
-                        </div>
-                    <!--</uib-accordion-group>-->
-                    <!--<uib-accordion-group heading="Исследования" ng-click="toggleOpen(false)">-->
-                        <!--<a class="list-group-item cur"-->
-                           <!--ng-class="{'active':$index == selectedRow}"-->
-                           <!--ng-click="selVI($index)" ng-repeat="item in items| filter:{vrissl:'false'}" ng-bind="item.vrachissl.nameP"></a>-->
-                    <!--</uib-accordion-group>-->
-                <!--</uib-accordion>  -->
-                <div class="form-group" ng-if="toppanel">
-                    <multis par="nomer" parpp="naimenovanieFaktorov" placeh="3. Диагнозы врача:" setdirty="dirt()"
-                            stylecss="item.pril===1?'btn-primary':'btn-success'" multisel="multi"/>
+                <!--<uib-accordion-group heading="Врачи" is-open="status.isFirstOpen" ng-click="toggleOpen(true)">-->
+                <div class="list-group" style="overflow-y: auto; height:340px;">
+                    <a class="list-group-item cur"
+                       ng-class="{'active':$index === selectedRow, 'list-group-item-warning':item.provedeno}"
+                       ng-click="selVI($index)" ng-repeat="item in items | filter:fltr"
+                       popover-placement="right" uib-popover="Цена: {{item.price}}" popover-trigger="mouseenter"
+                       popover-title="Дата: {{item.dopinfoid.datas| date:'dd.MM.yyyy'}}"
+                       ng-bind="item.vrachissl.nameP"><span class="badge">5</span></a>
                 </div>
+                <!--</uib-accordion-group>-->
+                <!--<uib-accordion-group heading="Исследования" ng-click="toggleOpen(false)">-->
+                <!--<a class="list-group-item cur"-->
+                <!--ng-class="{'active':$index == selectedRow}"-->
+                <!--ng-click="selVI($index)" ng-repeat="item in items| filter:{vrissl:'false'}" ng-bind="item.vrachissl.nameP"></a>-->
+                <!--</uib-accordion-group>-->
+                <!--</uib-accordion>  -->
+
                 <!--</div>-->
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-8">
                 <!--<div class="padded-row">-->
-                <div class="row">
-                    <div class="col-md-6 mt15">
-                        <label>1. Общая информация:</label>
-                    </div>
-                    <div class="col-md-6">                        
-                        <autoc par="shabl" placeh="Шаблон" model="items.ttt"></autoc>
-                    </div>
-                </div>
+                <!--<div class="row">-->
+                <!--<div class="col-md-6 mt15">-->
+                <!--<label>1. Общая информация:</label>-->
+                <!--</div>-->
+                <!--<div class="col-md-6">                        -->
+                <!--&lt;!&ndash;<autoc par="shabl" placeh="Шаблон" model="items.ttt"></autoc>&ndash;&gt;-->
+                <!--</div>-->
+                <!--</div>-->
                 <!--<autoc par="fam" placeh="Шаблон общая информация" model="items.ttt"></autoc>-->
-                <textarea class="form-control" ng-model="selected.item.dopinfoid.dopInfObshhaja" rows="3"></textarea>
-                <div class="form-group" ng-if="toppanel">
-                    <div class="row">
-                        <div class="col-md-6 mt15">
-                            <label>2. Рекомендации врача</label>
-                        </div>
-                        <div class="col-md-6">                        
-                            <autoc par="shabl" placeh="Шаблон" model="items.ttt2"></autoc>
-                        </div>
-                    </div>                    
-                    <textarea class="form-control" ng-model="selected.item.dopinfoid.dopInfSpec"  rows="3"></textarea>
-                </div>
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <dateb placeh="Дата" model="selected.item.dopinfoid.datas"></dateb>
                     </div>
                     <div class="col-md-4">
@@ -75,6 +70,28 @@
                         <input plecaholder="Цена" ng-model="selected.item.price" class="form-control">
                     </div>
                 </div>
+                <textarea uib-popover-template="dynamicPopover.templateUrl" popover-title="1. Общая информация:"
+                          class="form-control" popover-placement="top-right"
+                          ng-click="dynamicPopover.op2=false" popover-is-open="dynamicPopover.op"
+                          ng-model="selected.item.dopinfoid.dopInfObshhaja" rows="3"></textarea>
+                <div class="form-group" ng-if="toppanel">
+                    <!--<div class="row">-->
+                    <!--<div class="col-md-6 mt15">-->
+                    <!--<label>2. Рекомендации врача</label>-->
+                    <!--</div>-->
+                    <!--<div class="col-md-6">                        -->
+                    <!--<autoc par="shabl" placeh="Шаблон" model="items.ttt2"></autoc>-->
+                    <!--</div>-->
+                    <!--</div>                    -->
+                    <textarea ng-click="dynamicPopover.op=false" uib-popover-template="dynamicPopover.templateUrl"
+                              popover-title="2. Рекомендации врача" popover-placement="top-right"
+                              popover-is-open="dynamicPopover.op2" class="form-control mt10 mb10"
+                              ng-model="selected.item.dopinfoid.dopInfSpec" rows="3"></textarea>
+                    <!--</div>-->
+                    <multis2 par="ndiag" parpp="diag" placeh="3. Диагнозы врача:" setdirty="dirt()"
+                             stylecss="item.vpervye?'btn-primary':'btn-success'" multisel="multi"/>
+                </div>
+
             </div>
         </div>
 
@@ -87,9 +104,12 @@
                 <label class="btn btn-default" ng-model="selected.item.dopinfoid.prodTrudDejatelnost" uib-btn-radio="2">Нет</label>
                 <label class="btn btn-default" ng-model="selected.item.dopinfoid.prodTrudDejatelnost" uib-btn-radio="3">Ограничено</label>
             </div>
-            <button type="button" style="float: left; margin-left: 10px" class="btn btn-primary" ng-model="selected.item.dopinfoid.oplataObsl" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
-                Оплате НЕ ПОДЛЕЖИТ
+            <button type="button" style="float: left; margin-left: 10px" class="btn btn-primary"
+                    ng-model="selected.item.dopinfoid.oplataObsl" uib-btn-checkbox btn-checkbox-true="1"
+                    btn-checkbox-false="0">
+                Оплате ПОДЛЕЖИТ
             </button>
+
             <button type="submit" ng-disabled="!formMOI.$dirty && !formMOI.$invalid"
                     class="btn btn-primary" ng-click="save()">Сохранить
             </button>

@@ -268,7 +268,22 @@ public class DataDaoImpl implements DataDao {
             tx.commit();
             session.close();
             return sprFamList;
+        } else if (par[0].equals("ndiag")) {
+            cl = MkbDiagnos.class;
+            Criteria cr = session.createCriteria(cl);
+            if (par[1].matches("[a-zA-Z]\\d+(\\.\\d+)?") || par[1].length() == 1) {//
+                cr.add(Restrictions.ilike(par[0], par[1], MatchMode.ANYWHERE));
+//                cr.add(Restrictions.like(par[0], par[1] + "%"));
+            } else {
+                cr.add(Restrictions.ilike("diag", par[1], MatchMode.ANYWHERE));
+            }
+            sprFamList = cr.setMaxResults(15).list();
+
+            tx.commit();
+            session.close();
+            return sprFamList;
         }
+
         if (par.length == 1) {
             sprFamList = session.createCriteria(cl).list();
         } else {

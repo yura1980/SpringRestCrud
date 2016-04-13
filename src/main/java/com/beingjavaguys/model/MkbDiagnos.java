@@ -20,14 +20,14 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "mkb_diagnos")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class MkbDiagnos implements Serializable {
+public class MkbDiagnos  extends Spr {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "id_diag")
-    private Integer idDiag;
+//    @Id
+//    @Basic(optional = false)
+//    @NotNull
+//    @Column(name = "id_diag")
+//    private Integer idDiag;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 150)
@@ -37,7 +37,7 @@ public class MkbDiagnos implements Serializable {
     @NotNull
     @Size(min = 1, max = 7)
     @Column(name = "n_diag")
-    private String nDiag;
+    private String ndiag;
     @Column(name = "id_class")
     private Integer idClass;
     @Column(name = "p")
@@ -46,23 +46,23 @@ public class MkbDiagnos implements Serializable {
     public MkbDiagnos() {
     }
 
-    public MkbDiagnos(Integer idDiag) {
-        this.idDiag = idDiag;
-    }
-
-    public MkbDiagnos(Integer idDiag, String diag, String nDiag) {
-        this.idDiag = idDiag;
-        this.diag = diag;
-        this.nDiag = nDiag;
-    }
-
-    public Integer getIdDiag() {
-        return idDiag;
-    }
-
-    public void setIdDiag(Integer idDiag) {
-        this.idDiag = idDiag;
-    }
+//    public MkbDiagnos(Integer idDiag) {
+//        this.idDiag = idDiag;
+//    }
+//
+//    public MkbDiagnos(Integer idDiag, String diag, String nDiag) {
+//        this.idDiag = idDiag;
+//        this.diag = diag;
+//        this.ndiag = nDiag;
+//    }
+//
+//    public Integer getIdDiag() {
+//        return idDiag;
+//    }
+//
+//    public void setIdDiag(Integer idDiag) {
+//        this.idDiag = idDiag;
+//    }
 
     public String getDiag() {
         return diag;
@@ -73,11 +73,11 @@ public class MkbDiagnos implements Serializable {
     }
 
     public String getNDiag() {
-        return nDiag;
+        return ndiag;
     }
 
     public void setNDiag(String nDiag) {
-        this.nDiag = nDiag;
+        this.ndiag = nDiag;
     }
 
     public Integer getIdClass() {
@@ -96,29 +96,29 @@ public class MkbDiagnos implements Serializable {
         this.p = p;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idDiag != null ? idDiag.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof MkbDiagnos)) {
-            return false;
-        }
-        MkbDiagnos other = (MkbDiagnos) object;
-        if ((this.idDiag == null && other.idDiag != null) || (this.idDiag != null && !this.idDiag.equals(other.idDiag))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "[idDiag=" + idDiag + "]";
-    }
+//    @Override
+//    public int hashCode() {
+//        int hash = 0;
+//        hash += (idDiag != null ? idDiag.hashCode() : 0);
+//        return hash;
+//    }
+//
+//    @Override
+//    public boolean equals(Object object) {
+//        // TODO: Warning - this method won't work in the case the id fields are not set
+//        if (!(object instanceof MkbDiagnos)) {
+//            return false;
+//        }
+//        MkbDiagnos other = (MkbDiagnos) object;
+//        if ((this.idDiag == null && other.idDiag != null) || (this.idDiag != null && !this.idDiag.equals(other.idDiag))) {
+//            return false;
+//        }
+//        return true;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "[idDiag=" + idDiag + "]";
+//    }
     
 }

@@ -440,9 +440,9 @@ routerApp.controller('ModalInstCtrlMOI', function ($scope, $uibModalInstance, it
     $scope.selVI = function (ind) {
         $scope.selected = {item: $scope.items[ind]};
         $scope.selected.item.dopinfoid ? ($scope.selected.item.dopinfoid.datas = new Date($scope.selected.item.dopinfoid.datas)) : "";
-        $scope.selectedRow=ind;
+        $scope.selectedRow = ind;
     };
-    $scope.selectedRow=0;
+    $scope.selectedRow = 0;
 
     $scope.oneAtATime = true;
     $scope.status = {
@@ -450,10 +450,19 @@ routerApp.controller('ModalInstCtrlMOI', function ($scope, $uibModalInstance, it
         isFirstDisabled: false
     };
 
+    $scope.fltr = {vrissl: 'true'};
     $scope.toggleOpen = function (val) {
-        if($scope.radioModel==="1"){
-            alert("!!!");
-        };
+        if ($scope.radioModel === "1") {
+            $scope.fltr = {vrissl: 'true'};
+            val=true;
+        } else if ($scope.radioModel === "2") {
+            $scope.fltr = {vrissl: 'false'};
+            val=false;
+        }else if ($scope.radioModel === "3") {
+            $scope.fltr = undefined;
+            val=true;
+        }
+
         $scope.toppanel = val;
     };
     $scope.fio = items.spisokLpmoKl.sprFamId.fam + " " +
@@ -468,7 +477,7 @@ routerApp.controller('ModalInstCtrlMOI', function ($scope, $uibModalInstance, it
     };
 
     $scope.dirt = function () {
-        $scope.formKl.prfrForm.$setDirty();
+        //$scope.formKl.prfrForm.$setDirty();
     };
 
     $scope.evnt = function (val) {                                      //собылие закрытия и возврата результатов
@@ -479,19 +488,26 @@ routerApp.controller('ModalInstCtrlMOI', function ($scope, $uibModalInstance, it
         }
     };
 
+    $scope.dynamicPopover = {
+        //content: '1. Общая информация:',
+        templateUrl: 'myPopoverTemplate.html',
+        //title: '1. Общая информация:',
+        op:false,
+        op2: false
+    };
+
     $scope.loadPrv = function () {
-        Restangular.all('listProfVrednosti/' + items.id).getList().then(function (response) {
-                if (response.length === 0) {
-                    $scope.multi = [{id: -1, nomer: "пусто"}];
-                } else {
-                    //var mas = response;
-                    $scope.multi = [];
-                    response.forEach(function (item) {
-                        $scope.multi.push(item.idpril);
-                    });
-                }
-            }
-        );
+        //Restangular.all('listProfVrednosti/' + items.id).getList().then(function (response) {
+        //    if (response.length === 0) {
+        $scope.multi = [{id: -1, ndiag: "пусто"}];
+        //    } else {
+        //        //var mas = response;
+        //        $scope.multi = [];
+        //        response.forEach(function (item) {
+        //            $scope.multi.push(item.idpril);
+        //        });
+        //    }
+        //});
         //$scope.toppanel = false;
     };
     $scope.loadVI();
@@ -508,6 +524,89 @@ routerApp.controller('ModalInstCtrlMOI', function ($scope, $uibModalInstance, it
 //            $uibModalInstance.close($scope.item);//
 //        });
     };
+
+//    $scope.loadVI = function () {
+//        Restangular.all('listMoI/' + items.id).getList().then(function (response) {
+//            $scope.items = response.plain();                                               //входные параметры
+//            $scope.selected = {item: $scope.items[0]}; //
+//            $scope.selected.item.dopinfoid ? ($scope.selected.item.dopinfoid.datas = new Date($scope.selected.item.dopinfoid.datas)) : "";
+//            $scope.loadPrv();
+//        });
+//    };
+//
+//    $scope.radioModel = '1';
+//
+//    $scope.selVI = function (ind) {
+//        $scope.selected = {item: $scope.items[ind]};
+//        $scope.selected.item.dopinfoid ? ($scope.selected.item.dopinfoid.datas = new Date($scope.selected.item.dopinfoid.datas)) : "";
+//        $scope.selectedRow=ind;
+//    };
+//    $scope.selectedRow=0;
+//
+//    $scope.oneAtATime = true;
+//    $scope.status = {
+//        isFirstOpen: true,
+//        isFirstDisabled: false
+//    };
+//
+//    $scope.toggleOpen = function (val) {
+//        if($scope.radioModel==="1"){
+//            alert("!!!");
+//        };
+//        $scope.toppanel = val;
+//    };
+//    $scope.fio = items.spisokLpmoKl.sprFamId.fam + " " +
+//        (items.spisokLpmoKl.sprNameId ? (items.spisokLpmoKl.sprNameId.name + " ") : '') +
+//        (items.spisokLpmoKl.sprOtchId ? items.spisokLpmoKl.sprOtchId['otch'] : '');
+//    //$scope.items = items;                                               //входные параметры
+//    //$scope.selected = {item: $scope.items}; //[0]                     //изменения
+//    $scope.toppanel = true;
+//
+//    $scope.showHideFIO = function (val) {
+//        $scope.toppanel = val;
+//    };
+//
+//    $scope.dirt = function () {
+//        $scope.formKl.prfrForm.$setDirty();
+//    };
+//
+//    $scope.evnt = function (val) {                                      //собылие закрытия и возврата результатов
+//        if (val === 'ok') {
+//            $uibModalInstance.close($scope.selected.item);
+//        } else {
+//            $uibModalInstance.dismiss('cancel');
+//        }
+//    };
+//
+//    $scope.loadPrv = function () {
+//        Restangular.all('listProfVrednosti/' + items.id).getList().then(function (response) {
+//                if (response.length === 0) {
+//                    $scope.multi = [{id: -1, nomer: "пусто"}];
+//                } else {
+//                    //var mas = response;
+//                    $scope.multi = [];
+//                    response.forEach(function (item) {
+//                        $scope.multi.push(item.idpril);
+//                    });
+//                }
+//            }
+//        );
+//        //$scope.toppanel = false;
+//    };
+//    $scope.loadVI();
+//    //$scope.loadPrv();
+//
+//
+//    $scope.save = function () {
+//
+////       Restangular.all('createPos').post(Klient).then(function (response) {//$scope.items
+////            var ids = response;
+////            $scope.items.id = ids[0];
+////            $scope.items.spisokLpmoKl.kl = ids[1];
+////
+////            $uibModalInstance.close($scope.item);//
+////        });
+//    };
 
 
 });
