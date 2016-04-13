@@ -1,35 +1,287 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bb1f15cf-1dbd-4530-ac91-004f6a1b5874" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/SpringRestCrud.war" afterPath="$PROJECT_DIR$/target/SpringRestCrud.war" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/controller/RestController.class" afterPath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/controller/RestController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/dao/DataDao.class" afterPath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/dao/DataDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/dao/DataDaoImpl.class" afterPath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/dao/DataDaoImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Klient.class" afterPath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Klient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/ProfVrednosti.class" afterPath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/ProfVrednosti.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/ProfvrednostPrilozh.class" afterPath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/ProfvrednostPrilozh.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/services/DataServices.class" afterPath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/services/DataServices.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/services/DataServicesImpl.class" afterPath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/services/DataServicesImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/controller/RestController.class" afterPath="$PROJECT_DIR$/target/classes/com/beingjavaguys/controller/RestController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/dao/DataDao.class" afterPath="$PROJECT_DIR$/target/classes/com/beingjavaguys/dao/DataDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/dao/DataDaoImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/beingjavaguys/dao/DataDaoImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Klient.class" afterPath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Klient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/ProfVrednosti.class" afterPath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/ProfVrednosti.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/ProfvrednostPrilozh.class" afterPath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/ProfvrednostPrilozh.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/services/DataServices.class" afterPath="$PROJECT_DIR$/target/classes/com/beingjavaguys/services/DataServices.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/services/DataServicesImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/beingjavaguys/services/DataServicesImpl.class" />
+    <list default="true" id="bb1f15cf-1dbd-4530-ac91-004f6a1b5874" name="Default" comment="рефакторинг multiselect+load server">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud.war" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/META-INF/MANIFEST.MF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/controller/RestController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/dao/DataDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/dao/DataDaoImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Adres.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/CenyMoOrg.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/DgMkb.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Diagnoz.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Dogovora.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/DopInfoMoI.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/DopVrLica.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/EventsMo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/EventsRez.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/FavDiagnoz.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/FioVrach.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/IntervPriem.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Invalidnost.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/IstorijaTrodovoj.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/IstorijaTrodovojPK.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Jurnal.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Klient.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/KontVesh.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/MedKarty.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Messg.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/MigrIss.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/MigrSpCount.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/MigrSprIss.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/MigrSvid.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Migrant.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/MkbDiagnos.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/MkbKlassy.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/MkbPrioritet.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/MkbPrioritetPK.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/MkbSubclass.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/MoI.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/MyPassword.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/MyPaswordDt.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/MyPaswordFrm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Nastrojki.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/ObshParam.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Obshhee.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Oplata.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Otm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Pasporta.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/PeriodichnostMo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Poseshenie.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Potok.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Prazd.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Price.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/PricePK.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Print.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Prioritet.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Proba.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/ProfVrednosti.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/ProfvrednostPrilozh.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Rabota.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/RezLom.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/RezLomDiagn.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/RezMoDiagn.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/RezMoPrim.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/RezMoVlozh.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/RezultatMo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/ShablMemo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/ShablVrIssRek.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SpisokLpmo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Spr.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprAvtors.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprDispanser.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprFam.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprFormSobsOrg.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprGorod.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprGragdanstvo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprLom.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprMestoRaboty.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprName.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprNaselPunkt.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprOblast.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprObshhieMedProtivopokazanija.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprOrg.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprOrgDopInf.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprOtch.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprPaspKemVydan.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprPolikliniki.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprPrephOrg.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprPrichNejavkiNaMo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprPrichina.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprProfesija.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprProfil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprProizvFaktory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprRaion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprTipOrg.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprTipPolikliniki.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprUlici.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprVidEkDejtOrg.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprVidMo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprVidOtchetov.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprVidOtchetovNast.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprVrachIssl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SprZkRek.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Spravki.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/SpravkiPK.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Status.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Svl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Table1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/VrIsslProfVr.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/Zapisi.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/model/ZapisiPriema.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/services/DataServices.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/com/beingjavaguys/services/DataServicesImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/classes/log4j.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/glassfish-web.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/antlr-2.7.7.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/aopalliance-1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/commons-logging-1.1.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/dom4j-1.6.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/gson-2.2.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/hibernate-commons-annotations-4.0.4.Final.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/hibernate-core-4.3.5.Final.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/hibernate-entitymanager-4.3.5.Final.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/hibernate-jpa-2.1-api-1.0.0.Final.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/jackson-core-asl-1.9.10.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/jackson-mapper-asl-1.9.10.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/jandex-1.1.0.Final.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/javassist-3.18.1-GA.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/jboss-logging-3.1.3.GA.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/jboss-logging-annotations-1.2.0.Beta1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/jboss-transaction-api_1.2_spec-1.0.0.Final.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/joda-time-2.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/jstl-1.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/log4j-1.2.17.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/postgresql-9.1-901-1.jdbc4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/spring-aop-4.0.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/spring-beans-4.0.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/spring-context-4.0.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/spring-core-4.0.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/spring-expression-4.0.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/spring-jdbc-4.0.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/spring-orm-4.0.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/spring-tx-4.0.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/spring-web-4.0.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/spring-webmvc-4.0.5.RELEASE.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/validation-api-1.0.0.GA.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/lib/xml-apis-1.0.b2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/spring-config.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/view/index.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/WEB-INF/web.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/controllers/app.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/controllers/contr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/controllers/contr_find.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/controllers/contr_jurnal.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/controllers/contr_login.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/controllers/contr_scrum.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/controllers/contr_spisok.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/controllers/contr_sprav.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/images/favicon.ico" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/login.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/mod.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/modKl.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/navigation.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/partial-about.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/partial-autor.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/partial-find.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/partial-home.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/partial-scrum.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/partial-spisok.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/partial-sprav.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/servises.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SpringRestCrud/styles/mycss.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/controller/RestController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/dao/DataDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/dao/DataDaoImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Adres.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/CenyMoOrg.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/DgMkb.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Diagnoz.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Dogovora.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/DopInfoMoI.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/DopVrLica.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/EventsMo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/EventsRez.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/FavDiagnoz.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/FioVrach.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/IntervPriem.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Invalidnost.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/IstorijaTrodovoj.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/IstorijaTrodovojPK.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Jurnal.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Klient.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/KontVesh.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/MedKarty.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Messg.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/MigrIss.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/MigrSpCount.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/MigrSprIss.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/MigrSvid.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Migrant.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/MkbDiagnos.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/MkbKlassy.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/MkbPrioritet.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/MkbPrioritetPK.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/MkbSubclass.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/MoI.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/MyPassword.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/MyPaswordDt.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/MyPaswordFrm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Nastrojki.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/ObshParam.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Obshhee.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Oplata.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Otm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Pasporta.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/PeriodichnostMo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Poseshenie.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Potok.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Prazd.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Price.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/PricePK.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Print.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Prioritet.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Proba.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/ProfVrednosti.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/ProfvrednostPrilozh.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Rabota.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/RezLom.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/RezLomDiagn.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/RezMoDiagn.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/RezMoPrim.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/RezMoVlozh.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/RezultatMo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/ShablMemo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/ShablVrIssRek.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SpisokLpmo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Spr.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprAvtors.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprDispanser.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprFam.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprFormSobsOrg.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprGorod.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprGragdanstvo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprLom.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprMestoRaboty.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprName.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprNaselPunkt.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprOblast.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprObshhieMedProtivopokazanija.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprOrg.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprOrgDopInf.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprOtch.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprPaspKemVydan.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprPolikliniki.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprPrephOrg.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprPrichNejavkiNaMo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprPrichina.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprProfesija.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprProfil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprProizvFaktory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprRaion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprTipOrg.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprTipPolikliniki.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprUlici.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprVidEkDejtOrg.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprVidMo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprVidOtchetov.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprVidOtchetovNast.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprVrachIssl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SprZkRek.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Spravki.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/SpravkiPK.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Status.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Svl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Table1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/VrIsslProfVr.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/Zapisi.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/model/ZapisiPriema.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/services/DataServices.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/beingjavaguys/services/DataServicesImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/log4j.properties" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/beingjavaguys/dao/DataDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/beingjavaguys/dao/DataDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/Klient.java" afterPath="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/Klient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/ProfVrednosti.java" afterPath="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/ProfVrednosti.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/ProfvrednostPrilozh.java" afterPath="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/ProfvrednostPrilozh.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/controllers/app.js" afterPath="$PROJECT_DIR$/src/main/webapp/controllers/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/controllers/contr_spisok.js" afterPath="$PROJECT_DIR$/src/main/webapp/controllers/contr_spisok.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/modKl.html" afterPath="$PROJECT_DIR$/src/main/webapp/modKl.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/SpringRestCrud/controllers/app.js" afterPath="$PROJECT_DIR$/target/SpringRestCrud/controllers/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/SpringRestCrud/controllers/contr_spisok.js" afterPath="$PROJECT_DIR$/target/SpringRestCrud/controllers/contr_spisok.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/SpringRestCrud/modKl.html" afterPath="$PROJECT_DIR$/target/SpringRestCrud/modKl.html" />
     </list>
     <list id="24ffff76-1502-4c83-aa7e-bbf1f1d818c4" name="Failed commit: Default" comment="add title" />
     <list id="f3f3e39b-aa66-4e53-9721-3b186b1cab26" name="Failed commit: Default (2)" comment="add title" />
@@ -66,23 +318,34 @@
         <entry file="file://$PROJECT_DIR$/src/main/webapp/controllers/contr_spisok.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="251" column="22" selection-start-line="251" selection-start-column="22" selection-end-line="251" selection-end-column="22" />
+              <caret line="526" column="0" selection-start-line="526" selection-start-column="0" selection-end-line="526" selection-end-column="0" />
               <folding>
-                <element signature="e#10728#10769#0" expanded="false" />
-                <element signature="e#11040#11076#0" expanded="false" />
-                <element signature="e#11268#11279#0" expanded="false" />
-                <element signature="e#13434#13461#0" expanded="false" />
+                <element signature="e#3407#5655#0" expanded="false" />
+                <element signature="e#6505#7146#0" expanded="false" />
+                <element signature="e#7649#17533#0" expanded="false" />
+                <element signature="e#7718#7760#0" expanded="false" />
+                <element signature="e#8622#8640#0" expanded="false" />
+                <element signature="e#8998#9036#0" expanded="false" />
+                <element signature="e#10738#10779#0" expanded="false" />
+                <element signature="e#11050#11086#0" expanded="false" />
+                <element signature="e#11278#11289#0" expanded="false" />
+                <element signature="e#13444#13471#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/controllers/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.0238473">
-              <caret line="208" column="14" selection-start-line="208" selection-start-column="14" selection-end-line="208" selection-end-column="14" />
-              <folding />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="283" column="3" selection-start-line="283" selection-start-column="3" selection-end-line="283" selection-end-column="3" />
+              <folding>
+                <element signature="e#2004#4069#0" expanded="false" />
+                <element signature="e#4114#5438#0" expanded="false" />
+                <element signature="e#5484#8658#0" expanded="false" />
+                <element signature="e#11530#13625#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -91,8 +354,45 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/dao/DataDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="384" column="0" selection-start-line="384" selection-start-column="0" selection-end-line="384" selection-end-column="0" />
+              <caret line="273" column="85" selection-start-line="273" selection-start-column="85" selection-end-line="273" selection-end-column="85" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.2054054">
+              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MkbDiagnos.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/MkbDiagnos.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+              <folding>
+                <element signature="e#1174#1215#0" expanded="false" />
+                <element signature="e#2117#2132#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="modMOI.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/modMOI.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="118" column="7" selection-start-line="118" selection-start-column="7" selection-end-line="118" selection-end-column="7" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#0;n#div#2;n#form#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -101,22 +401,8 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/controller/RestController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="126" column="9" selection-start-line="126" selection-start-column="9" selection-end-line="126" selection-end-column="9" />
+              <caret line="360" column="0" selection-start-line="360" selection-start-column="0" selection-end-line="360" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="modKl.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/modKl.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.178572">
-              <caret line="111" column="47" selection-start-line="111" selection-start-column="47" selection-end-line="111" selection-end-column="47" />
-              <folding>
-                <element signature="n#ng-form#0;n#uib-tab#2;n#uib-tabset#0;n#div#0;n#div#1;n#div#0;n#div#1;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#ng-form#0;n#uib-tab#3;n#uib-tabset#0;n#div#0;n#div#1;n#div#0;n#div#1;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#ng-form#0;n#uib-tab#4;n#uib-tabset#0;n#div#0;n#div#1;n#div#0;n#div#1;n#form#0;n#!!top" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -127,9 +413,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jsp File" />
-        <option value="Class" />
         <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -157,14 +443,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/SprFam.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/SprName.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/SprOtch.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/SprOrg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/SprPolikliniki.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/SprMestoRaboty.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/SprProfesija.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/SprGragdanstvo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/SprPaspKemVydan.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/SprOblast.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/SprGorod.java" />
@@ -180,34 +458,42 @@
         <option value="$PROJECT_DIR$/src/main/webapp/views/loginModalTemplate.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/controllers/loginModal.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/login.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/index.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/partial-scrum.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/partial-about.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/partial-sprav.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/partial-home.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/controllers/contr_login.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/partial-autor.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/partial-find.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/controllers/contr_find.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/mod.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/controllers/contr_jurnal.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/styles/mycss.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/partial-spisok.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/Pasporta.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/Rabota.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/Poseshenie.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/Oplata.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/ProfvrednostPrilozh.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/Change.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/Klient.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/controllers/contr_login.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/index.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/ProfVrednosti.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/modKl.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/partial-find.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/dao/DataDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/services/DataServices.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/services/DataServicesImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/controller/RestController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/ProfVrednosti.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/ProfvrednostPrilozh.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/Klient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/dao/DataDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/DopInfoMoI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/Diagnoz.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/MoI.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/partial-spisok.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/ShablVrIssRek.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/controllers/app.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/controllers/contr_spisok.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/modKl.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/modMOI.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/MkbDiagnos.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beingjavaguys/dao/DataDaoImpl.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -348,152 +634,6 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SpringRestCrud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mess-master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SpringRestCrud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mess-master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beingjavaguys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SpringRestCrud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mess-master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beingjavaguys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SpringRestCrud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mess-master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beingjavaguys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dao" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SpringRestCrud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mess-master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beingjavaguys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -503,18 +643,18 @@
   </component>
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/NetBeansProjects/EcwidTest" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+    <property name="settings.editor.selected.configurable" value="Ignore Files Support" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="JPA.DatabaseSchemaImportDialog" value="7ca7957e-e7cf-4349-b40a-23c7df4d410f" />
-    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2692665" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="SearchEverywhereHistoryKey" value="pr&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/ProfVrednosti.java&#10;po&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/Poseshenie.java&#10;prof&#9;PSI&#9;JAVA://com.beingjavaguys.model.ProfVrednosti&#10;pro&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/ProfvrednostPrilozh.java&#10;pos&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/Poseshenie.java&#10;opl&#9;PSI&#9;JAVA://com.beingjavaguys.model.Oplata&#10;ju&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/Jurnal.java&#10;ob&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/Obshhee.java&#10;ra&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/Rabota.java&#10;sp&#9;PSI&#9;JAVA://com.beingjavaguys.model.SpisokLpmo&#10;pas&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/Pasporta.java&#10;Jur&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/Jurnal.java&#10;spi&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/SpisokLpmo.java&#10;Spi&#9;PSI&#9;JAVA://com.beingjavaguys.model.SpisokLpmo&#10;SprPolikliniki&#9;PSI&#9;JAVA://com.beingjavaguys.model.SprPolikliniki" />
+    <property name="SearchEverywhereHistoryKey" value="sh&#9;PSI&#9;JAVA://com.beingjavaguys.model.ShablVrIssRek&#10;pro&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/ProfVrednosti.java&#10;spr&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/SprVrachIssl.java&#10;sprvr&#9;PSI&#9;JAVA://com.beingjavaguys.model.SprVrachIssl&#10;pr&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/ProfVrednosti.java&#10;po&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/Poseshenie.java&#10;prof&#9;PSI&#9;JAVA://com.beingjavaguys.model.ProfVrednosti&#10;pos&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/Poseshenie.java&#10;opl&#9;PSI&#9;JAVA://com.beingjavaguys.model.Oplata&#10;ju&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/Jurnal.java&#10;ob&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/Obshhee.java&#10;ra&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/Rabota.java&#10;sp&#9;PSI&#9;JAVA://com.beingjavaguys.model.SpisokLpmo&#10;pas&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/Pasporta.java&#10;Jur&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/Jurnal.java&#10;spi&#9;FILE&#9;file:///Users/yuri/IdeaProjects/mess-master/src/main/java/com/beingjavaguys/model/SpisokLpmo.java&#10;Spi&#9;PSI&#9;JAVA://com.beingjavaguys.model.SpisokLpmo&#10;SprPolikliniki&#9;PSI&#9;JAVA://com.beingjavaguys.model.SprPolikliniki" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
@@ -1056,7 +1196,19 @@
       <workItem from="1458118286289" duration="3908000" />
       <workItem from="1458123157325" duration="12668000" />
       <workItem from="1458200056276" duration="7572000" />
-      <workItem from="1458214498799" duration="7974000" />
+      <workItem from="1458214498799" duration="11037000" />
+      <workItem from="1458286736526" duration="18187000" />
+      <workItem from="1458544851440" duration="5148000" />
+      <workItem from="1458567707716" duration="716000" />
+      <workItem from="1459939247992" duration="9556000" />
+      <workItem from="1460027703347" duration="11490000" />
+      <workItem from="1460111766469" duration="690000" />
+      <workItem from="1460113525085" duration="88000" />
+      <workItem from="1460122930269" duration="1664000" />
+      <workItem from="1460124727227" duration="91000" />
+      <workItem from="1460448146809" duration="2568000" />
+      <workItem from="1460557004422" duration="207000" />
+      <workItem from="1460557248395" duration="455000" />
     </task>
     <task id="LOCAL-00001" summary="start">
       <created>1456732112658</created>
@@ -1166,15 +1318,87 @@
       <option name="project" value="LOCAL" />
       <updated>1458142301997</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="рефакторинг multiselect+load server">
+      <created>1458223484633</created>
+      <option name="number" value="00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1458223484633</updated>
+    </task>
+    <task id="LOCAL-00020" summary="рефакторинг multiselect+load server">
+      <created>1458227152063</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1458227152063</updated>
+    </task>
+    <task id="LOCAL-00021" summary="рефакторинг отправки данных на server">
+      <created>1458314444402</created>
+      <option name="number" value="00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1458314444402</updated>
+    </task>
+    <task id="LOCAL-00022" summary="рефакторинг multiselect+load server">
+      <created>1458314593587</created>
+      <option name="number" value="00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1458314593587</updated>
+    </task>
+    <task id="LOCAL-00023" summary="рефакторинг сохранение записи клиента">
+      <created>1458567840407</created>
+      <option name="number" value="00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1458567840407</updated>
+    </task>
+    <task id="LOCAL-00024" summary="+MOI">
+      <created>1459939711628</created>
+      <option name="number" value="00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1459939711628</updated>
+    </task>
+    <task id="LOCAL-00025" summary="MOI serv">
+      <created>1459953305021</created>
+      <option name="number" value="00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1459953305021</updated>
+    </task>
+    <task id="LOCAL-00026" summary="рефакторинг MOI">
+      <created>1460039940528</created>
+      <option name="number" value="00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1460039940528</updated>
+    </task>
+    <task id="LOCAL-00027" summary="рефакторинг2 multiselect+load server">
+      <created>1460041217138</created>
+      <option name="number" value="00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1460041217138</updated>
+    </task>
+    <task id="LOCAL-00028" summary="рефакторинг multiselect+load server">
+      <created>1460123636284</created>
+      <option name="number" value="00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1460123636284</updated>
+    </task>
+    <task id="LOCAL-00029" summary="рефакторинг multiselect+load server MOI">
+      <created>1460557084826</created>
+      <option name="number" value="00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1460557084826</updated>
+    </task>
+    <task id="LOCAL-00030" summary="рефакторинг multiselect+load server">
+      <created>1460557300845</created>
+      <option name="number" value="00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1460557300845</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="271263000" />
+    <option name="totallyTimeSpent" value="325186000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="988" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1920" height="988" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1185,11 +1409,10 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298731" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21494253" sideWeight="0.48682767" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24482758" sideWeight="0.48935038" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32988507" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32988507" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17729667" sideWeight="0.24693252" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.157082" sideWeight="0.7530675" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16134185" sideWeight="0.7530675" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15751211" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1197,14 +1420,15 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24482758" sideWeight="0.6517572" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Code Iris" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28735632" sideWeight="0.6517572" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22758621" sideWeight="0.48935038" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1235,11 +1459,39 @@
     <MESSAGE value="REST добавления клиента223" />
     <MESSAGE value="add title" />
     <MESSAGE value="multiselect+load server" />
-    <option name="LAST_COMMIT_MESSAGE" value="multiselect+load server" />
+    <MESSAGE value="рефакторинг отправки данных на server" />
+    <MESSAGE value="рефакторинг сохранение записи клиента" />
+    <MESSAGE value="+MOI" />
+    <MESSAGE value="MOI serv" />
+    <MESSAGE value="рефакторинг MOI" />
+    <MESSAGE value="рефакторинг2 multiselect+load server" />
+    <MESSAGE value="рефакторинг multiselect+load server MOI" />
+    <MESSAGE value="рефакторинг multiselect+load server" />
+    <option name="LAST_COMMIT_MESSAGE" value="рефакторинг multiselect+load server" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="59" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/dao/DataDaoImpl.java</url>
+          <line>386</line>
+          <properties />
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/dao/DataDaoImpl.java</url>
+          <line>300</line>
+          <properties />
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/dao/DataDaoImpl.java</url>
+          <line>271</line>
+          <properties />
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="68" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1248,78 +1500,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/SprUlici.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="20" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/Diagnoz.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.6344086">
-          <caret line="92" column="13" selection-start-line="92" selection-start-column="13" selection-end-line="92" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/DgMkb.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.7219662">
-          <caret line="30" column="5" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/controllers/contr.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27078384">
-          <caret line="12" column="6" selection-start-line="0" selection-start-column="0" selection-end-line="94" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/controllers/contr_scrum.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.4147158">
-          <caret line="147" column="64" selection-start-line="47" selection-start-column="16" selection-end-line="147" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/controllers/contr_sprav.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="94" column="6" selection-start-line="94" selection-start-column="6" selection-end-line="94" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29514563">
-          <caret line="8" column="46" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3338983">
-          <caret line="104" column="19" selection-start-line="104" selection-start-column="19" selection-end-line="104" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/partial-scrum.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6785714">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/navigation.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1334,25 +1514,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/partial-sprav.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3571428">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/styles/mycss.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8781726">
           <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/partial-find.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="91" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="91" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1363,18 +1528,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/partial-spisok.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.964285">
-          <caret line="25" column="74" selection-start-line="25" selection-start-column="74" selection-end-line="25" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/SpisokLpmo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.73667204">
           <caret line="229" column="9" selection-start-line="227" selection-start-column="8" selection-end-line="229" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1396,7 +1553,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="3.0694668">
           <caret line="136" column="8" selection-start-line="136" selection-start-column="8" selection-end-line="138" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1449,13 +1605,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.0.5.RELEASE/spring-web-4.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/Oplata.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="3.4071083">
@@ -1467,7 +1616,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.032986112">
           <caret line="12" column="80" selection-start-line="12" selection-start-column="78" selection-end-line="12" selection-end-column="80" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1475,9 +1623,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.031456955">
           <caret line="150" column="17" selection-start-line="149" selection-start-column="12" selection-end-line="151" selection-end-column="52" />
-          <folding>
-            <element signature="e#6724#6766#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1488,27 +1633,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6785714">
-          <caret line="34" column="6" selection-start-line="34" selection-start-column="6" selection-end-line="56" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/partial-autor.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.785714">
           <caret line="10" column="29" selection-start-line="2" selection-start-column="0" selection-end-line="38" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/controllers/contr_login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1523,47 +1651,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35135135">
           <caret line="32" column="19" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/Poseshenie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48330683">
-          <caret line="28" column="16" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/services/DataServices.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78696346">
-          <caret line="51" column="52" selection-start-line="51" selection-start-column="52" selection-end-line="51" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/services/DataServicesImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8171701">
-          <caret line="136" column="49" selection-start-line="136" selection-start-column="49" selection-end-line="136" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/dao/DataDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7519873">
-          <caret line="53" column="52" selection-start-line="53" selection-start-column="52" selection-end-line="53" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/ProfVrednosti.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12400636">
-          <caret line="29" column="26" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1571,7 +1658,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.24165341">
           <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1579,17 +1665,190 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="71" column="7" selection-start-line="71" selection-start-column="7" selection-end-line="73" selection-end-column="7" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/Poseshenie.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13716814">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/Klient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8187599">
-          <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.3568075">
+          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/Change.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1486698">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/controllers/contr_login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5269168">
+          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.0.5.RELEASE/spring-web-4.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35112935">
+          <caret line="130" column="19" selection-start-line="130" selection-start-column="19" selection-end-line="130" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="62" selection-start-line="20" selection-start-column="62" selection-end-line="20" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/SprVrachIssl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7069768">
+          <caret line="43" column="24" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/dao/DataDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="4" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/services/DataServices.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="51" column="24" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/services/DataServicesImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.85736436">
+          <caret line="143" column="5" selection-start-line="143" selection-start-column="5" selection-end-line="143" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/ProfVrednosti.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7069768">
+          <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="49" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/modKl.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6240876">
+          <caret line="91" column="77" selection-start-line="91" selection-start-column="69" selection-end-line="91" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/partial-spisok.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.8110919">
+          <caret line="55" column="106" selection-start-line="55" selection-start-column="106" selection-end-line="55" selection-end-column="122" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/partial-sprav.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/DopInfoMoI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.031404957">
+          <caret line="139" column="7" selection-start-line="139" selection-start-column="7" selection-end-line="145" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/partial-find.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42287695">
+          <caret line="110" column="61" selection-start-line="110" selection-start-column="16" selection-end-line="110" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/MoI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60330576">
+          <caret line="93" column="37" selection-start-line="93" selection-start-column="37" selection-end-line="93" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/SprGorod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="21" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/Diagnoz.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.564133">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/ShablVrIssRek.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.031404957">
+          <caret line="41" column="24" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/controllers/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="283" column="3" selection-start-line="283" selection-start-column="3" selection-end-line="283" selection-end-column="3" />
           <folding>
-            <element signature="e#734#735#0" expanded="true" />
-            <element signature="e#761#762#0" expanded="true" />
+            <element signature="e#2004#4069#0" expanded="false" />
+            <element signature="e#4114#5438#0" expanded="false" />
+            <element signature="e#5484#8658#0" expanded="false" />
+            <element signature="e#11530#13625#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/controllers/contr_spisok.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="526" column="0" selection-start-line="526" selection-start-column="0" selection-end-line="526" selection-end-column="0" />
+          <folding>
+            <element signature="e#3407#5655#0" expanded="false" />
+            <element signature="e#6505#7146#0" expanded="false" />
+            <element signature="e#7649#17533#0" expanded="false" />
+            <element signature="e#7718#7760#0" expanded="false" />
+            <element signature="e#8622#8640#0" expanded="false" />
+            <element signature="e#8998#9036#0" expanded="false" />
+            <element signature="e#10738#10779#0" expanded="false" />
+            <element signature="e#11050#11086#0" expanded="false" />
+            <element signature="e#11278#11289#0" expanded="false" />
+            <element signature="e#13444#13471#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/modMOI.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="118" column="7" selection-start-line="118" selection-start-column="7" selection-end-line="118" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#2;n#form#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1597,48 +1856,34 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/controller/RestController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="126" column="9" selection-start-line="126" selection-start-column="9" selection-end-line="126" selection-end-column="9" />
+          <caret line="360" column="0" selection-start-line="360" selection-start-column="0" selection-end-line="360" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/model/MkbDiagnos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding>
+            <element signature="e#1174#1215#0" expanded="false" />
+            <element signature="e#2117#2132#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/beingjavaguys/dao/DataDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="384" column="0" selection-start-line="384" selection-start-column="0" selection-end-line="384" selection-end-column="0" />
+          <caret line="273" column="85" selection-start-line="273" selection-start-column="85" selection-end-line="273" selection-end-column="85" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/controllers/contr_spisok.js">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="251" column="22" selection-start-line="251" selection-start-column="22" selection-end-line="251" selection-end-column="22" />
-          <folding>
-            <element signature="e#10728#10769#0" expanded="false" />
-            <element signature="e#11040#11076#0" expanded="false" />
-            <element signature="e#11268#11279#0" expanded="false" />
-            <element signature="e#13434#13461#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/modKl.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.178572">
-          <caret line="111" column="47" selection-start-line="111" selection-start-column="47" selection-end-line="111" selection-end-column="47" />
-          <folding>
-            <element signature="n#ng-form#0;n#uib-tab#2;n#uib-tabset#0;n#div#0;n#div#1;n#div#0;n#div#1;n#form#0;n#!!top" expanded="false" />
-            <element signature="n#ng-form#0;n#uib-tab#3;n#uib-tabset#0;n#div#0;n#div#1;n#div#0;n#div#1;n#form#0;n#!!top" expanded="false" />
-            <element signature="n#ng-form#0;n#uib-tab#4;n#uib-tabset#0;n#div#0;n#div#1;n#div#0;n#div#1;n#form#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/controllers/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.0238473">
-          <caret line="208" column="14" selection-start-line="208" selection-start-column="14" selection-end-line="208" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.2054054">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>
