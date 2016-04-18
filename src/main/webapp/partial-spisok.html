@@ -54,7 +54,7 @@
 
             <tbody>
             <tr ng-repeat="item in pagedItems[(currentPage - 1)]| orderBy:sort.sortingOrder:sort.reverse  | filter:findStr "
-                ng-click="open(item)">
+                context-menu="menuOptions" ng-mousedown="open2(item)">
                 <td ng-bind="item.id"></td>
                 <td ng-bind="item.spisokLpmoKl.sprFamId.fam +' '+ item.spisokLpmoKl.sprNameId.name + ' ' + item.spisokLpmoKl.sprOtchId.otch"></td>
                 <td ng-bind="item.spisokLpmoKl.datasRozhd | date:'dd.MM.yyyy'"></td>

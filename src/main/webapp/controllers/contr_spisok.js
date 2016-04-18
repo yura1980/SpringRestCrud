@@ -89,8 +89,25 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, Resta
     //    return value===undefined
     //};
 
+    $scope.menuOptions = [
+        ['MOиИ', function ($itemScope) { $scope.open($scope.selected,'lg', 'modMOI.html', 'ModalInstCtrlMOI');  }],
+        null,
+        ['Карта лица', function ($itemScope) { $scope.open($scope.selected,null, 'modKl.html', 'ModalInstCtrlKL'); }
+            //    , function ($itemScope) { alert('jjjj');}
+        ],
+        null,
+        ['Действия...', [
+            ['Удалить', function ($itemScope) { alert($itemScope.item.cost);  }],
+            ['Добавить', function ($itemScope) { alert($scope.player.gold);   }]
+        ]]
+    ];
+
+    $scope.open2 = function (cl, size) {
+        $scope.selected = cl;
+    }
+
     // открытие диалогового окна для редактирования задачи
-    $scope.open = function (cl, size) {
+    $scope.open = function (cl, size, tmp, contr) {
 
         //если постой объект, создадим новую задачу
         if (cl === null) {
@@ -148,10 +165,10 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, Resta
 
         //создадим новый экземпляр диалогового окна
         var modalInst = $uibModal.open({
-            templateUrl: 'modMOI.html',
-            controller: 'ModalInstCtrlMOI',
+            templateUrl: tmp,//'modMOI.html',
+            controller: contr,//'ModalInstCtrlMOI',
             //templateUrl: 'modKl.html', controller: 'ModalInstCtrlKL'
-            size: 'lg', //size,
+            size: size,
             resolve: {items: cl}
         });                                     //передадим объект cl
 

@@ -13,7 +13,8 @@ var routerApp = angular.module('routerApp', [
     'ui.bootstrap',              //использование виджетов bootstrap
     'ngAnimate',
     'restangular',
-    'ngCookies'
+    'ngCookies',
+    'ui.bootstrap.contextMenu'
 ]);
 
 //сервис фабрика для передачи параметров между контроллерами
