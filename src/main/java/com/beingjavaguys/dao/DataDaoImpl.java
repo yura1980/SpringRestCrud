@@ -153,6 +153,20 @@ public class DataDaoImpl implements DataDao {
 
     @SuppressWarnings("unchecked")
     @Override
+    public List<Diagnoz> getDiagnozList(long id) throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        List<Diagnoz> diagnozList = session.createCriteria(Diagnoz.class)
+                .add(Restrictions.eqOrIsNull("moIId", id))
+                //.addOrder(Order.asc("idpril.id"))
+                .list();
+        tx.commit();
+        session.close();
+        return diagnozList;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
     public List<MoI> getMoIList(long id) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();

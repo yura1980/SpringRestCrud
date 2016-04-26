@@ -336,6 +336,19 @@ public class RestController {
         return spisokLpmoList;
     }
 
+    @RequestMapping(value = "listDiagnoz/{id}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Diagnoz> getDiagnozList(@PathVariable("id") long id) {
+        List<Diagnoz> diagnozList = null;
+        try {
+            diagnozList = dataServices.getDiagnozList(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return diagnozList;
+    }
+
     @RequestMapping(value = "listMoI/{id}", method = RequestMethod.GET)
     public
     @ResponseBody

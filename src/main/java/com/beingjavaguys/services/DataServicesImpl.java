@@ -139,6 +139,11 @@ public class DataServicesImpl implements DataServices {
     }
 
     @Override
+    public List<Diagnoz> getDiagnozList(long id) throws Exception{
+        return dataDao.getDiagnozList(id);
+    }
+
+    @Override
     public List<MoI> getMoIList(long id) throws Exception{
         return dataDao.getMoIList(id);
     }

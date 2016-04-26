@@ -35,19 +35,21 @@ public class Diagnoz implements Serializable {
 //    @JoinColumn(name = "mo_i_id", referencedColumnName = "id")
 //    @ManyToOne(optional = false)
 //    private MoI moIId;
+    @Column(name = "mo_i_id")
+    private long moIId;
 
 
     public Diagnoz() {
     }
 
-    public Diagnoz(Integer id) {
-        this.id = id;
-    }
-
-    public Diagnoz(Integer id, int diagnoz) {
-        this.id = id;
-        this.diagnoz = diagnoz;
-    }
+//    public Diagnoz(Integer id) {
+//        this.id = id;
+//    }
+//
+//    public Diagnoz(Integer id, int diagnoz) {
+//        this.id = id;
+//        this.diagnoz = diagnoz;
+//    }
 
     public Integer getId() {
         return id;
@@ -73,7 +75,15 @@ public class Diagnoz implements Serializable {
         this.vpervye = vpervye;
     }
 
-//    public MoI getMoIId() {
+    public long getMoIId() {
+        return moIId;
+    }
+
+    public void setMoIId(long moIId) {
+        this.moIId = moIId;
+    }
+
+    //    public MoI getMoIId() {
 //        return moIId;
 //    }
 //

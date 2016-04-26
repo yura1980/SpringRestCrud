@@ -50,5 +50,6 @@ public interface DataServices {
     List<SpisokLpmo> getSpisokLpmoList() throws Exception;
 
     List<ProfVrednosti> getProfVrednostiList(long id) throws Exception;
+    List<Diagnoz> getDiagnozList(long id) throws Exception;
     List<MoI> getMoIList(long id) throws Exception;
 }

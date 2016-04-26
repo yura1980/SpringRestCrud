@@ -56,6 +56,10 @@ input.ng-dirty, textarea.ng-dirty {
     margin-left: 10px;
 }
 
+.mr10 {
+    margin-right: 10px;
+}
+
 .bnone {
     border-color: inherit !important;
     -webkit-box-shadow: none !important;
@@ -72,4 +76,8 @@ input.ng-dirty, textarea.ng-dirty {
 }
 .bordr5{
     border: 1px solid #adadad; border-radius: 5px; padding: 5px;
+}
+
+.rightV{
+    float: right;
 }

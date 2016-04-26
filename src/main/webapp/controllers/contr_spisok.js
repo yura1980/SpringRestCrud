@@ -5,7 +5,7 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, Resta
     //массив json объектов задач
     //$scope.urlst = window.location.pathname + "api/mess/";
 
-    //$scope.someThing = theService.thing;                            //праметры из другого контроллера
+    //$scope.someThing = theService.thing;                          //праметры из другого контроллера
     $scope.sort = {sortingOrder: 'id', reverse: false};             //праметры сортировки
 
     $scope.gap = 5;                                                 //шаг страницы для таблицы
@@ -90,15 +90,23 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, Resta
     //};
 
     $scope.menuOptions = [
-        ['MOиИ', function ($itemScope) { $scope.open($scope.selected,'lg', 'modMOI.html', 'ModalInstCtrlMOI');  }],
+        ['MOиИ', function ($itemScope) {
+            $scope.open($scope.selected, 'lg', 'modMOI.html', 'ModalInstCtrlMOI');
+        }],
         null,
-        ['Карта лица', function ($itemScope) { $scope.open($scope.selected,null, 'modKl.html', 'ModalInstCtrlKL'); }
+        ['Карта лица', function ($itemScope) {
+            $scope.open($scope.selected, '', 'modKl.html', 'ModalInstCtrlKL');
+        }
             //    , function ($itemScope) { alert('jjjj');}
         ],
         null,
         ['Действия...', [
-            ['Удалить', function ($itemScope) { alert($itemScope.item.cost);  }],
-            ['Добавить', function ($itemScope) { alert($scope.player.gold);   }]
+            ['Удалить', function ($itemScope) {
+                alert($itemScope.item.cost);
+            }],
+            ['Добавить', function ($itemScope) {
+                alert($scope.player.gold);
+            }]
         ]]
     ];
 
@@ -169,8 +177,8 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, Resta
             controller: contr,//'ModalInstCtrlMOI',
             //templateUrl: 'modKl.html', controller: 'ModalInstCtrlKL'
             size: size,
-            resolve: {items: cl}
-        });                                     //передадим объект cl
+            resolve: {items: cl}            //передадим объект cl
+        });
 
 
         modalInst.result.then(function (selItem) {                      //возвратим результат изменений
@@ -448,7 +456,7 @@ routerApp.controller('ModalInstCtrlMOI', function ($scope, $uibModalInstance, it
             $scope.items = response.plain();                                               //входные параметры
             $scope.selected = {item: $scope.items[0]}; //
             $scope.selected.item.dopinfoid ? ($scope.selected.item.dopinfoid.datas = new Date($scope.selected.item.dopinfoid.datas)) : "";
-            $scope.loadPrv();
+            $scope.loadDiag($scope.selected.item.id);
         });
     };
 
@@ -458,26 +466,24 @@ routerApp.controller('ModalInstCtrlMOI', function ($scope, $uibModalInstance, it
         $scope.selected = {item: $scope.items[ind]};
         $scope.selected.item.dopinfoid ? ($scope.selected.item.dopinfoid.datas = new Date($scope.selected.item.dopinfoid.datas)) : "";
         $scope.selectedRow = ind;
+        $scope.loadDiag($scope.selected.item.id);
     };
     $scope.selectedRow = 0;
 
     $scope.oneAtATime = true;
-    $scope.status = {
-        isFirstOpen: true,
-        isFirstDisabled: false
-    };
+    $scope.status = { isFirstOpen: true, isFirstDisabled: false };
 
     $scope.fltr = {vrissl: 'true'};
     $scope.toggleOpen = function (val) {
         if ($scope.radioModel === "1") {
             $scope.fltr = {vrissl: 'true'};
-            val=true;
+            val = true;
         } else if ($scope.radioModel === "2") {
             $scope.fltr = {vrissl: 'false'};
-            val=false;
-        }else if ($scope.radioModel === "3") {
+            val = false;
+        } else if ($scope.radioModel === "3") {
             $scope.fltr = undefined;
-            val=true;
+            val = true;
         }
 
         $scope.toppanel = val;
@@ -509,22 +515,22 @@ routerApp.controller('ModalInstCtrlMOI', function ($scope, $uibModalInstance, it
         //content: '1. Общая информация:',
         templateUrl: 'myPopoverTemplate.html',
         //title: '1. Общая информация:',
-        op:false,
+        op: false,
         op2: false
     };
 
-    $scope.loadPrv = function () {
-        //Restangular.all('listProfVrednosti/' + items.id).getList().then(function (response) {
-        //    if (response.length === 0) {
-        $scope.multi = [{id: -1, ndiag: "пусто"}];
-        //    } else {
-        //        //var mas = response;
-        //        $scope.multi = [];
-        //        response.forEach(function (item) {
-        //            $scope.multi.push(item.idpril);
-        //        });
-        //    }
-        //});
+    $scope.loadDiag = function (id) {
+        Restangular.all('listDiagnoz/' + id).getList().then(function (response) {
+            if (response.length === 0) {
+                $scope.multi = [{id: -1, ndiag: "пусто"}];
+            } else {
+                var mas = response.plain();
+                $scope.multi = [];
+                mas.forEach(function (item) {
+                    $scope.multi.push(item);
+                });
+            }
+        });
         //$scope.toppanel = false;
     };
     $scope.loadVI();
