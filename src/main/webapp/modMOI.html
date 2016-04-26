@@ -17,20 +17,12 @@
                 <label class="btn btn-default btn-sm" ng-model="radioModel" uib-btn-radio="'3'">Все</label>
                 <label class="btn btn-success btn-sm" ng-model="radioModel" uib-btn-radio="'4'">Шаблоны всем</label>
             </div>
-            <label class="ml10">ФИО: {{fio}}</label>
+            <label class="rightV mr10">ФИО: {{fio}}</label>
         </h5>
     </div>
     <div class="modal-body">
         <div class="row">
-            <!--<div role="form">-->
-            <!--<div class="row">-->
-            <!--<ng-form name="fioForm">-->
-            <!--<div class="form-group">-->
             <div class="form-group col-md-4">
-                <!--<div class="padded-row">-->
-
-                <!--<uib-accordion close-others="oneAtATime">-->
-                <!--<uib-accordion-group heading="Врачи" is-open="status.isFirstOpen" ng-click="toggleOpen(true)">-->
                 <div class="list-group" style="overflow-y: auto; height:340px;">
                     <a class="list-group-item cur"
                        ng-class="{'active':$index === selectedRow, 'list-group-item-warning':item.provedeno}"
@@ -39,35 +31,15 @@
                        popover-title="Дата: {{item.dopinfoid.datas| date:'dd.MM.yyyy'}}"
                        ng-bind="item.vrachissl.nameP"><span class="badge">5</span></a>
                 </div>
-                <!--</uib-accordion-group>-->
-                <!--<uib-accordion-group heading="Исследования" ng-click="toggleOpen(false)">-->
-                <!--<a class="list-group-item cur"-->
-                <!--ng-class="{'active':$index == selectedRow}"-->
-                <!--ng-click="selVI($index)" ng-repeat="item in items| filter:{vrissl:'false'}" ng-bind="item.vrachissl.nameP"></a>-->
-                <!--</uib-accordion-group>-->
-                <!--</uib-accordion>  -->
-
-                <!--</div>-->
             </div>
             <div class="form-group col-md-8">
-                <!--<div class="padded-row">-->
-                <!--<div class="row">-->
-                <!--<div class="col-md-6 mt15">-->
-                <!--<label>1. Общая информация:</label>-->
-                <!--</div>-->
-                <!--<div class="col-md-6">                        -->
-                <!--&lt;!&ndash;<autoc par="shabl" placeh="Шаблон" model="items.ttt"></autoc>&ndash;&gt;-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--<autoc par="fam" placeh="Шаблон общая информация" model="items.ttt"></autoc>-->
-
                 <div class="row">
                     <div class="col-md-4">
                         <dateb placeh="Дата" model="selected.item.dopinfoid.datas"></dateb>
                     </div>
                     <div class="col-md-4">
                         <label>Цена: </label>
-                        <input plecaholder="Цена" ng-model="selected.item.price" class="form-control">
+                        <input type="number" plecaholder="Цена" ng-model="selected.item.price" class="form-control">
                     </div>
                 </div>
                 <textarea uib-popover-template="dynamicPopover.templateUrl" popover-title="1. Общая информация:"
@@ -75,19 +47,10 @@
                           ng-click="dynamicPopover.op2=false" popover-is-open="dynamicPopover.op"
                           ng-model="selected.item.dopinfoid.dopInfObshhaja" rows="3"></textarea>
                 <div class="form-group" ng-if="toppanel">
-                    <!--<div class="row">-->
-                    <!--<div class="col-md-6 mt15">-->
-                    <!--<label>2. Рекомендации врача</label>-->
-                    <!--</div>-->
-                    <!--<div class="col-md-6">                        -->
-                    <!--<autoc par="shabl" placeh="Шаблон" model="items.ttt2"></autoc>-->
-                    <!--</div>-->
-                    <!--</div>                    -->
                     <textarea ng-click="dynamicPopover.op=false" uib-popover-template="dynamicPopover.templateUrl"
                               popover-title="2. Рекомендации врача" popover-placement="top-right"
                               popover-is-open="dynamicPopover.op2" class="form-control mt10 mb10"
                               ng-model="selected.item.dopinfoid.dopInfSpec" rows="3"></textarea>
-                    <!--</div>-->
                     <multis2 par="ndiag" parpp="diag" placeh="3. Диагнозы врача:" setdirty="dirt()"
                              stylecss="item.vpervye?'btn-primary':'btn-success'" multisel="multi"/>
                 </div>
@@ -95,7 +58,6 @@
             </div>
         </div>
 
-        <!--</div>-->
     </div>
     <div class="modal-footer">
         <div class="form-group">
