@@ -26,10 +26,13 @@ public class Diagnoz implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "diagnoz")
-    private int diagnoz;
+    @JoinColumn(name = "diagnoz", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private MkbDiagnos diagnoz;
+//    @Basic(optional = false)
+//    @NotNull
+//    @Column(name = "diagnoz")
+//    private int diagnoz;
     @Column(name = "vpervye")
     private Boolean vpervye;
 //    @JoinColumn(name = "mo_i_id", referencedColumnName = "id")
@@ -59,11 +62,11 @@ public class Diagnoz implements Serializable {
         this.id = id;
     }
 
-    public int getDiagnoz() {
+    public MkbDiagnos getDiagnoz() {
         return diagnoz;
     }
 
-    public void setDiagnoz(int diagnoz) {
+    public void setDiagnoz(MkbDiagnos diagnoz) {
         this.diagnoz = diagnoz;
     }
 

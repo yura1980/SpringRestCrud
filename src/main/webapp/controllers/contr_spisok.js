@@ -471,7 +471,7 @@ routerApp.controller('ModalInstCtrlMOI', function ($scope, $uibModalInstance, it
     $scope.selectedRow = 0;
 
     $scope.oneAtATime = true;
-    $scope.status = { isFirstOpen: true, isFirstDisabled: false };
+    $scope.status = {isFirstOpen: true, isFirstDisabled: false};
 
     $scope.fltr = {vrissl: 'true'};
     $scope.toggleOpen = function (val) {
@@ -527,7 +527,8 @@ routerApp.controller('ModalInstCtrlMOI', function ($scope, $uibModalInstance, it
                 var mas = response.plain();
                 $scope.multi = [];
                 mas.forEach(function (item) {
-                    $scope.multi.push(item);
+                    item.diagnoz['vpervye'] = item.vpervye;
+                    $scope.multi.push(item.diagnoz);//{id: item.diagnoz.id, ndiag: item.diagnoz.ndiag, diag:item.diagnoz.diag, vpervye: item.vpervye });
                 });
             }
         });
@@ -538,14 +539,18 @@ routerApp.controller('ModalInstCtrlMOI', function ($scope, $uibModalInstance, it
 
 
     $scope.save = function () {
+        var moi = {
+            moI: $scope.selected.item,
+            diagnozs: ($scope.multi[0].id<0?null:$scope.multi)
+        };
 
-//       Restangular.all('createPos').post(Klient).then(function (response) {//$scope.items
-//            var ids = response;
-//            $scope.items.id = ids[0];
-//            $scope.items.spisokLpmoKl.kl = ids[1];
-//
-//            $uibModalInstance.close($scope.item);//
-//        });
+        Restangular.all('createMOI').post(moi).then(function (response) {//$scope.items
+            var ids = response;
+            $scope.items.id = ids[0];
+            //$scope.items.spisokLpmoKl.kl = ids;
+
+            $uibModalInstance.close($scope.item);//
+        });
     };
 
 //    $scope.loadVI = function () {

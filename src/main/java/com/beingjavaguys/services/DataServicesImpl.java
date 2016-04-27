@@ -124,6 +124,11 @@ public class DataServicesImpl implements DataServices {
     }
 
     @Override
+    public long addMOI(TO_MOI ms) throws Exception {
+        return dataDao.addMOI(ms);
+    }
+
+    @Override
     public List<SpisokLpmo> getSpisokLpmoList() throws Exception {
         return dataDao.getSpisokLpmoList();
     }

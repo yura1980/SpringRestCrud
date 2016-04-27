@@ -40,6 +40,7 @@ public interface DataServices {
     long addRabota(Rabota ms) throws Exception;
     long addObshhee(Obshhee ms) throws Exception;
     long[] addPoseshenie(Klient ms) throws Exception;
+    long addMOI(TO_MOI ms) throws Exception;
 
     long addJurnal(Jurnal ms) throws Exception;
 

@@ -243,7 +243,6 @@ routerApp.directive('multis2', function () {
             $scope.addPr = function () {
                 if ($scope.multisel.length === 1 && $scope.multisel[0].id === -1) {
                     $scope.multisel = [$scope.model];
-
                 } else {
                     $scope.multisel.push($scope.model);
                 }

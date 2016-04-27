@@ -330,6 +330,21 @@ public class DataDaoImpl implements DataDao {
     }
 
     @Override
+    public long addMOI(TO_MOI ms) throws Exception {
+        session = sessionFactory.openSession();
+        tx = session.beginTransaction();
+        if (ms.getMoI().getDopinfoid().getMoIId()!= null && ms.getMoI().getDopinfoid().getMoIId()  > 0) {
+            session.update(ms.getMoI());
+            //session.update(ms.getMoI().getDopinfoid());
+        } else {
+            session.save(ms.getMoI().getDopinfoid());
+        }
+        tx.commit();
+        session.close();
+        return ms.getMoI().getDopinfoid().getMoIId();
+    }
+
+    @Override
     public long addSpisokLpmo(SpisokLpmo ms) throws Exception {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();

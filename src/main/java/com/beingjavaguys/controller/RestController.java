@@ -126,6 +126,17 @@ public class RestController {
             return new long[]{-1,-1};
         }
     }
+
+    @RequestMapping(value = "/createMOI", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public
+    @ResponseBody
+    long addMOI(@RequestBody TO_MOI ms) {
+        try {
+            return dataServices.addMOI(ms);
+        } catch (Exception e) {
+            return -1;
+        }
+    }
     /////////////////
 
     @RequestMapping(value = "/createJurn", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
