@@ -539,18 +539,17 @@ routerApp.controller('ModalInstCtrlMOI', function ($scope, $uibModalInstance, it
 
 
     $scope.save = function () {
-        var moi = {
-            moI: $scope.selected.item,
-            diagnozs: ($scope.multi[0].id<0?null:$scope.multi)
-        };
-
-        Restangular.all('createMOI').post(moi).then(function (response) {//$scope.items
-            var ids = response;
-            $scope.items.id = ids[0];
-            //$scope.items.spisokLpmoKl.kl = ids;
-
-            $uibModalInstance.close($scope.item);//
-        });
+        var dg = theService.thing.multsDiag, vp = theService.thing.multsDiagvp;
+        Restangular.all('createMOI').post({
+                moI: $scope.selected.item,
+                diagnozs: dg, //($scope.multi[0].id < 0 ? null : theService.thing.multsDiag),
+                diagnozsvp: vp//($scope.multi[0].id < 0 ? null : theService.thing.multsDiagvp)
+            })
+            .then(function (response) {//$scope.items
+                var ids = response;
+                $scope.items.id = ids;//[0];
+                //$uibModalInstance.close($scope.item);//
+            });
     };
 
 //    $scope.loadVI = function () {

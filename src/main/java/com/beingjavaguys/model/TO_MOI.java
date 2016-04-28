@@ -5,7 +5,8 @@ package com.beingjavaguys.model;
  */
 public class TO_MOI {
     private MoI moI;
-    private Diagnoz diagnozs[];
+    private Integer diagnozs[];
+    private Boolean diagnozsvp[];
 
     public TO_MOI() {
     }
@@ -18,11 +19,19 @@ public class TO_MOI {
         this.moI = moI;
     }
 
-    public Diagnoz[] getDiagnozs() {
+    public Integer[] getDiagnozs() {
         return diagnozs;
     }
 
-    public void setDiagnozs(Diagnoz[] diagnozs) {
+    public void setDiagnozs(Integer[] diagnozs) {
         this.diagnozs = diagnozs;
+    }
+
+    public Boolean[] getDiagnozsvp() {
+        return diagnozsvp;
+    }
+
+    public void setDiagnozsvp(Boolean[] diagnozsvp) {
+        this.diagnozsvp = diagnozsvp;
     }
 }

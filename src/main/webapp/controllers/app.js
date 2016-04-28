@@ -24,7 +24,9 @@ routerApp.factory('theService', function () {
             x: 1,                                   //номер вида списка- короткий=1, подробный=2,scrum=3
             visibleNav: false,                      //скрыть панель
             idUser: 1,                              //пользователь
-            multisel: []
+            multisel: [],
+            multsDiag: [],
+            multsDiagvp: []
         }
     };
 });
@@ -251,11 +253,10 @@ routerApp.directive('multis2', function () {
             };
 
             $scope.setServ = function () {
-                var mprv=[];
-                $scope.multisel.forEach(function (item) {
-                    mprv.push(item.id);
-                });
-                theService.thing.multisel=mprv;
+                var m=[], vp=[];
+                $scope.multisel.forEach(function (item) { m.push(item.id); vp.push(false); });
+                theService.thing.multsDiag=m;
+                theService.thing.multsDiagvp=vp;
             };
 
             $scope.detlPr = function (it) {
@@ -267,10 +268,13 @@ routerApp.directive('multis2', function () {
                 $scope.setdirty();
             };
             $scope.change = function (it) {
-                if ($scope.multisel[0].vpervye === undefined) {
+                if ($scope.multisel[0].id <0 ) {
                     return;
                 }
                 var i = $scope.multisel.indexOf(it);
+                if(!$scope.multisel[i].hasOwnProperty("vpervye")){
+                    $scope.multisel[i].vpervye = false;
+                }
                 $scope.multisel[i].vpervye = !$scope.multisel[i].vpervye;// === true ? false : true);
             };
             $scope.getLocation = function (val) {
