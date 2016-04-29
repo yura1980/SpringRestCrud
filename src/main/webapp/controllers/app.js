@@ -24,6 +24,7 @@ routerApp.factory('theService', function () {
             x: 1,                                   //номер вида списка- короткий=1, подробный=2,scrum=3
             visibleNav: false,                      //скрыть панель
             idUser: 1,                              //пользователь
+            shabl: "",
             multisel: [],
             multsDiag: [],
             multsDiagvp: []
@@ -32,34 +33,34 @@ routerApp.factory('theService', function () {
 });
 
 //angular.module('auth')
-routerApp.service('AuthService', function($cookies, $http, Restangular) {
-        'use strict';
+routerApp.service('AuthService', function ($cookies, $http, Restangular) {
+    'use strict';
 
-        var self = this;
-        this.status = { authorized: false };
+    var self = this;
+    this.status = {authorized: false};
 
-        this.loginByCredentials = function(username, password) {
-            return Restangular.all('sessions').post({ email: username, password: password }).then(function(response) {
-                    return self.loginByToken(response);//.contents
-                });
-        };
+    this.loginByCredentials = function (username, password) {
+        return Restangular.all('sessions').post({email: username, password: password}).then(function (response) {
+            return self.loginByToken(response);//.contents
+        });
+    };
 
-        this.loginByToken = function(token) {
-            $http.defaults.headers.common['X-Token'] = token;
+    this.loginByToken = function (token) {
+        $http.defaults.headers.common['X-Token'] = token;
 
-            return Restangular.all('sessions').get(token).then(function(response) {
-                    $cookies.accessToken = token;
-                    self.status.authorized = true;
-                    return response;
-                });
-        };
+        return Restangular.all('sessions').get(token).then(function (response) {
+            $cookies.accessToken = token;
+            self.status.authorized = true;
+            return response;
+        });
+    };
 
-        this.logout = function() {
-            self.status.authorized = false;
-            $cookies.accessToken = '';
-            Restangular.all('sessions').remove();
-        };
-    });
+    this.logout = function () {
+        self.status.authorized = false;
+        $cookies.accessToken = '';
+        Restangular.all('sessions').remove();
+    };
+});
 
 routerApp.constant('CONST', {
     curr_url: window.location.pathname + "api/mess/"
@@ -76,7 +77,7 @@ routerApp.directive('autoc', function () {
         template: //'<label>{{placeh}}<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i></label>' +
         '<input type="text" ng-model="model" placeholder="{{placeh}}" uib-typeahead="item as item[par] for item in getLocation($viewValue)"' +
         'typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control mtb5" uib-tooltip="{{placeh}}" tooltip-placement="left">' +
-        '<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>'+
+        '<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>' +
         '<div ng-show="noResults"><i class="glyphicon glyphicon-remove"></i> Запись отсутсвует.' +
         '<button type="button" class="btn btn-link" ng-click="save()" >Добавить</button>' +
         '</div>',
@@ -109,6 +110,48 @@ routerApp.directive('autoc', function () {
 
 });
 
+routerApp.directive('autoc2', function () {
+    return {
+        restrict: 'E',
+        transclude: true,
+        scope: {
+            par: "@",
+            placeh: "@",
+            model: "=",
+            'select': '&onSelect'
+        },
+        template: //'<label>{{placeh}}<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i></label>' +
+        '<input type="text" ng-model="model" placeholder="{{placeh}}" uib-typeahead="item as item[par] for item in getLocation($viewValue)"' +
+        'typeahead-loading="loadingLocations" typeahead-on-select="select({message: $item})" typeahead-no-results="noResults" class="form-control mtb5" uib-tooltip="{{placeh}}" tooltip-placement="left">' +
+        '<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>' +
+        '<div ng-show="noResults"><i class="glyphicon glyphicon-remove"></i> Запись отсутсвует.' +
+        '<button type="button" class="btn btn-link" ng-click="save()" >Добавить</button>' +
+        '</div>',
+        controller: function ($scope, $http, CONST) {
+            $scope.getLocation = function (val) {
+                return $http.get(CONST.curr_url + 'fam/' + $scope.par + "=" + val, {}).then(function (response) {
+                    return response.data;
+                });
+            };
+
+            $scope.save = function () {
+                $http({
+                    url: CONST.curr_url + 'crspr',
+                    method: "POST",
+                    type: "application/json",
+                    data: $scope.par + "=" + $scope.model
+                }).then(function (response) {  // success
+                    $scope.model = JSON.parse('{"id":"' + response.data + '","' + $scope.par + '":"' + $scope.model + '"}');
+                    $scope.noResults = false;
+                }, function (response) { // optional  // failed
+                    alert("Ошибка записи!" + response);
+                });
+            };
+        }
+    }
+
+});
+
 routerApp.directive('dateb', function () {
     return {
         restrict: 'E',
@@ -125,7 +168,7 @@ routerApp.directive('dateb', function () {
         '<button type="button" class="btn btn-default" ng-click="dateParam.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>' +
         '</span></p>',
         controller: function ($scope) {
-            if($scope.model !== undefined){
+            if ($scope.model !== undefined) {
                 $scope.model = new Date($scope.model);
             }
 
@@ -154,7 +197,7 @@ routerApp.directive('multis', function () {
             parpp: "@",
             placeh: "@",
             multisel: "=",
-            setdirty:"&"
+            setdirty: "&"
         },
         template: '<label>{{placeh}}</label>' +
         '<div class="bordr4">' +
@@ -175,7 +218,7 @@ routerApp.directive('multis', function () {
          '<div class="form-inline text-left pt10">' +
 
          '</div>'*/,
-        controller: function ($scope, Restangular,theService) {
+        controller: function ($scope, Restangular, theService) {
             $scope.addPr = function () {
                 if ($scope.multisel.length === 1 && $scope.multisel[0].id === -1) {
                     $scope.multisel = [$scope.model];
@@ -188,11 +231,11 @@ routerApp.directive('multis', function () {
             };
 
             $scope.setServ = function () {
-                var mprv=[];
+                var mprv = [];
                 $scope.multisel.forEach(function (item) {
                     mprv.push(item.id);
                 });
-                theService.thing.multisel=mprv;
+                theService.thing.multisel = mprv;
             };
 
             $scope.detlPr = function (it) {
@@ -223,41 +266,47 @@ routerApp.directive('multis', function () {
 routerApp.directive('multis2', function () {
     return {
         restrict: 'E',
+        transclude: true,
         scope: {
             stylecss: "@",
             par: "@",
             parpp: "@",
             placeh: "@",
             multisel: "=",
-            setdirty:"&"
+            setdirty: "&",
+            //model: "&",
+            'select': '&onSelect'
         },
         template: '<label>{{placeh}}</label>' +
         '<div class="bordr4">' +
-        '<label class="bordr5" ng-class="{{stylecss}}" ng-click="change(item)" ng-repeat="item in multisel" uib-popover="{{item[parpp]}}" popover-trigger="mouseenter" popover-title="Наименование" >' +
-        '{{item[par]}}<span ng-click="detlPr(item)" class="glyphicon glyphicon-remove-circle ml10 cur"></span>' +
+        '<label class="bordr5" ng-class="{{stylecss}}" ng-click="select({message: {it:item.id, change:true} })" ng-repeat="item in multisel" uib-popover="{{item[parpp]}}" popover-trigger="mouseenter" popover-title="Наименование" >' +
+        '{{item[par]}}<span ng-click="select({message: {it:item.id, del:true} })" class="glyphicon glyphicon-remove-circle ml10 cur"></span>' +
         '</label>' +
-        '<input type="text" ng-model="model" placeholder="Добавить" uib-typeahead="item as (item[par]+\' - \'+item[parpp]) for item in getLocation($viewValue)"' +
-        'typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="bnone ml10" typeahead-on-select="addPr()">' +
+        '<input type="text" ng-model="dg" placeholder="Добавить" uib-typeahead="item as (item[par]+\' - \'+item[parpp]) for item in getLocation($viewValue)"' +
+        'typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="bnone ml10" typeahead-on-select="select({message: $item}); dg = null;">' +
         '<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>' +
         '<span ng-show="noResults"><i class="glyphicon glyphicon-remove"></i>Запись отсутсвует.</span>' +
-        '</div>' ,
-        controller: function ($scope, Restangular,theService) {
-            $scope.addPr = function () {
-                if ($scope.multisel.length === 1 && $scope.multisel[0].id === -1) {
-                    $scope.multisel = [$scope.model];
-                } else {
-                    $scope.multisel.push($scope.model);
-                }
-                $scope.setServ();
-                $scope.model = null;
-            };
-
-            $scope.setServ = function () {
-                var m=[], vp=[];
-                $scope.multisel.forEach(function (item) { m.push(item.id); vp.push(false); });
-                theService.thing.multsDiag=m;
-                theService.thing.multsDiagvp=vp;
-            };
+        '</div>',
+        controller: function ($scope, Restangular) {//, theService
+            //$scope.addPr = function () {
+            //    if ($scope.multisel.length === 1 && $scope.multisel[0].id === -1) {
+            //        $scope.multisel = [$scope.model];
+            //    } else {
+            //        $scope.multisel.push($scope.model);
+            //    }
+            //    $scope.setServ();
+            //    $scope.dg = null;
+            //};
+            //
+            //$scope.setServ = function () {
+            //    var m = [], vp = [];
+            //    $scope.multisel.forEach(function (item) {
+            //        m.push(item.id);
+            //        vp.push(item.vpervye);
+            //    });
+            //    theService.thing.multsDiag = m;
+            //    theService.thing.multsDiagvp = vp;
+            //};
 
             $scope.detlPr = function (it) {
                 $scope.multisel.splice($scope.multisel.indexOf(it), 1);
@@ -268,11 +317,11 @@ routerApp.directive('multis2', function () {
                 $scope.setdirty();
             };
             $scope.change = function (it) {
-                if ($scope.multisel[0].id <0 ) {
+                if ($scope.multisel[0].id < 0) {
                     return;
                 }
                 var i = $scope.multisel.indexOf(it);
-                if(!$scope.multisel[i].hasOwnProperty("vpervye")){
+                if (!$scope.multisel[i].hasOwnProperty("vpervye")) {
                     $scope.multisel[i].vpervye = false;
                 }
                 $scope.multisel[i].vpervye = !$scope.multisel[i].vpervye;// === true ? false : true);

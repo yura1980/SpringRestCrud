@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="myPopoverTemplate.html">
     <!--<div>{{dynamicPopover.content}}</div>-->
     <div class="form-inline">
-        <autoc par="shabl" placeh="Шаблон" model="items.ttt"></autoc>
+        <autoc2 par="shabl" placeh="Шаблон" model="selShabl" on-select="addShabl(message)"></autoc2>
     </div>
 </script>
 
@@ -26,8 +26,8 @@
                 <div class="list-group" style="overflow-y: auto; height:340px;">
                     <a class="list-group-item cur"
                        ng-class="{'active':$index === selectedRow, 'list-group-item-warning':item.provedeno}"
-                       ng-click="selVI($index)" ng-repeat="item in items | filter:fltr"
-                       popover-placement="right" uib-popover="Цена: {{item.price}}" popover-trigger="mouseenter"
+                       ng-click="selVI(item, $index)" ng-repeat="item in items | filter:fltr"
+                       popover-placement="left" uib-popover="Цена: {{item.id}}" popover-trigger="mouseenter"
                        popover-title="Дата: {{item.dopinfoid.datas| date:'dd.MM.yyyy'}}"
                        ng-bind="item.vrachissl.nameP"><span class="badge">5</span></a>
                 </div>
@@ -51,7 +51,7 @@
                               popover-title="2. Рекомендации врача" popover-placement="top-right"
                               popover-is-open="dynamicPopover.op2" class="form-control mt10 mb10"
                               ng-model="selected.item.dopinfoid.dopInfSpec" rows="3"></textarea>
-                    <multis2 par="ndiag" parpp="diag" placeh="3. Диагнозы врача:" setdirty="dirt()"
+                    <multis2 par="ndiag" parpp="diag" placeh="3. Диагнозы врача:" setdirty="dirt()" on-select="addDiag(message)"
                              stylecss="item.vpervye?'btn-primary':'btn-success'" multisel="multi"/>
                 </div>
 
@@ -61,7 +61,7 @@
     </div>
     <div class="modal-footer">
         <div class="form-group">
-            <div class="btn-group" style="float: left">
+            <div class="btn-group" style="float: left" uib-tooltip="Продолжать трудовую деятельность">
                 <label class="btn btn-default" ng-model="selected.item.dopinfoid.prodTrudDejatelnost" uib-btn-radio="1">Да</label>
                 <label class="btn btn-default" ng-model="selected.item.dopinfoid.prodTrudDejatelnost" uib-btn-radio="2">Нет</label>
                 <label class="btn btn-default" ng-model="selected.item.dopinfoid.prodTrudDejatelnost" uib-btn-radio="3">Ограничено</label>

@@ -334,11 +334,13 @@ public class DataDaoImpl implements DataDao {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
         if (ms.getMoI().getDopinfoid().getMoIId()!= null && ms.getMoI().getDopinfoid().getMoIId()  > 0) {
-            session.update(ms.getMoI());
-            //session.update(ms.getMoI().getDopinfoid());
+            session.update(ms.getMoI().getDopinfoid());
         } else {
+            ms.getMoI().getDopinfoid().setMoIId(ms.getMoI().getId());
             session.save(ms.getMoI().getDopinfoid());
+            //session.flush();
         }
+        session.update(ms.getMoI());
         tx.commit();
         session.close();
         return ms.getMoI().getDopinfoid().getMoIId();
