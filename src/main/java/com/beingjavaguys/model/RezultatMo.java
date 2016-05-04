@@ -59,26 +59,26 @@ public class RezultatMo implements Serializable {
     @NotNull
     @Column(name = "viyav_vperv")
     private boolean viyavVperv;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rezultatMoPoseshenieId")
-    private Collection<RezMoVlozh> rezMoVlozhCollection;
-    @JoinColumn(name = "poseshenie_id", referencedColumnName = "id", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private Poseshenie poseshenie;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rezultatMoPoseshenieId")
-    private Collection<RezLom> rezLomCollection;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rezultatMoPoseshenieId")
+//    private Collection<RezMoVlozh> rezMoVlozhCollection;
+//    @JoinColumn(name = "poseshenie_id", referencedColumnName = "id", insertable = false, updatable = false)
+//    @OneToOne(optional = false)
+//    private Poseshenie poseshenie;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rezultatMoPoseshenieId")
+//    private Collection<RezLom> rezLomCollection;
 
     public RezultatMo() {
     }
 
-    public RezultatMo(Integer poseshenieId) {
-        this.poseshenieId = poseshenieId;
-    }
-
-    public RezultatMo(Integer poseshenieId, boolean zdorov, boolean viyavVperv) {
-        this.poseshenieId = poseshenieId;
-        this.zdorov = zdorov;
-        this.viyavVperv = viyavVperv;
-    }
+//    public RezultatMo(Integer poseshenieId) {
+//        this.poseshenieId = poseshenieId;
+//    }
+//
+//    public RezultatMo(Integer poseshenieId, boolean zdorov, boolean viyavVperv) {
+//        this.poseshenieId = poseshenieId;
+//        this.zdorov = zdorov;
+//        this.viyavVperv = viyavVperv;
+//    }
 
     public Integer getPoseshenieId() {
         return poseshenieId;
@@ -136,29 +136,28 @@ public class RezultatMo implements Serializable {
         this.viyavVperv = viyavVperv;
     }
 
-    public Collection<RezMoVlozh> getRezMoVlozhCollection() {
-        return rezMoVlozhCollection;
-    }
-
-    public void setRezMoVlozhCollection(Collection<RezMoVlozh> rezMoVlozhCollection) {
-        this.rezMoVlozhCollection = rezMoVlozhCollection;
-    }
-
-    public Poseshenie getPoseshenie() {
-        return poseshenie;
-    }
-
-    public void setPoseshenie(Poseshenie poseshenie) {
-        this.poseshenie = poseshenie;
-    }
-
-    public Collection<RezLom> getRezLomCollection() {
-        return rezLomCollection;
-    }
-
-    public void setRezLomCollection(Collection<RezLom> rezLomCollection) {
-        this.rezLomCollection = rezLomCollection;
-    }
+//    public Collection<RezMoVlozh> getRezMoVlozhCollection() {
+//        return rezMoVlozhCollection;
+//    }
+//
+//    public void setRezMoVlozhCollection(Collection<RezMoVlozh> rezMoVlozhCollection) {
+//        this.rezMoVlozhCollection = rezMoVlozhCollection;
+//    }
+//    public Poseshenie getPoseshenie() {
+//        return poseshenie;
+//    }
+//
+//    public void setPoseshenie(Poseshenie poseshenie) {
+//        this.poseshenie = poseshenie;
+//    }
+//
+//    public Collection<RezLom> getRezLomCollection() {
+//        return rezLomCollection;
+//    }
+//
+//    public void setRezLomCollection(Collection<RezLom> rezLomCollection) {
+//        this.rezLomCollection = rezLomCollection;
+//    }
 
     @Override
     public int hashCode() {
@@ -182,7 +181,7 @@ public class RezultatMo implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.genentyity2.RezultatMo[ poseshenieId=" + poseshenieId + " ]";
+        return "RezultatMo[ poseshenieId=" + poseshenieId + " ]";
     }
     
 }

@@ -56,8 +56,8 @@ public class Poseshenie implements Serializable {
     @JoinColumn(name = "oplata_id", referencedColumnName = "id")
     @ManyToOne
     private Oplata oplata;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "poseshenie")
-    private RezultatMo rezultatMo;
+//    @OneToOne(cascade = CascadeType.ALL, mappedBy = "poseshenie")
+//    private RezultatMo rezultatMo;
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "poseshenie")
 //    private Collection<IstorijaTrodovoj> istorijaTrodovojCollection;
 //    @JoinColumn(name = "jurnal_rn", referencedColumnName = "rn")
@@ -196,13 +196,13 @@ public class Poseshenie implements Serializable {
         this.oplata = oplata;
     }
 
-    public RezultatMo getRezultatMo() {
-        return rezultatMo;
-    }
-
-    public void setRezultatMo(RezultatMo rezultatMo) {
-        this.rezultatMo = rezultatMo;
-    }
+//    public RezultatMo getRezultatMo() {
+//        return rezultatMo;
+//    }
+//
+//    public void setRezultatMo(RezultatMo rezultatMo) {
+//        this.rezultatMo = rezultatMo;
+//    }
 
 //    public Collection<IstorijaTrodovoj> getIstorijaTrodovojCollection() {
 //        return istorijaTrodovojCollection;

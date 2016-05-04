@@ -189,6 +189,8 @@ public class RestController {
                 return dataServices.addEntitySpr(new SprNaselPunkt(par[1]));
             } else if (par[0].equals("ulici")) {
                 return dataServices.addEntitySpr(new SprUlici(par[1]));
+            } else if (par[0].equals("txtRes")) {
+                return dataServices.addEntitySpr(new SprZkRek(par[1]));
             } else {
                 return -1;
             }

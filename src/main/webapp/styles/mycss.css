@@ -39,6 +39,10 @@ input.ng-dirty, textarea.ng-dirty {
     margin-bottom: 10px;
 }
 
+.mb5 {
+    margin-bottom: 5px;
+}
+
 .mt25 {
     margin-top: 25px;
 }

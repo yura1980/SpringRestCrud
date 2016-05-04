@@ -46,21 +46,23 @@ public class SprZkRek  extends Spr  {
     @NotNull
     @Column(name = "zakl")
     private boolean zakl;
-    @OneToMany(mappedBy = "rezultatMo")
-    private Collection<RezMoVlozh> rezMoVlozhCollection;
+//    @OneToMany(mappedBy = "rezultatMo")
+//    private Collection<RezMoVlozh> rezMoVlozhCollection;
 
     public SprZkRek() {
+    }
+
+    public SprZkRek(String txtRes) {
+        //this.id = id;
+        this.txtRes = txtRes;
+        this.zakl = false;
     }
 
     /*public SprZkRek(Integer id) {
         this.id = id;
     }
 
-    public SprZkRek(Integer id, String txtRes, boolean zakl) {
-        this.id = id;
-        this.txtRes = txtRes;
-        this.zakl = zakl;
-    }
+
 
     public Integer getId() {
         return id;
@@ -86,13 +88,13 @@ public class SprZkRek  extends Spr  {
         this.zakl = zakl;
     }
 
-    public Collection<RezMoVlozh> getRezMoVlozhCollection() {
-        return rezMoVlozhCollection;
-    }
-
-    public void setRezMoVlozhCollection(Collection<RezMoVlozh> rezMoVlozhCollection) {
-        this.rezMoVlozhCollection = rezMoVlozhCollection;
-    }
+//    public Collection<RezMoVlozh> getRezMoVlozhCollection() {
+//        return rezMoVlozhCollection;
+//    }
+//
+//    public void setRezMoVlozhCollection(Collection<RezMoVlozh> rezMoVlozhCollection) {
+//        this.rezMoVlozhCollection = rezMoVlozhCollection;
+//    }
 
     /*@Override
     public int hashCode() {

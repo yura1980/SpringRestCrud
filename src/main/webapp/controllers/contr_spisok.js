@@ -90,23 +90,13 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, Resta
     //};
 
     $scope.menuOptions = [
-        ['MOиИ', function ($itemScope) {
-            $scope.open($scope.selected, 'lg', 'modMOI.html', 'ModalInstCtrlMOI');
-        }],
-        null,
-        ['Карта лица', function ($itemScope) {
-            $scope.open($scope.selected, '', 'modKl.html', 'ModalInstCtrlKL');
-        }
-            //    , function ($itemScope) { alert('jjjj');}
-        ],
+        ['Карта лица', function ($itemScope) { $scope.open($scope.selected, '', 'modKl.html', 'ModalInstCtrlKL'); }],
+        ['Осмотры и исследования', function ($itemScope) { $scope.open($scope.selected, 'lg', 'modMOI.html', 'ModalInstCtrlMOI'); }],
+        ['Результат МО', function ($itemScope) { $scope.open($scope.selected, 'lg', 'rezMO.html', 'ModalInstCtrlRMO');}],
         null,
         ['Действия...', [
-            ['Удалить', function ($itemScope) {
-                alert($itemScope.item.cost);
-            }],
-            ['Добавить', function ($itemScope) {
-                alert($scope.player.gold);
-            }]
+            ['Удалить', function ($itemScope) { alert($itemScope.item.cost); }],
+            ['Добавить', function ($itemScope) { alert($scope.player.gold);  }]
         ]]
     ];
 
@@ -677,6 +667,163 @@ routerApp.controller('ModalInstCtrlMOI', function ($scope, $uibModalInstance, it
 ////        });
 //    };
 
+
+    }
+);
+
+//
+routerApp.controller('ModalInstCtrlRMO', function ($scope, $uibModalInstance, items, Restangular) {
+
+        $scope.addRez=null;
+        $scope.addVrach = null;
+        $scope.addRMOVr = function () {
+            $scope.items.push({"id":$scope.items.length+1,"nameP":"Новое"});
+            $scope.addRez=null;
+            $scope.addVrach = null;
+        };
+
+        $scope.loadVI = function () {
+            Restangular.all('listMoI/' + items.id).getList().then(function (response) {
+                $scope.items = response.plain();                                               //входные параметры
+                $scope.selected = {item: $scope.items[0]}; //
+                $scope.selected.item.dopinfoid ? ($scope.selected.item.dopinfoid.datas = new Date($scope.selected.item.dopinfoid.datas)) : "";
+                $scope.loadDiag($scope.selected.item.id);
+            });
+        };
+
+        $scope.radioModel = '1';
+
+        $scope.selVI = function (it, ind) {
+            $scope.selected = {item: it};//$scope.items[ind]};
+            $scope.selected.item.dopinfoid ? ($scope.selected.item.dopinfoid.datas = new Date(it.dopinfoid.datas)) : "";
+            $scope.selectedRow = ind;
+            $scope.loadDiag(it.id);
+        };
+        $scope.selectedRow = 0;
+
+        $scope.oneAtATime = true;
+        $scope.status = {isFirstOpen: true, isFirstDisabled: false};
+
+        $scope.fltr = {vrissl: 'true'};
+        $scope.toggleOpen = function (val) {
+            if ($scope.radioModel === "1") {
+                $scope.fltr = {vrissl: 'true'};
+                val = true;
+            } else if ($scope.radioModel === "2") {
+                $scope.fltr = {vrissl: 'false'};
+                val = false;
+            } else if ($scope.radioModel === "3") {
+                $scope.fltr = undefined;
+                val = true;
+            }
+
+            $scope.toppanel = val;
+        };
+        $scope.fio = items.spisokLpmoKl.sprFamId.fam + " " +
+            (items.spisokLpmoKl.sprNameId ? (items.spisokLpmoKl.sprNameId.name + " ") : '') +
+            (items.spisokLpmoKl.sprOtchId ? items.spisokLpmoKl.sprOtchId['otch'] : '');
+        //$scope.items = items;                                               //входные параметры
+        //$scope.selected = {item: $scope.items}; //[0]                     //изменения
+        $scope.toppanel = true;
+
+        $scope.showHideFIO = function (val) {
+            $scope.toppanel = val;
+        };
+
+        $scope.dirt = function () {
+            //$scope.formKl.prfrForm.$setDirty();
+        };
+
+        $scope.evnt = function (val) {                                      //собылие закрытия и возврата результатов
+            if (val === 'ok') {
+                $uibModalInstance.close($scope.selected.item);
+            } else {
+                $uibModalInstance.dismiss('cancel');
+            }
+        };
+
+        $scope.dynamicPopover = {
+            //content: '1. Общая информация:',
+            templateUrl: 'myPopoverTemplate.html',
+            //title: '1. Общая информация:',
+            op: false,
+            op2: false
+        };
+
+        $scope.loadDiag = function (id) {
+            Restangular.all('listDiagnoz/' + id).getList().then(function (response) {
+                if (response.length === 0) {
+                    $scope.multi = [{id: -1, ndiag: "пусто"}];
+                } else {
+                    var mas = response.plain();
+                    $scope.multi = [];
+                    mas.forEach(function (item) {
+                        item.diagnoz['vpervye'] = item.vpervye;
+                        $scope.multi.push(item.diagnoz);//{id: item.diagnoz.id, ndiag: item.diagnoz.ndiag, diag:item.diagnoz.diag, vpervye: item.vpervye });
+                    });
+                }
+            });
+            //$scope.toppanel = false;
+        };
+        $scope.addDiag = function (it) {
+            if (it.hasOwnProperty("it")) {
+                for (var i = $scope.multi.length - 1; i >= 0; i--) {
+                    if ($scope.multi[i].id === it.it) {
+                        if (it.hasOwnProperty("change")) {
+                            $scope.multi[i].vpervye = !$scope.multi[i].vpervye;
+                            break;
+                        } else {
+                            $scope.multi.splice(i, 1);//$scope.multisel.indexOf(it)
+                            if ($scope.multi.length === 0) {
+                                $scope.multi = [{id: -1, ndiag: "пусто"}];
+                            }
+                        }
+                    }
+                }
+                $scope.dirt();
+                return;
+            } else if ($scope.multi.length === 1 && $scope.multi[0].id === -1) {
+                $scope.multi = [it];
+            } else {
+                $scope.multi.push(it);
+            }
+            $scope.dirt();
+            $scope.dg = null;
+        };
+
+        $scope.loadVI();
+        //$scope.loadPrv();
+
+        $scope.save = function () {
+            Restangular.all('createMOI').post({
+                moI: $scope.selected.item,
+                diagnozs: theService.thing.multsDiag, //($scope.multi[0].id < 0 ? null : theService.thing.multsDiag),
+                diagnozsvp: theService.thing.multsDiagvp//($scope.multi[0].id < 0 ? null : theService.thing.multsDiagvp)
+            }).then(function (response) {//$scope.items
+                var ids = response;
+            });
+        };
+
+        $scope.message = '';
+        $scope.addShabl = function (it) {
+            if ($scope.selected.item.dopinfoid === null) {
+                $scope.selected.item.dopinfoid = {
+                    datas: new Date(),
+                    dopInfObshhaja: "",
+                    dopInfSpec: "",
+                    idUser: null,
+                    kol: 1,
+                    moIId: -1,
+                    oplataObsl: false,
+                    prodTrudDejatelnost: 1
+                }
+            }
+            if ($scope.dynamicPopover.op) {
+                $scope.selected.item.dopinfoid.dopInfObshhaja += it.shabl;
+            } else {
+                $scope.selected.item.dopinfoid.dopInfSpec += it.shabl;
+            }
+        };
 
     }
 );
