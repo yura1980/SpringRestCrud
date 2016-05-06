@@ -33,6 +33,8 @@ public interface DataDao {
 
     Obshhee getObshheeById(long id) throws Exception;
 
+    RezultatMo getRezultatMoById(long id) throws Exception;
+
     long addEntitySpr(Spr ms) throws Exception;
 
     long addSpisokLpmo(SpisokLpmo ms) throws Exception;

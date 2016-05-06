@@ -40,7 +40,7 @@ public class RezultatMo implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "poseshenie_id")
-    private Integer poseshenieId;
+    private Long poseshenieId;
     @Size(max = 700)
     @Column(name = "zakljuchenie")
     private String zakljuchenie;
@@ -80,11 +80,11 @@ public class RezultatMo implements Serializable {
 //        this.viyavVperv = viyavVperv;
 //    }
 
-    public Integer getPoseshenieId() {
+    public Long getPoseshenieId() {
         return poseshenieId;
     }
 
-    public void setPoseshenieId(Integer poseshenieId) {
+    public void setPoseshenieId(Long poseshenieId) {
         this.poseshenieId = poseshenieId;
     }
 

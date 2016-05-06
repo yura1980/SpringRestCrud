@@ -610,4 +610,19 @@ public class DataDaoImpl implements DataDao {
         tx.commit();
         return adres;
     }
+
+    @Override
+    public RezultatMo getRezultatMoById(long id) throws Exception {
+        session = sessionFactory.openSession();
+        RezultatMo rezultatMo = (RezultatMo) session.get(RezultatMo.class, id);
+        List<RezMoVlozh> rezMoVlozh = session.createCriteria(RezMoVlozh.class)
+                .add(Restrictions.eqOrIsNull("rezultatMoPoseshenieId", id)).list();
+        RezMO rezMO = new RezMO(rezultatMo, rezMoVlozh);
+
+        tx = session.getTransaction();
+        session.beginTransaction();
+
+        tx.commit();
+        return rezultatMo;
+    }
 }

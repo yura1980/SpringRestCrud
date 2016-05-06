@@ -40,16 +40,18 @@ public class RezMoVlozh implements Serializable {
     private Long id;
     @Column(name = "vrach")
     private Integer vrach;
-    @JoinColumn(name = "rezultat_mo_poseshenie_id", referencedColumnName = "poseshenie_id")
-    @ManyToOne(optional = false)
-    private RezultatMo rezultatMoPoseshenieId;
+//    @JoinColumn(name = "rezultat_mo_poseshenie_id", referencedColumnName = "poseshenie_id")
+//    @ManyToOne(optional = false)
+    @Column(name = "rezultat_mo_poseshenie_id")
+    private Long rezultatMoPoseshenieId;
+    //private RezultatMo rezultatMoPoseshenieId;
     @JoinColumn(name = "rezultat_mo", referencedColumnName = "id")
     @ManyToOne
     private SprZkRek rezultatMo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rezMoVlozhId")
-    private Collection<RezMoDiagn> rezMoDiagnCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rezMoVlozhId")
-    private Collection<RezMoPrim> rezMoPrimCollection;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rezMoVlozhId")
+//    private Collection<RezMoDiagn> rezMoDiagnCollection;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rezMoVlozhId")
+//    private Collection<RezMoPrim> rezMoPrimCollection;
 
     public RezMoVlozh() {
     }
@@ -74,11 +76,11 @@ public class RezMoVlozh implements Serializable {
         this.vrach = vrach;
     }
 
-    public RezultatMo getRezultatMoPoseshenieId() {
+    public Long getRezultatMoPoseshenieId() {
         return rezultatMoPoseshenieId;
     }
 
-    public void setRezultatMoPoseshenieId(RezultatMo rezultatMoPoseshenieId) {
+    public void setRezultatMoPoseshenieId(Long rezultatMoPoseshenieId) {
         this.rezultatMoPoseshenieId = rezultatMoPoseshenieId;
     }
 
@@ -90,21 +92,21 @@ public class RezMoVlozh implements Serializable {
         this.rezultatMo = rezultatMo;
     }
 
-    public Collection<RezMoDiagn> getRezMoDiagnCollection() {
-        return rezMoDiagnCollection;
-    }
-
-    public void setRezMoDiagnCollection(Collection<RezMoDiagn> rezMoDiagnCollection) {
-        this.rezMoDiagnCollection = rezMoDiagnCollection;
-    }
-
-    public Collection<RezMoPrim> getRezMoPrimCollection() {
-        return rezMoPrimCollection;
-    }
-
-    public void setRezMoPrimCollection(Collection<RezMoPrim> rezMoPrimCollection) {
-        this.rezMoPrimCollection = rezMoPrimCollection;
-    }
+//    public Collection<RezMoDiagn> getRezMoDiagnCollection() {
+//        return rezMoDiagnCollection;
+//    }
+//
+//    public void setRezMoDiagnCollection(Collection<RezMoDiagn> rezMoDiagnCollection) {
+//        this.rezMoDiagnCollection = rezMoDiagnCollection;
+//    }
+//
+//    public Collection<RezMoPrim> getRezMoPrimCollection() {
+//        return rezMoPrimCollection;
+//    }
+//
+//    public void setRezMoPrimCollection(Collection<RezMoPrim> rezMoPrimCollection) {
+//        this.rezMoPrimCollection = rezMoPrimCollection;
+//    }
 
     @Override
     public int hashCode() {
@@ -128,7 +130,7 @@ public class RezMoVlozh implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.genentyity2.RezMoVlozh[ id=" + id + " ]";
+        return "RezMoVlozh[ id=" + id + " ]";
     }
     
 }

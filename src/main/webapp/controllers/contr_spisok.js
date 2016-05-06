@@ -90,13 +90,23 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, Resta
     //};
 
     $scope.menuOptions = [
-        ['Карта лица', function ($itemScope) { $scope.open($scope.selected, '', 'modKl.html', 'ModalInstCtrlKL'); }],
-        ['Осмотры и исследования', function ($itemScope) { $scope.open($scope.selected, 'lg', 'modMOI.html', 'ModalInstCtrlMOI'); }],
-        ['Результат МО', function ($itemScope) { $scope.open($scope.selected, 'lg', 'rezMO.html', 'ModalInstCtrlRMO');}],
+        ['Карта лица', function ($itemScope) {
+            $scope.open($scope.selected, '', 'modKl.html', 'ModalInstCtrlKL');
+        }],
+        ['Осмотры и исследования', function ($itemScope) {
+            $scope.open($scope.selected, 'lg', 'modMOI.html', 'ModalInstCtrlMOI');
+        }],
+        ['Результат МО', function ($itemScope) {
+            $scope.open($scope.selected, 'lg', 'rezMO.html', 'ModalInstCtrlRMO');
+        }],
         null,
         ['Действия...', [
-            ['Удалить', function ($itemScope) { alert($itemScope.item.cost); }],
-            ['Добавить', function ($itemScope) { alert($scope.player.gold);  }]
+            ['Удалить', function ($itemScope) {
+                alert($itemScope.item.cost);
+            }],
+            ['Добавить', function ($itemScope) {
+                alert($scope.player.gold);
+            }]
         ]]
     ];
 
@@ -674,21 +684,25 @@ routerApp.controller('ModalInstCtrlMOI', function ($scope, $uibModalInstance, it
 //
 routerApp.controller('ModalInstCtrlRMO', function ($scope, $uibModalInstance, items, Restangular) {
 
-        $scope.addRez=null;
+        $scope.addRez = null;
         $scope.addVrach = null;
         $scope.addRMOVr = function () {
-            $scope.items.push({"id":$scope.items.length+1,"nameP":"Новое"});
-            $scope.addRez=null;
+            $scope.items.push({"id": $scope.items.length + 1, "nameP": "Новое"});
+            $scope.addRez = null;
             $scope.addVrach = null;
         };
 
-        $scope.loadVI = function () {
-            Restangular.all('listMoI/' + items.id).getList().then(function (response) {
-                $scope.items = response.plain();                                               //входные параметры
-                $scope.selected = {item: $scope.items[0]}; //
-                $scope.selected.item.dopinfoid ? ($scope.selected.item.dopinfoid.datas = new Date($scope.selected.item.dopinfoid.datas)) : "";
-                $scope.loadDiag($scope.selected.item.id);
+        $scope.loadRez = function () {
+            Restangular.one('rezultatMo', items.id).get().then(function (response) {
+                $scope.items = response.plain();
+                $scope.items.dataZak ? ($scope.items.dataZak = new Date($scope.items.dataZak)) : "";
             });
+            //Restangular.one('rezultatMo/' + items.id).getList().then(function (response) {
+            //    $scope.items = response;//.plain();                                               //входные параметры
+            //    $scope.selected = {item: $scope.items[0]}; //
+            //    $scope.selected.item.dopinfoid ? ($scope.selected.item.dopinfoid.datas = new Date($scope.selected.item.dopinfoid.datas)) : "";
+            //    //$scope.loadDiag($scope.selected.item.id);
+            //});
         };
 
         $scope.radioModel = '1';
@@ -697,7 +711,7 @@ routerApp.controller('ModalInstCtrlRMO', function ($scope, $uibModalInstance, it
             $scope.selected = {item: it};//$scope.items[ind]};
             $scope.selected.item.dopinfoid ? ($scope.selected.item.dopinfoid.datas = new Date(it.dopinfoid.datas)) : "";
             $scope.selectedRow = ind;
-            $scope.loadDiag(it.id);
+            //$scope.loadDiag(it.id);
         };
         $scope.selectedRow = 0;
 
@@ -750,49 +764,8 @@ routerApp.controller('ModalInstCtrlRMO', function ($scope, $uibModalInstance, it
             op2: false
         };
 
-        $scope.loadDiag = function (id) {
-            Restangular.all('listDiagnoz/' + id).getList().then(function (response) {
-                if (response.length === 0) {
-                    $scope.multi = [{id: -1, ndiag: "пусто"}];
-                } else {
-                    var mas = response.plain();
-                    $scope.multi = [];
-                    mas.forEach(function (item) {
-                        item.diagnoz['vpervye'] = item.vpervye;
-                        $scope.multi.push(item.diagnoz);//{id: item.diagnoz.id, ndiag: item.diagnoz.ndiag, diag:item.diagnoz.diag, vpervye: item.vpervye });
-                    });
-                }
-            });
-            //$scope.toppanel = false;
-        };
-        $scope.addDiag = function (it) {
-            if (it.hasOwnProperty("it")) {
-                for (var i = $scope.multi.length - 1; i >= 0; i--) {
-                    if ($scope.multi[i].id === it.it) {
-                        if (it.hasOwnProperty("change")) {
-                            $scope.multi[i].vpervye = !$scope.multi[i].vpervye;
-                            break;
-                        } else {
-                            $scope.multi.splice(i, 1);//$scope.multisel.indexOf(it)
-                            if ($scope.multi.length === 0) {
-                                $scope.multi = [{id: -1, ndiag: "пусто"}];
-                            }
-                        }
-                    }
-                }
-                $scope.dirt();
-                return;
-            } else if ($scope.multi.length === 1 && $scope.multi[0].id === -1) {
-                $scope.multi = [it];
-            } else {
-                $scope.multi.push(it);
-            }
-            $scope.dirt();
-            $scope.dg = null;
-        };
 
-        $scope.loadVI();
-        //$scope.loadPrv();
+        $scope.loadRez();
 
         $scope.save = function () {
             Restangular.all('createMOI').post({

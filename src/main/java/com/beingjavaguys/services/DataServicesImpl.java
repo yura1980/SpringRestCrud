@@ -152,4 +152,10 @@ public class DataServicesImpl implements DataServices {
     public List<MoI> getMoIList(long id) throws Exception{
         return dataDao.getMoIList(id);
     }
+
+    @Override
+    public RezultatMo getRezultatMoById(long id) throws Exception {
+        return dataDao.getRezultatMoById(id);
+    }
+
 }
