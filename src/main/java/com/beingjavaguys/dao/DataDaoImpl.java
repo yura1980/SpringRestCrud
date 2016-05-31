@@ -423,13 +423,12 @@ public class DataDaoImpl implements DataDao {
             session.update(ms.getPoseshenie().getSpisokLpmoKl());
         } else {
             if (!ms.getChange().isPasp()) {
-                session.save(ms.getPoseshenie().getSpisokLpmoKl());
-                session.flush();
+                session.save(ms.getPoseshenie().getSpisokLpmoKl());     //session.flush();
             } else {
                 Pasporta pasporta = ms.getPoseshenie().getSpisokLpmoKl().getPasportaId();
                 ms.getPoseshenie().getSpisokLpmoKl().setPasportaId(null);
                 session.save(ms.getPoseshenie().getSpisokLpmoKl());
-                session.flush();
+                kl = ms.getPoseshenie().getSpisokLpmoKl().getKl();      //session.flush();
 
                 pasporta.setId(kl);
                 session.save(pasporta);
@@ -442,23 +441,25 @@ public class DataDaoImpl implements DataDao {
 
         Oplata oplata = ms.getPoseshenie().getOplata();
         Rabota rabota = ms.getPoseshenie().getRabotaId();
+
         if (ms.getPoseshenie().getId() < 0) {
             ms.getPoseshenie().setOplata(null);
             ms.getPoseshenie().setRabotaId(null);
-            session.save(ms.getPoseshenie());
-            session.flush();
+            session.save(ms.getPoseshenie());        //session.flush();
         }
 
-        if (ms.getChange().isRabota()) {
+        ///////////////////////////////// Работа ////////////////////////////////
+        if (ms.getChange().isRabota() || rabota.getId() < 0) {
             if (rabota.getId() > 0) {
                 session.update(rabota);
             } else {
-                rabota.setId(kl);
+                rabota.setId(ms.getPoseshenie().getId());
                 session.save(rabota);
             }
             ms.getPoseshenie().setRabotaId(rabota);
         }
 
+        //////////////////////////////// Адрес ////////////////////////////////
         if (ms.getChange().isAdres()) {
             if (ms.getAdres().getId() > 0) {
                 session.update(ms.getAdres());
@@ -468,6 +469,7 @@ public class DataDaoImpl implements DataDao {
             }
         }
 
+        //////////////////////////////// Общее ////////////////////////////////
         if (ms.getChange().isObshee()) {
             if (ms.getObshhee().getId() > 0) {
                 session.update(ms.getObshhee());
@@ -477,6 +479,7 @@ public class DataDaoImpl implements DataDao {
             }
         }
 
+        //////////////////////////////// Оплата ////////////////////////////////
         if (ms.getChange().isOplata()) {
             if (oplata.getId() > 0) {
                 session.update(oplata);
@@ -487,6 +490,7 @@ public class DataDaoImpl implements DataDao {
             ms.getPoseshenie().setOplata(oplata);
         }
 
+        ////////////////////////////////  ////////////////////////////////
         if (ms.getChange().isProfvr()) {
             session.delete(new ProfVrednosti(ms.getPoseshenie().getId()));
 
@@ -499,6 +503,7 @@ public class DataDaoImpl implements DataDao {
             }
         }
 
+        ////////////////////////////////  ////////////////////////////////
         if (ms.getChange().isOplata() || ms.getChange().isFio() || ms.getChange().isPasp() || ms.getChange().isRabota()) {
             session.update(ms.getPoseshenie());
 //            session.flush();

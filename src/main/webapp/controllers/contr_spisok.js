@@ -117,7 +117,7 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, Resta
     // открытие диалогового окна для редактирования задачи
     $scope.open = function (cl, size, tmp, contr) {
 
-        //если постой объект, создадим новую задачу
+        //если постой объект, создадим новую запись
         if (cl === null) {
             var cl = {
                 id: -1,
@@ -127,7 +127,7 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, Resta
                 dogovora: null,
                 potok: null,
                 oplata: null, //{id: -1, oplata: true, cena: 0, skidka: 0, dispans: false, dataDispans: null},
-                rezultatMo: null,
+                //rezultatMo: null,
                 jurnalRn: 1, //{
                 //    "rn": 1,
                 //    "datasReg": "",
@@ -154,30 +154,32 @@ routerApp.controller('CtrlSp', function ($scope, $log, $filter, $uibModal, Resta
                      }*/
                 },
                 sprPrichNejavkiNaMoId: null,
-                prichinaId: {"id": 1, "prich": "МО"},
-                sprVidMoId: {"id": 1, "vidMo": "Предв", "sokr": "Предв"},
-                rabotaId: null/*{
-                 id: -1,
-                 stazhObshh: null,//"1970-01-01T00:00:00.000Z",
-                 stazhTekushh: null,//"1970-01-01T00:00:00.000Z",
-                 sprMestoRabotyId: null,//{"id": 1, "nazvPodrazdelenija": "Основное"},
-                 sprOrgId: null,//{"id": 1, "nameOrg": "физ.лица", "sprOrgDopInf": null, "cenyMoOrg": null},
-                 sprProfesijaId: null//{"id": 1, "professija": "программист"}
-                 }*/
+                prichinaId: { id: 1, prich: "МО" },
+                sprVidMoId: { id: 1, vidMo: "Предв", sokr: "Предв" },
+                rabotaId: {
+                    id: -1,
+                    stazhObshh: null,       //"1970-01-01T00:00:00.000Z",
+                    stazhTekushh: null,     //"1970-01-01T00:00:00.000Z",
+                    sprMestoRabotyId: null, //{"id": 1, "nazvPodrazdelenija": "Основное"},
+                    sprOrgId: { id: 1, nameOrg: "физ.лица", sprOrgDopInf: null, cenyMoOrg: null },
+                    sprProfesijaId: null    //{"id": 1, "professija": "программист"}
+                }
             };
             $scope.items.push(cl);
             $scope.totalItems = $scope.items.length;
             $scope.search();
             $scope.setPage($scope.pagedItems.length);
+
+            //$scope.multi = [{id: -1, nomer: "пусто"}];
         }
 
         //создадим новый экземпляр диалогового окна
         var modalInst = $uibModal.open({
-            templateUrl: tmp,//'modMOI.html',
-            controller: contr,//'ModalInstCtrlMOI',
+            templateUrl: (tmp || "modKl.html"),//tmp,//'modMOI.html',
+            controller: (contr || "ModalInstCtrlKL"),//'ModalInstCtrlMOI',
             //templateUrl: 'modKl.html', controller: 'ModalInstCtrlKL'
             size: size,
-            resolve: {items: cl}            //передадим объект cl
+            resolve: {items: cl} //передадим объект cl
         });
 
 
