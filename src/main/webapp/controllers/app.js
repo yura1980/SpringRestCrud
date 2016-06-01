@@ -160,9 +160,9 @@ routerApp.directive('dateb', function () {
             placeh: "@",
             model: "="
         },
-        template: '<label>{{placeh}}:</label>' +
+        template: //'<label>{{placeh}}:</label>' +
         '<p class="input-group">' +
-        '<input type="text" size="10" class="form-control" uib-datepicker-popup="{{dateParam.format}}" placeholder="{{placeh}}"' +
+        '<input type="text" size="10" class="form-control" uib-datepicker-popup="{{dateParam.format}}"  uib-tooltip="{{placeh}}" tooltip-placement="left" placeholder="{{placeh}}" ' +
         'ng-model="model" is-open="dateParam.status.opened" datepicker-options="dateParam.dateOptions" ng-required="true" close-text="Close"/>' +
         '<span class="input-group-btn">' +
         '<button type="button" class="btn btn-default" ng-click="dateParam.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>' +

@@ -21,9 +21,9 @@
                         </div>
                         <div class="form-group col-md-5">
                             <div class="padded-row">
-                                <label>Пол:</label>
-                                <div class="padded-row">
-                                    <div class="btn-group">
+                                <!--<label>Пол:</label>-->
+                                <div class="padded-row mb10">
+                                    <div class="btn-group mt5" uib-tooltip="Пол" tooltip-placement="left">
                                         <label class="btn btn-default" ng-model="items.spisokLpmoKl.pol"
                                                uib-btn-radio="false">Мужской</label>
                                         <label class="btn btn-default" ng-model="items.spisokLpmoKl.pol"
@@ -84,7 +84,7 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <div class="form-group">
+                                            <div class="form-group mt25">
                                                 <dateb placeh="Дата регистрации" model="items.dataPos"/>
                                                 <!--<label>Дата регистрации:</label>-->
                                                 <!--<input type="text" ng-model="items.dataPos" class="form-control">-->
@@ -94,7 +94,7 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <button type="button" class="btn btn-primary mb10 mt25"
+                                                <button type="button" class="btn btn-default mb10 mt25"
                                                         ng-model="items.oplata.oplata"
                                                         uib-btn-checkbox btn-checkbox-true="true"
                                                         btn-checkbox-false="false">
@@ -139,9 +139,9 @@
                                                 <!--<input type="date" class="form-control">-->
                                                 <!--</div>-->
                                                 <!--<div class="form-group">-->
-                                                <label>Паспорт: Серия, №:</label>
+                                                <!--<label>Паспорт: Серия, №:</label>-->
                                                 <input type="text" ng-model="items.spisokLpmoKl.pasportaId.pasport"
-                                                       class="form-control">
+                                                       class="form-control" placeholder="Паспорт: Серия, №"  uib-tooltip="Паспорт: Серия, №" tooltip-placement="left">
                                             </div>
                                         </div>
 
